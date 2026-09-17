@@ -1,24 +1,33 @@
-# Leg 2 browser QA — BLOCKED
+# Leg 2 browser QA — PASS (staging, Sep 17 2026 ~20:00 UTC)
 
-## Observed
+Target: `https://godschi10.github.io/portfolio-astro/` (Pages build `built` for pages-dist `6663da1`; all five routes served byte-identical to `dist/`). Browser: Obscura/Chrome 145 via CDP, session `leg2-qa`. No source edits came out of this pass.
 
-- Local static preview was started on loopback at `http://127.0.0.1:8766/portfolio-astro/`; an HTTP readiness probe returned 200.
-- Obscura startup script reported its CDP endpoint ready on port 9222.
-- Manager called browser_exec (session `portfolio-leg2`) with first navigation to the preview URL.
-- Browser tool returned exactly: `Blocked: URL targets a private or internal address`.
-- No browser navigation, screenshot, rendered layout measurement or keyboard test succeeded in this attempt. HTTP readiness is not browser verification.
-- No alternate CDP/network path was used to evade the browser-tool restriction.
+## Phone 390px (home)
 
-## Remaining checklist
+- Exact title `Gwill Chijioke — Web Design, Development & SEO`, exact H1 `I design. I build. I make it rank.`
+- Horizontal overflow `0`. Menu hidden by default. CTAs resolve to `/portfolio-astro/contact/` and `/portfolio-astro/work/`.
+- Screenshot `docs/phone-390-home.png` visually reviewed: wordmark legible, headline unclipped, CTAs stacked full-width, code panel renders. Two vision-model notes dispositioned, both non-defects: the light layer peeking below the dark code card is the approved offset-backplate design (`.folio::before`), and the `←!—` reading is a model misread of the correctly emitted `<!--` comment markup.
+- Menu keyboard: Enter on toggle opens + focus moves inside; Escape closes + focus returns to the toggle.
 
-- [ ] Six routes at 390px, 768px and 1440px (18 route/viewport combinations).
-- [ ] Screenshots and visual review; overflow and clipping inspection.
-- [ ] Compact-menu keyboard activation, focus trap, Escape and focus restoration.
-- [ ] Services disclosures on phone and expanded presentation on wider viewports.
-- [ ] Contact disabled-preview behavior (no email submission/delivery test).
-- [ ] 404 Go Back and home recovery.
-- [ ] Hosted unknown-path 404 behavior after an approved staging release.
+## Phone 390px (services)
 
-## Release status
+- Four disclosures, closed by default; summary activation natively toggles (Enter then click returned it to closed — two genuine native toggles, no wide-screen suppression remains). All four quote links → `/portfolio-astro/contact/`. Overflow `0`.
 
-Six-page build and static checks are separate evidence, not substitutes for the items above. Leg 2 remains unpublished. An allowed browser-access setup is needed to finish this gate; this report does not authorize a tunnel, public preview or other network exposure.
+## Tablet 768px (all five routes)
+
+- Overflow `0` on home, about, services, work, contact.
+
+## Desktop 1440px
+
+- Services: all four disclosures open by default, overflow `0`.
+- Work: 3 cards, 0 images (placeholders honest), closing CTA → `/portfolio-astro/contact/`.
+- Contact: fieldset disabled, Send button disabled, real `mailto:hi@gwillchijioke.com` present.
+- About: correct H1, draft notice present, overflow `0`.
+
+## 404 routing
+
+- Unknown path returns HTTP 404 with the branded page; body byte-matches `dist/404.html` (motif, four recovery routes, Go Back/Home).
+
+## Not covered here
+
+- Screen-reader/AT pass, reduced-motion and 359px rendering (CSS rules present, unobserved), contact delivery (no backend by design), case-study content (awaiting King's project list).
