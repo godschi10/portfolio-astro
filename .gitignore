@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+REPORT.md
+STAGING-REPORT.md

@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-astro",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "astro build"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}
