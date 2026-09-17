@@ -30,9 +30,24 @@ const fontFaces = [400, 700, 800].map(weight =>
 @media(min-width:1024px){.wrap{width:calc(100% - 96px)}.desktop-nav{display:flex;align-items:center;gap:24px;margin-right:8px}.desktop-nav a{position:relative;display:flex;align-items:center;min-height:48px;font:600 14px/1.5 var(--mono);letter-spacing:.02em}.desktop-nav a::after{content:"";position:absolute;bottom:7px;left:0;width:0;height:2px;background:var(--purple);transition:width .18s}.desktop-nav a:hover::after,.desktop-nav a:focus-visible::after{width:50%}.menu-toggle{display:none}.header-hire{font-size:13px;padding-inline:20px}}
 @media(max-width:359px){.header-inner{display:grid;grid-template-columns:1fr 48px;padding-block:8px}.brand{grid-column:1;grid-row:1}.menu-toggle{grid-column:2;grid-row:1}.header-hire{grid-column:1/-1;grid-row:2}}
 @media(forced-colors:active){.rank-text{background:none;color:CanvasText}.cursor{background:CanvasText}.wordmark::after{background:LinkText}}
-footer{padding-block:40px;border-top:1px solid var(--border);text-align:center;font-size:16px;color:var(--muted)}
-footer p{margin:0 0 8px}footer a{display:inline-flex;align-items:center;min-height:48px;color:var(--purple)}footer a:hover{text-decoration:underline}
-#portfolio-scope{scroll-margin-top:144px}
+footer{padding-block:0;border-top:0}
+.site-footer{padding-block:48px 40px;border-top:1px solid var(--border)}
+.footer-cta h2{margin:0 0 24px;font-family:var(--mono);font-weight:800;font-size:clamp(28px,5vw,56px);line-height:1.15;letter-spacing:-.03em}
+.footer-cta .actions{margin-bottom:16px}
+.footer-cta .actions .button{width:100%}
+.footer-cta p{margin:0;color:var(--muted)}
+.footer-mail{display:inline-flex;align-items:center;min-height:48px;color:var(--purple);text-decoration:underline;text-underline-offset:4px}
+.footer-mail:hover{text-decoration-thickness:2px}
+.footer-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.footer-brand .wordmark{font-size:24px}
+.footer-brand p{margin:16px 0 0;color:var(--muted);font-size:16px}
+.footer-col h2{margin:0 0 8px;font:700 16px/1.7 var(--mono)}
+.footer-col ul{list-style:none;margin:0;padding:0}
+.footer-col li a{display:inline-flex;align-items:center;min-height:48px;color:var(--ink)}
+.footer-col li a:hover{color:var(--purple);text-decoration:underline;text-underline-offset:4px}
+.footer-legal{margin:32px 0 0;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:16px}
+.footer-legal span{white-space:nowrap}
+@media(min-width:768px){.footer-cta .actions .button{width:auto;min-width:240px}.footer-cols{grid-template-columns:1.3fr 1fr 1fr;gap:48px}}
 </style>
 </head>
 <body>
@@ -45,10 +60,38 @@ footer p{margin:0 0 8px}footer a{display:inline-flex;align-items:center;min-heig
 </div></header>
 <noscript><nav class="no-js-nav" aria-label="Navigation without JavaScript"><a href={`${base}about/`}>About</a><a href={`${base}work/`}>Work</a><a href={`${base}services/`}>Services</a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer">Tech Blog ↗</a><a href={`${base}contact/`}>Contact Gwill</a></nav><style is:inline>.menu-toggle{display:none}</style></noscript>
 <main id="main" tabindex="-1"><slot /></main>
-<footer class="wrap">
-<p>Portfolio staging — six-page draft; project content is still pending.</p>
-<p id="portfolio-scope" tabindex="-1">Work, Services and Contact are available as draft pages. Email me to discuss your project.</p>
-<a href="mailto:hi@gwillchijioke.com">hi@gwillchijioke.com</a>
+<footer class="wrap site-footer">
+<section class="footer-cta" aria-labelledby="footer-cta-title">
+<h2 id="footer-cta-title">Let's build something that performs.</h2>
+<div class="actions"><a class="button" href={`${base}contact/`}>Start A Project <span class="arrow" aria-hidden="true">→</span></a></div>
+<p>or email: <a class="footer-mail" href="mailto:hi@gwillchijioke.com">hi@gwillchijioke.com</a></p>
+</section>
+<nav class="footer-cols" aria-label="Footer">
+<div class="footer-brand">
+<a class="wordmark" href={base} aria-label="gwillchijioke. — home"><span>gwillchijioke</span><span class="dot">.</span></a>
+<p>Staging draft — case studies still pending.</p>
+</div>
+<div class="footer-col">
+<h2>Navigation</h2>
+<ul>
+<li><a href={`${base}about/`}>About</a></li>
+<li><a href={`${base}work/`}>Work</a></li>
+<li><a href={`${base}services/`}>Services</a></li>
+<li><a href={`${base}contact/`}>Contact</a></li>
+<li><a href={`${base}contact/`}>Hire Me</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h2>Elsewhere</h2>
+<ul>
+<li><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog ↗</a></li>
+<li><a href="https://github.com/godschi10" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a></li>
+</ul>
+<!-- Twitter/LinkedIn omitted: profile addresses unconfirmed, holding for King. -->
+</div>
+</nav>
+<p class="footer-legal">© 2026 Gwillchijioke · <span>Privacy</span> · <span>Terms</span></p>
+<!-- Privacy/Terms land as real routes with production; unlinked text until then. -->
 </footer>
 <div class="menu-overlay" id="compact-menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" hidden><div class="overlay-head"><span id="menu-title">Explore / Gwill</span><button class="menu-close" aria-label="Close navigation" type="button">×</button></div><nav class="overlay-nav" aria-label="Compact primary"><a href={`${base}about/`}>About <span aria-hidden="true">→</span></a><a href={`${base}work/`}>Work <span aria-hidden="true">→</span></a><a href={`${base}services/`}>Services <span aria-hidden="true">→</span></a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog <span aria-hidden="true">↗</span></a><a href={`${base}contact/`}>Contact <span aria-hidden="true">→</span></a></nav><a class="button overlay-hire" href={`${base}contact/`}>Hire Me <span aria-hidden="true">→</span></a><p class="overlay-caption">Personal portfolio / navigation</p></div>
 <div class="route-notice" role="dialog" aria-modal="true" aria-labelledby="route-title" aria-describedby="route-copy" hidden><h2 id="route-title">Section not available yet</h2><p id="route-copy"></p><button class="button" type="button">Close</button></div>

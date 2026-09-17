@@ -4,7 +4,7 @@ Personal portfolio site for Gwill Chijioke, built with Astro.
 
 ## Status
 
-**v0.4.0 — Leg 2 staging candidate: six routes (home, About, Services, Work, Contact, 404) sharing one Layout, built locally with 25/25 static checks.** All interior pages carry honest draft notices; contact preview is disabled, work cards are unnamed placeholders, service terms unconfirmed. Browser visual/keyboard verification runs against this staging publish.
+**v0.5.0 — real footer per master-plan §9 (CTA + Navigation/Elsewhere columns + legal line), honest staging holds.** Six routes sharing one Layout; 25/25 static checks; browser-verified at 390/768/1440.
 
 ## Implementation
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0 — 2026-09-17
+
+- Real footer per master-plan §9 (gwillchijioke.com): `Let's build something that performs.` CTA with Start A Project → `/contact/` + `or email:` mailto fallback; brand + Navigation + Elsewhere columns; `© 2026 Gwillchijioke · Privacy · Terms` legal line.
+- Honesty holds: no `Built with WordPress` claim on this Astro build; Twitter/LinkedIn omitted (profile addresses unconfirmed, holding for King); Privacy/Terms are unlinked text until real production routes exist.
+- Removed the dead `#portfolio-scope` anchor (no remaining references).
+
 ## 0.4.0 — 2026-09-17
 
 - Leg 2 staging candidate: real `/services/`, `/work/`, `/contact/` draft routes + branded `/404/` (master-plan specs 1511–1550, 1692–1714, 2297–2316). Six pages, static checks 25/25. Independent source review: `docs/MULTIPAGE-LEG2-REVIEW.md`.
