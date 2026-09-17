@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+const title = "About — Gwill Chijioke";
+const description = "Who Gwill is: a web developer focused on performance, design and search rankings. Staging draft.";
+---
+<Layout title={title} description={description}>
+<article class="about">
+<div class="wrap">
+<p class="intro"><strong>I'm Gwill.</strong> <span class="roles">Web dev · Designer · SEO</span></p>
+<h1 id="about-title"><span class="line">I'm Gwill —</span> <span class="line">a web developer who</span> <span class="line">obsesses over performance,</span> <span class="line">design and search rankings.</span></h1>
+
+<div class="hero-actions">
+<a class="button" href="mailto:hi@gwillchijioke.com">More About Me <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<aside class="honest-notice" id="about-scope" tabindex="-1">
+<h2>This page is a draft</h2>
+<p>Full bio, project list and photo are not written yet. This About route proves the multi-page structure; copy comes from the master plan About spec.</p>
+<p>See anything wrong? <a href="mailto:hi@gwillchijioke.com">Email me</a>.</p>
+</aside>
+</div>
+</article>
+</Layout>
+<style is:global>
+.about{position:relative;isolation:isolate;padding-top:40px;padding-bottom:64px}
+.intro{margin:0;font:400 16px/1.7 var(--mono);color:var(--muted)}.intro strong{color:var(--ink);font-weight:700}.intro .roles{display:block}.intro::before{content:"";display:block;width:40px;height:3px;background:var(--purple);margin-bottom:16px}
+h1{margin:0;font-family:var(--mono);font-weight:800;font-size:clamp(36px,8vw,96px);line-height:1.08;letter-spacing:-.04em;font-feature-settings:"kern" 1,"liga" 1,"calt" 1}h1 .line{display:block}
+@media(min-width:768px){.about{padding-top:64px}}
+</style>

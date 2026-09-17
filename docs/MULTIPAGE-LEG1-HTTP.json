@@ -1,0 +1,35 @@
+[
+  {
+    "route": "/portfolio-astro/",
+    "http": 200,
+    "checks": {
+      "shared_header": true,
+      "noindex": true,
+      "no_unverified_PSI": true,
+      "about_link": true
+    },
+    "assets_200": [
+      "/portfolio-astro/_astro/about.BD1gMnSk.css",
+      "/portfolio-astro/_astro/index.4U4XKg71.css",
+      "/portfolio-astro/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "/portfolio-astro/fonts/jetbrains-mono-latin-700-normal.woff2",
+      "/portfolio-astro/fonts/jetbrains-mono-latin-800-normal.woff2"
+    ]
+  },
+  {
+    "route": "/portfolio-astro/about/",
+    "http": 200,
+    "checks": {
+      "shared_header": true,
+      "noindex": true,
+      "no_unverified_PSI": true,
+      "about_link": true
+    },
+    "assets_200": [
+      "/portfolio-astro/_astro/about.BD1gMnSk.css",
+      "/portfolio-astro/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "/portfolio-astro/fonts/jetbrains-mono-latin-700-normal.woff2",
+      "/portfolio-astro/fonts/jetbrains-mono-latin-800-normal.woff2"
+    ]
+  }
+]

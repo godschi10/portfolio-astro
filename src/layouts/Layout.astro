@@ -1,0 +1,71 @@
+---
+// Shared chrome: head, fonts, fixed-light palette, skip-link, header,
+// compact menu + JS, route-notice, footer. Pages pass title/description.
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const fontFaces = [400, 700, 800].map(weight =>
+  `@font-face{font-family:JetBrains Mono;font-style:normal;font-weight:${weight};font-display:swap;src:url("${base}fonts/jetbrains-mono-latin-${weight}-normal.woff2") format("woff2")}`
+).join('\n');
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="deployment" content="GitHub Pages staging — not production">
+<style is:inline set:html={fontFaces}></style>
+<style is:global>
+@font-face{font-family:"Mono fallback";src:local("DejaVu Sans Mono");size-adjust:99.6%}
+:root{color-scheme:light;--canvas:#f7f6f3;--ink:#0d0d0d;--purple:#7c3aed;--green:#00c96e;--border:#e4e2dc;--muted:#55534f;--mono:"JetBrains Mono","Mono fallback",monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.8}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}button{cursor:pointer}a:focus-visible,button:focus-visible,[tabindex="-1"]:focus-visible{outline:3px solid var(--purple);outline-offset:4px}::selection{background:var(--purple);color:white}[hidden]{display:none!important}.wrap{width:calc(100% - 32px);max-width:1312px;margin-inline:auto}.skip{position:fixed;top:8px;left:16px;transform:translateY(-160%);background:white;z-index:1000;padding:12px 16px;min-height:48px}.skip:focus{transform:none}
+.site-header{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--border)}.header-inner{min-height:64px;display:flex;align-items:center;gap:8px}.brand{display:flex;align-items:center;min-height:48px;margin-right:auto;flex-shrink:0}.wordmark{position:relative;display:inline-flex;align-items:baseline;font:700 clamp(20px,2.8vw,24px)/1 var(--mono);letter-spacing:-.04em;white-space:nowrap;font-feature-settings:"kern" 1,"liga" 1,"calt" 1}.wordmark .dot{font-weight:800;color:var(--purple);margin-left:1px}.wordmark::after{content:"";position:absolute;bottom:-6px;left:0;right:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--purple),var(--green));opacity:.7}.desktop-nav{display:none}.button{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:56px;padding:12px 24px;border:1px solid var(--ink);border-radius:4px;font:700 16px/1.5 var(--mono);background:var(--ink);color:#fff;transition:background .18s,color .18s,transform .18s}.button .arrow{transition:transform .18s}.button:hover{background:var(--purple);border-color:var(--purple)}.button:hover .arrow{transform:translateX(3px)}.button:active{transform:translateY(1px)}.button.secondary{background:transparent;color:var(--ink)}.button.secondary:hover{background:var(--ink);color:white}.header-hire{min-height:48px;padding:8px 12px;gap:8px;white-space:nowrap}.header-hire .arrow{display:none}.menu-toggle,.menu-close{width:48px;height:48px;display:grid;place-items:center;background:transparent;border:1px solid var(--ink);border-radius:4px;flex-shrink:0}.menu-toggle svg{width:24px;height:24px}.menu-toggle:hover{color:var(--purple);border-color:var(--purple)}
+.menu-overlay{position:fixed;inset:0;z-index:100;background:#17141c;color:#f7f6f3;overflow:auto;padding:16px;min-height:100dvh}.overlay-head{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:720px;margin:auto;font:700 20px/1.4 var(--mono)}.menu-close{border-color:#8c8298;color:white;font-size:32px}.overlay-nav{max-width:720px;margin:32px auto;display:flex;flex-direction:column}.overlay-nav a{min-height:64px;border-bottom:1px solid #443e4b;display:flex;align-items:center;justify-content:space-between;padding:8px 0;font:700 clamp(24px,4vw,40px)/1.4 var(--mono)}.overlay-nav a:hover{color:#c1a0fa}.overlay-hire{max-width:720px;margin:24px auto 0;display:flex;background:#f7f6f3;color:#0d0d0d;border-color:#f7f6f3}.menu-overlay :focus-visible{outline-color:#c1a0fa}.overlay-caption{max-width:720px;margin:16px auto;font-size:16px;color:#c2bacb}.route-notice{position:fixed;inset:auto 16px 16px;z-index:200;margin:auto;max-width:640px;background:white;border:2px solid var(--purple);border-radius:6px;box-shadow:0 12px 40px #17141c26;padding:20px;color:var(--ink)}.route-notice h2{font:700 20px/1.4 var(--mono);margin:0 0 8px}.route-notice p{margin:0 0 16px}.route-notice button{min-height:48px;min-width:96px}.no-js-nav{padding:16px;display:flex;flex-wrap:wrap;gap:8px}.no-js-nav a{padding:12px;min-height:48px;text-decoration:underline}
+@keyframes blink{50%{opacity:0}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(min-width:768px){.wrap{width:calc(100% - 64px)}.header-inner{gap:16px}.header-hire .arrow{display:inline}}
+@media(min-width:1024px){.wrap{width:calc(100% - 96px)}.desktop-nav{display:flex;align-items:center;gap:24px;margin-right:8px}.desktop-nav a{position:relative;display:flex;align-items:center;min-height:48px;font:600 14px/1.5 var(--mono);letter-spacing:.02em}.desktop-nav a::after{content:"";position:absolute;bottom:7px;left:0;width:0;height:2px;background:var(--purple);transition:width .18s}.desktop-nav a:hover::after,.desktop-nav a:focus-visible::after{width:50%}.menu-toggle{display:none}.header-hire{font-size:13px;padding-inline:20px}}
+@media(max-width:359px){.header-inner{display:grid;grid-template-columns:1fr 48px;padding-block:8px}.brand{grid-column:1;grid-row:1}.menu-toggle{grid-column:2;grid-row:1}.header-hire{grid-column:1/-1;grid-row:2}}
+@media(forced-colors:active){.rank-text{background:none;color:CanvasText}.cursor{background:CanvasText}.wordmark::after{background:LinkText}}
+footer{padding-block:40px;border-top:1px solid var(--border);text-align:center;font-size:16px;color:var(--muted)}
+footer p{margin:0 0 8px}footer a{display:inline-flex;align-items:center;min-height:48px;color:var(--purple)}footer a:hover{text-decoration:underline}
+#portfolio-scope{scroll-margin-top:144px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top"><div class="wrap header-inner">
+<a class="brand" href={base} aria-label="gwillchijioke. — home"><span class="wordmark"><span>gwillchijioke</span><span class="dot">.</span></span></a>
+<nav class="desktop-nav" aria-label="Primary"><a href={`${base}about/`}>About</a><a href="#portfolio-scope" data-scope="Work" aria-haspopup="dialog">Work</a><a href="#portfolio-scope" data-scope="Services" aria-haspopup="dialog">Services</a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog ↗</a></nav>
+<a class="button header-hire" href="mailto:hi@gwillchijioke.com">Hire Me <span class="arrow" aria-hidden="true">→</span></a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="compact-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div></header>
+<noscript><nav class="no-js-nav" aria-label="Navigation without JavaScript"><a href={`${base}about/`}>About</a><a href="#portfolio-scope" data-scope="Work" aria-haspopup="dialog">Work</a><a href="#portfolio-scope" data-scope="Services" aria-haspopup="dialog">Services</a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer">Tech Blog ↗</a><a href="mailto:hi@gwillchijioke.com">Contact Gwill</a></nav><style is:inline>.menu-toggle{display:none}</style></noscript>
+<main id="main" tabindex="-1"><slot /></main>
+<footer class="wrap">
+<p>Portfolio staging — multi-page layout leg one; selected work is still pending.</p>
+<p id="portfolio-scope" tabindex="-1">Services is not available in this staging build yet. Please email me to discuss your project.</p>
+<a href="mailto:hi@gwillchijioke.com">hi@gwillchijioke.com</a>
+</footer>
+<div class="menu-overlay" id="compact-menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" hidden><div class="overlay-head"><span id="menu-title">Explore / Gwill</span><button class="menu-close" aria-label="Close navigation" type="button">×</button></div><nav class="overlay-nav" aria-label="Compact primary"><a href={`${base}about/`}>About <span aria-hidden="true">→</span></a><a href="#portfolio-scope" data-scope="Work">Work <span aria-hidden="true">→</span></a><a href="#portfolio-scope" data-scope="Services" aria-haspopup="dialog">Services <span aria-hidden="true">→</span></a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog <span aria-hidden="true">↗</span></a><a href="mailto:hi@gwillchijioke.com">Contact <span aria-hidden="true">→</span></a></nav><a class="button overlay-hire" href="mailto:hi@gwillchijioke.com">Hire Me <span aria-hidden="true">→</span></a><p class="overlay-caption">Personal portfolio / navigation</p></div>
+<div class="route-notice" role="dialog" aria-modal="true" aria-labelledby="route-title" aria-describedby="route-copy" hidden><h2 id="route-title">Section not available yet</h2><p id="route-copy"></p><button class="button" type="button">Close</button></div>
+<script is:inline>
+(() => {
+ const toggle=document.querySelector('.menu-toggle'), menu=document.querySelector('.menu-overlay'), notice=document.querySelector('.route-notice');
+ const page=[...document.body.children].filter(el=>!['SCRIPT','STYLE','NOSCRIPT'].includes(el.tagName)&&el!==menu&&el!==notice);
+ let active=null,returnTo=null;
+ function controls(el){return [...el.querySelectorAll('a[href],button')].filter(x=>!x.disabled&&!x.hidden)}
+ function open(el,trigger){if(active)close(false);returnTo=trigger;active=el;el.hidden=false;page.forEach(x=>x.inert=true);document.body.style.overflow='hidden';toggle.setAttribute('aria-expanded',String(el===menu));controls(el)[0]?.focus()}
+ function close(restore=true){if(!active)return;active.hidden=true;active=null;page.forEach(x=>x.inert=false);document.body.style.overflow='';toggle.setAttribute('aria-expanded','false');if(restore)returnTo?.focus()}
+ toggle.addEventListener('click',()=>open(menu,toggle));toggle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(menu,toggle)}});menu.querySelector('button').addEventListener('click',()=>close());notice.querySelector('button').addEventListener('click',()=>close());
+ document.querySelectorAll('[data-scope]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const fromMenu=menu.contains(a);document.querySelector('#route-copy').textContent=a.dataset.scope+' is not available in this staging build yet. Please email hi@gwillchijioke.com to discuss your project.';open(notice,fromMenu?toggle:a)}));
+ menu.querySelectorAll('a:not([data-scope])').forEach(a=>a.addEventListener('click',()=>{close()}));
+ document.addEventListener('keydown',e=>{if(!active)return;if(e.key==='Escape'){e.preventDefault();close();return}if(e.key==='Tab'){const nodes=controls(active),first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+ document.addEventListener('focusin',e=>{if(active&&!active.contains(e.target))controls(active)[0]?.focus()});
+ window.addEventListener('resize',()=>{if(innerWidth>=1024&&active===menu)close()});
+})();
+</script>
+</body></html>

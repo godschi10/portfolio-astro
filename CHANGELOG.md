@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 — 2026-09-17
+
+- Multi-page structure (King directive: a multi-page site like the WP themes, not a landing page): shared `src/layouts/Layout.astro` chrome (header, compact menu, footer, fonts, noindex) consumed by every page.
+- New real route `/about/` — honest draft from the master-plan About spec with a visible "this page is a draft" notice; no invented bio, metrics or photo. About nav link is real on all pages.
+- Homepage converted to consume the Layout; approved hero markup and responsive CSS preserved (768px/1024px/359px rules restored after extraction).
+- Static multi-page checks (`scripts/check-multipage.mjs`): shared header/footer equality, per-route titles/h1, noindex + fixed light on both routes, all referenced assets exist. 4/4 passed.
+- Unverified "100 PSI" claim removed from About. Contact remains a working mailto; Work/Services keep honest scope notices until their pages exist.
+- Local build exit 0 (2 pages, 8.28s) and localhost serve-test passed (`docs/MULTIPAGE-LEG1-REPORT.md`). Browser visual/keyboard verification still outstanding.
+
 ## 0.2.0 — 2026-09-17
 
 - Integrated the refined header/hero direction into the standalone Astro homepage; local integration only, not published or final-visual-approved.

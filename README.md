@@ -4,7 +4,7 @@ Personal portfolio site for Gwill Chijioke, built with Astro.
 
 ## Status
 
-**v0.2.0 — header/hero integrated and built locally.** Refined direction ported from `docs/mockups/header-hero/index.html`. This is not a complete portfolio, a new staging publish, or final visual approval. Selected work remains the existing pending placeholder. About/Services offer an honest scope notice and no-JS fallback; contact uses `hi@gwillchijioke.com`.
+**v0.3.0 — multi-page structure: shared Layout + real `/about/`, built and serve-tested locally.** Header, compact menu and footer live in `src/layouts/Layout.astro` and are shared by every page. `/about/` is an honest draft from the master-plan About spec. Not browser-visually verified; published to GitHub staging as a draft for review. Work/Services keep honest scope notices; contact uses `hi@gwillchijioke.com`.
 
 ## Implementation
 
