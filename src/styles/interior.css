@@ -1,0 +1,15 @@
+/* Leg 2 interiors only: never target the approved homepage or shared chrome. */
+.interior{padding-block:40px 64px;overflow-wrap:anywhere}
+.interior .eyebrow{margin:0 0 16px;color:var(--muted);font:400 16px/1.7 var(--mono)}
+.interior .eyebrow::before{content:"";display:block;width:40px;height:3px;background:var(--purple);margin-bottom:16px}
+.interior h1{max-width:20ch;margin:0 0 24px;font:800 clamp(36px,7vw,80px)/1.12 var(--mono);letter-spacing:-.04em}
+.interior h2{margin:0 0 16px;font:700 clamp(22px,3vw,32px)/1.3 var(--mono);letter-spacing:-.03em}
+.interior p{margin:0 0 16px;max-width:72ch}
+.interior .draft-notice{margin-block:24px 40px;padding:24px;border:1px solid var(--border);border-left:3px solid var(--purple);background:#efede8}
+.interior .draft-notice h2{font-size:20px}
+.interior .draft-notice p:last-child{margin-bottom:0}
+.interior .text-link{display:inline-flex;align-items:center;min-height:48px;text-decoration:underline;text-underline-offset:4px;color:var(--purple)}
+.interior .closing-cta{margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.interior .actions{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.interior .actions .button{width:100%}
+@media(min-width:768px){.interior{padding-block:64px 80px}.interior .actions{flex-direction:row;flex-wrap:wrap}.interior .actions .button{width:auto;min-width:192px}}

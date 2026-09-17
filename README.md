@@ -4,7 +4,7 @@ Personal portfolio site for Gwill Chijioke, built with Astro.
 
 ## Status
 
-**v0.3.0 — multi-page structure: shared Layout + real `/about/`, built and serve-tested locally.** Header, compact menu and footer live in `src/layouts/Layout.astro` and are shared by every page. `/about/` is an honest draft from the master-plan About spec. Not browser-visually verified; published to GitHub staging as a draft for review. Work/Services keep honest scope notices; contact uses `hi@gwillchijioke.com`.
+**v0.4.0 — Leg 2 staging candidate: six routes (home, About, Services, Work, Contact, 404) sharing one Layout, built locally with 25/25 static checks.** All interior pages carry honest draft notices; contact preview is disabled, work cards are unnamed placeholders, service terms unconfirmed. Browser visual/keyboard verification runs against this staging publish.
 
 ## Implementation
 

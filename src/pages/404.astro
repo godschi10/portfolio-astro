@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/interior.css';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+// MP 2297–2316: main portfolio all-device 404, not the tech-blog template.
+---
+<Layout title="404 — Page not found — Gwill Chijioke" description="This page does not exist. Find Work, Services, About or Contact, or return to the portfolio home page.">
+<section class="interior error-page wrap" aria-labelledby="error-title">
+  <p class="eyebrow"><code>&lt;!-- page not found --&gt;</code></p>
+  <h1 id="error-title">404 — This page doesn't exist.</h1>
+  <h2>Were you looking for:</h2>
+  <ul class="recovery-links">
+    <li><a class="text-link" href={`${base}work/`}>→ /work</a></li>
+    <li><a class="text-link" href={`${base}services/`}>→ /services</a></li>
+    <li><a class="text-link" href={`${base}about/`}>→ /about</a></li>
+    <li><a class="text-link" href={`${base}contact/`}>→ /contact</a></li>
+  </ul>
+  <div class="actions">
+    <a class="button secondary" id="go-back" href={base}><span aria-hidden="true">←</span> Go Back</a>
+    <a class="button" href={base}>Go Home <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+  <p class="back-help">Go Back uses your browser history when available; otherwise it returns home.</p>
+</section>
+</Layout>
+<script>
+const goBack = document.querySelector('#go-back');
+goBack?.addEventListener('click', event => {
+  if (event instanceof MouseEvent && (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
+  // history.length counts forward entries too, so it cannot prove Back will leave this page.
+  // Only intercept when the referrer shows a same-origin page to return to; otherwise follow the home link.
+  try {
+    const ref = document.referrer ? new URL(document.referrer, window.location.href) : null;
+    if (ref && ref.origin === window.location.origin) {
+      event.preventDefault();
+      window.history.back();
+    }
+  } catch { /* fall through to the home link */ }
+});
+</script>
+<style is:global>
+.error-page{min-height:65vh}
+.error-page code{font:inherit;color:var(--purple)}
+.error-page .recovery-links{list-style:none;margin:0;padding:0;font:400 16px/1.7 var(--mono)}
+.error-page .recovery-links a{padding-block:8px}
+.error-page .back-help{margin-top:24px;color:var(--muted)}
+</style>

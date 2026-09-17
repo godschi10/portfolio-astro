@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/interior.css';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+// MP 1535–1550: work grid. MP 1127–1150: explicitly unnamed diagram slots.
+const projects = [1, 2, 3];
+---
+<Layout title="Selected Work — Gwill Chijioke" description="Selected Work staging draft. Three explicitly unnamed project placeholders; case studies and evidence are not available yet.">
+<section class="interior work-page wrap" aria-labelledby="work-title">
+  <p class="eyebrow">Portfolio / content pending</p>
+  <h1 id="work-title">Selected Work</h1>
+  <aside class="draft-notice" aria-labelledby="work-draft-title">
+    <h2 id="work-draft-title">This page is a draft</h2>
+    <p>Project 1, Project 2 and Project 3 are unnamed layout placeholders from the plan, not real case studies. No project identity has been assigned to these slots.</p>
+    <p>Names, screenshots, services delivered, descriptions and evidence are still needed before any case study can be published.</p>
+  </aside>
+  <div class="project-grid">
+    {projects.map(number => (
+      <article class="project-card" aria-labelledby={`project-${number}-title`}>
+        <div class="screenshot-placeholder"><span aria-hidden="true">0{number} /</span><p>Screenshot not supplied</p><p class="placeholder-label">Layout placeholder — not a project image</p></div>
+        <div class="project-copy">
+          <h2 id={`project-${number}-title`}>Project {number} — unnamed placeholder</h2>
+          <p>Services: not assigned.</p>
+          <p>Project description has not been supplied.</p>
+          <p class="case-study-status">Case study not available yet.</p>
+        </div>
+      </article>
+    ))}
+  </div>
+  <section class="closing-cta" aria-labelledby="work-cta-title">
+    <h2 id="work-cta-title">Discuss your project</h2>
+    <div class="actions"><a class="button" href={`${base}contact/`}>Contact <span class="arrow" aria-hidden="true">→</span></a></div>
+  </section>
+</section>
+</Layout>
+<style is:global>
+.work-page .project-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.work-page .project-card{min-width:0;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.work-page .screenshot-placeholder{aspect-ratio:16/9;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:#efede8;border-bottom:1px solid var(--border);font:400 16px/1.6 var(--mono)}
+.work-page .screenshot-placeholder>span{color:var(--purple);margin-bottom:16px;font-weight:700}
+.work-page .screenshot-placeholder p{margin:0 0 8px}
+.work-page .placeholder-label{color:var(--muted)}
+.work-page .project-copy{padding:24px}
+.work-page .project-copy h2{font-size:clamp(22px,2.5vw,32px)}
+.work-page .case-study-status{color:var(--muted);border-top:1px solid var(--border);padding-top:16px;margin-bottom:0}
+@media(min-width:768px){.work-page .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.work-page .project-card:first-child{grid-column:1/-1}}
+</style>

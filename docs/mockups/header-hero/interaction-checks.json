@@ -1,0 +1,51 @@
+{
+  "trustedEnter": {
+    "open": true,
+    "expanded": "true",
+    "focus": "menu-close",
+    "locked": true,
+    "notice": false
+  },
+  "clickOpen": {
+    "open": true,
+    "expanded": "true",
+    "focus": "menu-close",
+    "locked": true,
+    "notice": false
+  },
+  "tabWrap": {
+    "open": true,
+    "expanded": "true",
+    "focus": "menu-close",
+    "locked": true,
+    "notice": false
+  },
+  "shiftTabWrap": {
+    "open": true,
+    "expanded": "true",
+    "focus": "menu-close",
+    "locked": true,
+    "notice": false
+  },
+  "escapeReturn": {
+    "open": false,
+    "expanded": "false",
+    "focus": "menu-toggle",
+    "locked": false,
+    "notice": false
+  },
+  "workScopeNote": {
+    "open": false,
+    "expanded": "false",
+    "focus": "button",
+    "locked": true,
+    "notice": true
+  },
+  "scopeReturn": {
+    "open": false,
+    "expanded": "false",
+    "focus": "button secondary",
+    "locked": false,
+    "notice": false
+  }
+}

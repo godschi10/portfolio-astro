@@ -1,0 +1,680 @@
+[
+  {
+    "width": 320,
+    "scrollWidth": 320,
+    "height": 1458,
+    "h1": "36px",
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "800",
+        "status": "loaded"
+      },
+      {
+        "family": "Mono fallback",
+        "weight": "normal",
+        "status": "unloaded"
+      }
+    ],
+    "overflow": [],
+    "controls": [
+      {
+        "text": "gwillchijioke.",
+        "w": 159,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 288,
+        "h": 48
+      },
+      {
+        "text": "Open navigation",
+        "w": 48,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 288,
+        "h": 56
+      },
+      {
+        "text": "View Work \u2193",
+        "w": 288,
+        "h": 56
+      }
+    ],
+    "title": "I design. I build. I make it rank.",
+    "hero": {
+      "x": 0,
+      "y": 121,
+      "width": 320,
+      "height": 1094,
+      "top": 121,
+      "right": 320,
+      "bottom": 1215,
+      "left": 0
+    },
+    "actions": {
+      "x": 16,
+      "y": 799,
+      "width": 288,
+      "height": 124,
+      "top": 799,
+      "right": 304,
+      "bottom": 923,
+      "left": 16
+    },
+    "h1Box": {
+      "x": 16,
+      "y": 250,
+      "width": 288,
+      "height": 156,
+      "top": 250,
+      "right": 304,
+      "bottom": 406,
+      "left": 16
+    },
+    "cursor": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "folio": {
+      "x": 16,
+      "y": 430,
+      "width": 288,
+      "height": 345,
+      "top": 430,
+      "right": 304,
+      "bottom": 775,
+      "left": 16
+    },
+    "heroBefore": "none"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "height": 1292,
+    "h1": "36px",
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "800",
+        "status": "loaded"
+      },
+      {
+        "family": "Mono fallback",
+        "weight": "normal",
+        "status": "unloaded"
+      }
+    ],
+    "overflow": [],
+    "controls": [
+      {
+        "text": "gwillchijioke.",
+        "w": 159,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 94,
+        "h": 48
+      },
+      {
+        "text": "Open navigation",
+        "w": 48,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 358,
+        "h": 56
+      },
+      {
+        "text": "View Work \u2193",
+        "w": 358,
+        "h": 56
+      }
+    ],
+    "title": "I design. I build. I make it rank.",
+    "hero": {
+      "x": 0,
+      "y": 65,
+      "width": 390,
+      "height": 1014,
+      "top": 65,
+      "right": 390,
+      "bottom": 1079,
+      "left": 0
+    },
+    "actions": {
+      "x": 16,
+      "y": 688,
+      "width": 358,
+      "height": 124,
+      "top": 688,
+      "right": 374,
+      "bottom": 812,
+      "left": 16
+    },
+    "h1Box": {
+      "x": 16,
+      "y": 202,
+      "width": 358,
+      "height": 117,
+      "top": 202,
+      "right": 374,
+      "bottom": 319,
+      "left": 16
+    },
+    "cursor": {
+      "x": 322,
+      "y": 280,
+      "width": 3,
+      "height": 26,
+      "top": 280,
+      "right": 325,
+      "bottom": 306,
+      "left": 322
+    },
+    "folio": {
+      "x": 16,
+      "y": 343,
+      "width": 358,
+      "height": 321,
+      "top": 343,
+      "right": 374,
+      "bottom": 664,
+      "left": 16
+    },
+    "heroBefore": "none"
+  },
+  {
+    "width": 768,
+    "scrollWidth": 768,
+    "height": 1290,
+    "h1": "61.44px",
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "800",
+        "status": "loaded"
+      },
+      {
+        "family": "Mono fallback",
+        "weight": "normal",
+        "status": "unloaded"
+      }
+    ],
+    "overflow": [],
+    "controls": [
+      {
+        "text": "gwillchijioke.",
+        "w": 171,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 116,
+        "h": 48
+      },
+      {
+        "text": "Open navigation",
+        "w": 48,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 192,
+        "h": 56
+      },
+      {
+        "text": "View Work \u2193",
+        "w": 192,
+        "h": 56
+      }
+    ],
+    "title": "I design. I build. I make it rank.",
+    "hero": {
+      "x": 0,
+      "y": 65,
+      "width": 768,
+      "height": 1098,
+      "top": 65,
+      "right": 768,
+      "bottom": 1163,
+      "left": 0
+    },
+    "actions": {
+      "x": 32,
+      "y": 878,
+      "width": 704,
+      "height": 56,
+      "top": 878,
+      "right": 736,
+      "bottom": 934,
+      "left": 32
+    },
+    "h1Box": {
+      "x": 32,
+      "y": 207,
+      "width": 704,
+      "height": 199,
+      "top": 207,
+      "right": 736,
+      "bottom": 406,
+      "left": 32
+    },
+    "cursor": {
+      "x": 554,
+      "y": 340,
+      "width": 6,
+      "height": 44,
+      "top": 340,
+      "right": 560,
+      "bottom": 384,
+      "left": 554
+    },
+    "folio": {
+      "x": 32,
+      "y": 438,
+      "width": 640,
+      "height": 408,
+      "top": 438,
+      "right": 672,
+      "bottom": 846,
+      "left": 32
+    },
+    "heroBefore": "none"
+  },
+  {
+    "width": 1023,
+    "scrollWidth": 1023,
+    "height": 1327,
+    "h1": "81.84px",
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "800",
+        "status": "loaded"
+      },
+      {
+        "family": "Mono fallback",
+        "weight": "normal",
+        "status": "unloaded"
+      }
+    ],
+    "overflow": [],
+    "controls": [
+      {
+        "text": "gwillchijioke.",
+        "w": 190,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 116,
+        "h": 48
+      },
+      {
+        "text": "Open navigation",
+        "w": 48,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 192,
+        "h": 56
+      },
+      {
+        "text": "View Work \u2193",
+        "w": 192,
+        "h": 56
+      }
+    ],
+    "title": "I design. I build. I make it rank.",
+    "hero": {
+      "x": 0,
+      "y": 65,
+      "width": 1023,
+      "height": 1164,
+      "top": 65,
+      "right": 1023,
+      "bottom": 1229,
+      "left": 0
+    },
+    "actions": {
+      "x": 32,
+      "y": 945,
+      "width": 959,
+      "height": 56,
+      "top": 945,
+      "right": 991,
+      "bottom": 1001,
+      "left": 32
+    },
+    "h1Box": {
+      "x": 32,
+      "y": 207,
+      "width": 959,
+      "height": 265,
+      "top": 207,
+      "right": 991,
+      "bottom": 472,
+      "left": 32
+    },
+    "cursor": {
+      "x": 728,
+      "y": 384,
+      "width": 7,
+      "height": 59,
+      "top": 384,
+      "right": 735,
+      "bottom": 443,
+      "left": 728
+    },
+    "folio": {
+      "x": 32,
+      "y": 504,
+      "width": 640,
+      "height": 409,
+      "top": 504,
+      "right": 672,
+      "bottom": 913,
+      "left": 32
+    },
+    "heroBefore": "none"
+  },
+  {
+    "width": 1024,
+    "scrollWidth": 1024,
+    "height": 1100,
+    "h1": "81.92px",
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "800",
+        "status": "loaded"
+      },
+      {
+        "family": "Mono fallback",
+        "weight": "normal",
+        "status": "unloaded"
+      }
+    ],
+    "overflow": [],
+    "controls": [
+      {
+        "text": "gwillchijioke.",
+        "w": 190,
+        "h": 48
+      },
+      {
+        "text": "About",
+        "w": 44,
+        "h": 48
+      },
+      {
+        "text": "Work",
+        "w": 35,
+        "h": 48
+      },
+      {
+        "text": "Services",
+        "w": 70,
+        "h": 48
+      },
+      {
+        "text": "Tech Blog \u2197",
+        "w": 99,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 116,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 192,
+        "h": 56
+      },
+      {
+        "text": "View Work \u2193",
+        "w": 192,
+        "h": 56
+      }
+    ],
+    "title": "I design. I build. I make it rank.",
+    "hero": {
+      "x": 0,
+      "y": 65,
+      "width": 1024,
+      "height": 890,
+      "top": 65,
+      "right": 1024,
+      "bottom": 955,
+      "left": 0
+    },
+    "actions": {
+      "x": 48,
+      "y": 619,
+      "width": 577,
+      "height": 56,
+      "top": 619,
+      "right": 625,
+      "bottom": 675,
+      "left": 48
+    },
+    "h1Box": {
+      "x": 48,
+      "y": 207,
+      "width": 577,
+      "height": 380,
+      "top": 207,
+      "right": 625,
+      "bottom": 587,
+      "left": 48
+    },
+    "cursor": {
+      "x": 286,
+      "y": 472,
+      "width": 7,
+      "height": 59,
+      "top": 472,
+      "right": 293,
+      "bottom": 531,
+      "left": 286
+    },
+    "folio": {
+      "x": 705,
+      "y": 223,
+      "width": 303,
+      "height": 585,
+      "top": 223,
+      "right": 1008,
+      "bottom": 808,
+      "left": 705
+    },
+    "heroBefore": "none"
+  },
+  {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "height": 1000,
+    "h1": "96px",
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "700",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "800",
+        "status": "loaded"
+      },
+      {
+        "family": "Mono fallback",
+        "weight": "normal",
+        "status": "unloaded"
+      }
+    ],
+    "overflow": [],
+    "controls": [
+      {
+        "text": "gwillchijioke.",
+        "w": 190,
+        "h": 48
+      },
+      {
+        "text": "About",
+        "w": 44,
+        "h": 48
+      },
+      {
+        "text": "Work",
+        "w": 35,
+        "h": 48
+      },
+      {
+        "text": "Services",
+        "w": 70,
+        "h": 48
+      },
+      {
+        "text": "Tech Blog \u2197",
+        "w": 99,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 116,
+        "h": 48
+      },
+      {
+        "text": "Hire Me \u2192",
+        "w": 192,
+        "h": 56
+      },
+      {
+        "text": "View Work \u2193",
+        "w": 192,
+        "h": 56
+      }
+    ],
+    "title": "I design. I build. I make it rank.",
+    "hero": {
+      "x": 0,
+      "y": 65,
+      "width": 1440,
+      "height": 831,
+      "top": 65,
+      "right": 1440,
+      "bottom": 896,
+      "left": 0
+    },
+    "actions": {
+      "x": 64,
+      "y": 568,
+      "width": 828,
+      "height": 56,
+      "top": 568,
+      "right": 892,
+      "bottom": 624,
+      "left": 64
+    },
+    "h1Box": {
+      "x": 64,
+      "y": 207,
+      "width": 828,
+      "height": 329,
+      "top": 207,
+      "right": 892,
+      "bottom": 536,
+      "left": 64
+    },
+    "cursor": {
+      "x": 880,
+      "y": 414,
+      "width": 9,
+      "height": 69,
+      "top": 414,
+      "right": 889,
+      "bottom": 483,
+      "left": 880
+    },
+    "folio": {
+      "x": 972,
+      "y": 210,
+      "width": 436,
+      "height": 553,
+      "top": 210,
+      "right": 1408,
+      "bottom": 763,
+      "left": 972
+    },
+    "heroBefore": "none"
+  }
+]

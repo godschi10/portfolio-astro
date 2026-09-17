@@ -1,0 +1,37 @@
+npm notice run portfolio-astro@0.3.0 build
+npm notice run astro build
+16:40:59 [content] Syncing content
+16:40:59 [content] Synced content
+16:40:59 [types] Generated 211ms
+16:40:59 [build] output: "static"
+16:40:59 [build] mode: "static"
+16:40:59 [build] directory: /home/ubuntu/portfolio-astro/dist/
+16:40:59 [build] Collecting build info...
+16:40:59 [build] ✓ Completed in 493ms.
+16:40:59 [build] Building static entrypoints...
+16:41:05 [vite] ✓ built in 5.78s
+16:41:05 [build] ✓ Completed in 5.98s.
+
+ building client (vite) 
+16:41:05 [vite] transforming...
+16:41:05 [vite] ✓ 2 modules transformed.
+16:41:05 [vite] rendering chunks...
+16:41:05 [vite] ✓ built in 96ms
+
+ generating static routes 
+16:41:05 ▶ src/pages/404.astro
+16:41:05   └─ /404.html (+10ms) 
+16:41:05 ▶ src/pages/about.astro
+16:41:05   └─ /about/index.html (+65ms) 
+16:41:05 ▶ src/pages/contact.astro
+16:41:05   └─ /contact/index.html (+2ms) 
+16:41:05 ▶ src/pages/index.astro
+16:41:05   └─ /index.html (+1ms) 
+16:41:05 ▶ src/pages/services.astro
+16:41:05   └─ /services/index.html (+2ms) 
+16:41:05 ▶ src/pages/work.astro
+16:41:05   └─ /work/index.html (+1ms) 
+16:41:05 ✓ Completed in 98ms.
+
+16:41:05 [build] 6 page(s) built in 6.69s
+16:41:05 [build] Complete!

@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/interior.css';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+// MP 1511–1532: service names/structure. MP 1161–1175: scope vocabulary.
+// No result guarantees, invented package inclusions or client profiles.
+const services = [
+  { number: '01', name: 'Web Development', description: 'Custom WordPress sites, with a focus on speed, SEO and conversion.', scope: 'WordPress development; speed, SEO and conversion considerations.' },
+  { number: '02', name: 'Web Design', description: 'Clean, intentional, mobile-first web design.', scope: 'Mobile-first design.' },
+  { number: '03', name: 'SEO', description: 'Technical and content SEO.', scope: 'Technical SEO and content SEO.' },
+  { number: '04', name: 'Tech Consulting', description: 'Cloudflare, performance audits and stack decisions.', scope: 'WordPress optimisation and speed fixes; Cloudflare, performance audits and stack decisions.' },
+];
+---
+<Layout title="Services — Gwill Chijioke" description="Web development, web design, SEO and tech consulting. Draft service scope; discuss your project by email.">
+<section class="interior services-page wrap" aria-labelledby="services-title">
+  <p class="eyebrow">What I Do / 01–04</p>
+  <h1 id="services-title">Services</h1>
+  <aside class="draft-notice" aria-labelledby="services-draft-title">
+    <h2 id="services-draft-title">This page is a draft</h2>
+    <p>These four services come from the portfolio plan. The descriptions outline areas of work, not agreed packages or promised results. Exact inclusions and intended clients still need to be confirmed.</p>
+  </aside>
+  <div class="service-list">
+    {services.map(service => (
+      <details class="service" open>
+        <summary><span class="service-number">{service.number}</span><h2>{service.name}</h2><span class="service-indicator" aria-hidden="true">+</span></summary>
+        <div class="service-body">
+          <p>{service.description}</p>
+          <dl>
+            <dt>What's included</dt>
+            <dd>{service.scope} Exact deliverables are to be agreed after discussing your project.</dd>
+            <dt>Who it's for</dt>
+            <dd>Client fit is not specified in the plan yet. Tell me what you need so we can discuss the fit.</dd>
+          </dl>
+          <a class="button secondary" href={`${base}contact/`}>Get a Quote <span aria-hidden="true">→</span></a>
+        </div>
+      </details>
+    ))}
+  </div>
+  <section class="closing-cta" aria-labelledby="services-cta-title">
+    <h2 id="services-cta-title">Not sure what you need?</h2>
+    <div class="actions"><a class="button" href={`${base}contact/`}>Let's Talk <span class="arrow" aria-hidden="true">→</span></a></div>
+  </section>
+</section>
+</Layout>
+<script>
+// Native disclosures at every width: open by default on tablet/desktop, closed on phone,
+// always user-toggleable. Without JS all content starts open and remains accessible.
+const wide = window.matchMedia('(min-width: 768px)');
+const services = [...document.querySelectorAll<HTMLDetailsElement>('.services-page details')];
+function syncServices() { services.forEach(service => { service.open = wide.matches; }); }
+syncServices();
+wide.addEventListener('change', syncServices);
+</script>
+<style is:global>
+.services-page .service{border-top:1px solid var(--border);padding-block:8px}
+.services-page .service:last-child{border-bottom:1px solid var(--border)}
+.services-page summary{display:flex;align-items:center;gap:16px;min-height:72px;cursor:pointer;list-style:none;padding-block:16px}
+.services-page summary::-webkit-details-marker{display:none}
+.services-page summary:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
+.services-page summary h2{margin:0;flex:1;min-width:0;font-size:clamp(22px,3vw,32px)}
+.services-page .service-number{color:var(--purple);font:700 16px/1.5 var(--mono)}
+.services-page .service-indicator{font:400 24px/1 var(--mono)}
+.services-page details[open] .service-indicator{transform:rotate(45deg)}
+.services-page .service-body{padding-block:8px 24px;max-width:76ch}
+.services-page dl{margin:24px 0}
+.services-page dt{font:700 16px/1.7 var(--mono);margin-top:16px}
+.services-page dd{margin:4px 0 0;color:var(--muted)}
+.services-page .service-body .button{width:100%}
+@media(min-width:768px){.services-page .service-body{margin-left:40px}.services-page .service-body .button{width:auto}}
+</style>

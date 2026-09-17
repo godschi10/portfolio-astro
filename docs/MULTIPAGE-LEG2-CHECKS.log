@@ -1,0 +1,26 @@
+PASS exactly six generated HTML pages
+PASS index: Layout, shared header/footer byte equality
+PASS index: exact title, one h1 and main landmark
+PASS index: noindex, fixed light and referenced assets
+PASS about: Layout, shared header/footer byte equality
+PASS about: exact title, one h1 and main landmark
+PASS about: noindex, fixed light and referenced assets
+PASS services: Layout, shared header/footer byte equality
+PASS services: exact title, one h1 and main landmark
+PASS services: noindex, fixed light and referenced assets
+PASS work: Layout, shared header/footer byte equality
+PASS work: exact title, one h1 and main landmark
+PASS work: noindex, fixed light and referenced assets
+PASS contact: Layout, shared header/footer byte equality
+PASS contact: exact title, one h1 and main landmark
+PASS contact: noindex, fixed light and referenced assets
+PASS 404: Layout, shared header/footer byte equality
+PASS 404: exact title, one h1 and main landmark
+PASS 404: noindex, fixed light and referenced assets
+PASS honest draft content and service scope
+PASS three explicitly unnamed work placeholders; no fake case-study links
+PASS contact preview cannot submit; real email fallback
+PASS 404 motif and real recovery routes
+PASS shared navigation reaches all draft routes without scope interception
+PASS local link targets and fragments exist
+25/25 static multipage checks passed across 6 pages. Not a browser or visual test.

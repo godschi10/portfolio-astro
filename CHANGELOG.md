@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0 — 2026-09-17
+
+- Leg 2 staging candidate: real `/services/`, `/work/`, `/contact/` draft routes + branded `/404/` (master-plan specs 1511–1550, 1692–1714, 2297–2316). Six pages, static checks 25/25. Independent source review: `docs/MULTIPAGE-LEG2-REVIEW.md`.
+- Review fixes: 404 Go Back only intercepts with a same-origin referrer (history.length is not proof; otherwise follows the home link); Services disclosures stay native-toggleable at all widths (no wide-screen click suppression, indicator always visible); hero CTAs retargeted into the multi-page funnel (Hire Me → `/contact/`, View Work → `/work/`, visuals untouched) and the home `#work` teaser links to the Work page.
+- Intentional staging deferrals, not bugs: disabled contact preview (no backend), unnamed Project 1/2/3 placeholders, unconfirmed service terms/availability. Browser visual/keyboard verification outstanding at release time.
+
 ## 0.3.0 — 2026-09-17
 
 - Multi-page structure (King directive: a multi-page site like the WP themes, not a landing page): shared `src/layouts/Layout.astro` chrome (header, compact menu, footer, fonts, noindex) consumed by every page.

@@ -1,0 +1,8 @@
+# Portfolio header + hero proposal ledger
+
+| Date (UTC) | Owner | State | Evidence | Approval / publishing |
+|---|---|---|---|---|
+| 2026-09-17 | @designer | **mockup-produced** | Self-contained index.html; actual Obscura PNGs at 390/768/1440; menu-390.png; measurements.json; interaction-checks.json; README.md | King's verdict requested. Not approved. Not integrated into Astro. Not published. |
+| 2026-09-17 | @designer | **direction-approved / refinements delivered** | King: "Yes, go ahead" — header/hero direction approved via parent. Two scoped fixes applied to index.html: (1) hero grain layer removed (feTurbulence rendered as hard-edged rectangular artifact on phone/tablet; delete over rework per directive); (2) ≥1024px `.folio` margin-left:32px raising desktop cursor→card gap to measured 83px @1440. Refreshed actual Obscura captures: viewport-390/768/1440.png, menu-390.png, overview.png rebuilt (1620×1610). Fresh verify.py run exit 0: scrollWidth==innerWidth and 0 overflow outliers at 320/390/768/1023/1024/1440; H1 fluid sizes and exact headline text unchanged; all three JetBrains Mono faces `loaded` at all six widths; interaction checks unchanged-pass. | **Direction approved only. NOT final visual approval of refreshed artifacts. Not integrated into Astro. Not published. Remaining sub-verdicts (green text variant, hire-me rows, folio backing) open in README.** |
+
+This local evidence ledger records only this mockup. No central portfolio task ledger was located in the bounded repo/docs and local ledger-name searches, so no unrelated or historical audit record was overwritten. Parent manager should propagate `direction-approved / refinements delivered` to its known central ledger, without upgrading it to final-visual-approved/published.

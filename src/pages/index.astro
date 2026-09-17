@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const title = "Gwill Chijioke — Web Design, Development & SEO";
 const description = "I'm Gwill. Design, development and search. One person thinking about the whole website.";
 ---
@@ -12,13 +13,13 @@ const description = "I'm Gwill. Design, development and search. One person think
 <div class="code-panel"><div class="code-bar"><span><span class="code-icon" aria-hidden="true">&lt;/&gt;</span> approach.html</span><span aria-hidden="true">—</span></div>
 <div class="code-body"><p class="comment"><span class="syntax">&lt;!--</span><span class="comment-content">turning ideas into fast, ranked websites</span><span class="syntax">--&gt;</span></p><div class="code-rule" aria-hidden="true"></div><dl class="intent"> <div><dt>01</dt><dd>Design<span class="note">for people.</span></dd></div> <div><dt>02</dt><dd>Build<span class="note">for speed.</span></dd></div> <div><dt>03</dt><dd>Structure<span class="note">for search.</span></dd></div></dl></div>
 <figcaption class="code-caption"><span>Intent, not output.</span><span class="signature">// Gwill</span></figcaption></div></figure>
-<div class="hero-actions"><a class="button" href="mailto:hi@gwillchijioke.com">Hire Me <span class="arrow" aria-hidden="true">→</span></a><a class="button secondary" href="#work">View Work <span aria-hidden="true">↓</span></a></div>
+<div class="hero-actions"><a class="button" href={`${base}contact/`}>Hire Me <span class="arrow" aria-hidden="true">→</span></a><a class="button secondary" href={`${base}work/`}>View Work <span aria-hidden="true">→</span></a></div>
 <p class="hero-note">Design, development and search.<br>One person thinking about the whole website.</p>
 </div>
 <div class="hero-bottom"><span>gwillchijioke / personal portfolio</span><span>Design ↔ Code ↔ Search</span></div>
 </div></section>
 <section id="work" class="wrap" tabindex="-1">
-<p>Selected work &mdash; next section to be designed.</p>
+<p>Selected work lives on the <a class="text-link" href={`${base}work/`}>Work page</a> — three draft placeholders while real case studies are pending.</p>
 </section>
 </Layout>
 <style is:global>
@@ -30,4 +31,5 @@ const description = "I'm Gwill. Design, development and search. One person think
 @media(max-width:359px){.hero{padding-top:32px}.hero .rank{max-width:100%}.cursor{display:none}}
 #work{padding-block:64px;border-top:1px solid var(--border);scroll-margin-top:144px}
 #work p{font-size:16px;color:var(--muted)}
+#work a{display:inline-flex;align-items:center;min-height:48px;text-decoration:underline;text-underline-offset:4px;color:var(--purple)}
 </style>
