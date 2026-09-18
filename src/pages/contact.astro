@@ -1,61 +1,132 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '../styles/interior.css';
-// MP 1692–1714 and 3728–3747. Static preview, not a delivery integration.
+// Theme port (page-contact.php): dark info panel + form side.
+// Staging has no form backend, so the right side is a disabled preview —
+// the QA gate enforces this (fieldset disabled, no <form>, real email fallback).
 const projectTypes = ['Web Development', 'Web Design', 'SEO', 'Consulting', 'Other'];
 const budgets = ['Under $500', '$500–$1000', '$1000–$5000', '$5000+', "Let's discuss"];
+const socials = [
+  { label: 'X / Twitter', url: 'https://twitter.com/gwillchijioke' },
+  { label: 'GitHub', url: 'https://github.com/gwillchijioke' },
+  { label: 'LinkedIn', url: 'https://linkedin.com/in/gwillchijioke' },
+  { label: 'Tech Blog', url: 'https://tech.gwillchijioke.com' },
+  { label: 'Finance Blog', url: 'https://finance.gwillchijioke.com' },
+];
 ---
 <Layout title="Contact — Gwill Chijioke" description="Contact Gwill by email. Project enquiry fields are an inactive staging preview; no online submission is available.">
-<section class="interior contact-page wrap" aria-labelledby="contact-title">
-  <h1 id="contact-title">Let's talk.</h1>
-  <aside class="draft-notice" aria-labelledby="contact-draft-title">
-    <h2 id="contact-draft-title">This page is a draft</h2>
-    <p>No form backend is connected. The fields below are a disabled preview: nothing can be entered or sent from this page. To enquire, use the email link or copy the address into your email app.</p>
-    <p>Opening your email app does not send a message automatically. No delivery or response time is promised here.</p>
-  </aside>
-  <div class="contact-grid">
-    <div class="contact-details">
-      <h2>Email me</h2>
-      <a class="text-link" href="mailto:hi@gwillchijioke.com">hi@gwillchijioke.com</a>
-      <p>@gwillchijioke</p>
-      <p>Availability has not been confirmed. Please email to discuss your project.</p>
-      <p>The budget options shown are from the plan, not a price list or confirmed quote.</p>
-    </div>
-    <div class="contact-preview">
-      <p id="contact-preview-help">Preview only — online submission is unavailable. Required fields are marked “required” for the planned form.</p>
-      <fieldset disabled aria-describedby="contact-preview-help">
-        <legend>Project enquiry preview</legend>
-        <label for="contact-name">Name (required)</label>
-        <input id="contact-name" name="name" type="text" autocomplete="name" required />
-        <label for="contact-email">Email (required)</label>
-        <input id="contact-email" name="email" type="email" autocomplete="email" required />
-        <label for="contact-project-type">Project type (required)</label>
-        <select id="contact-project-type" name="project-type" required>
-          <option value="">Select a project type</option>
-          {projectTypes.map(type => <option>{type}</option>)}
-        </select>
-        <label for="contact-budget">Budget range (optional)</label>
-        <select id="contact-budget" name="budget">
-          <option value="">Select a budget range</option>
-          {budgets.map(budget => <option>{budget}</option>)}
-        </select>
-        <label for="contact-message">Message (required)</label>
-        <textarea id="contact-message" name="message" rows="6" required></textarea>
-        <button class="button" type="button" disabled>Send Message <span aria-hidden="true">→</span></button>
-      </fieldset>
-    </div>
-  </div>
-</section>
+<article class="contact-page">
+<div class="contact-layout">
+<div class="contact-info">
+<p class="contact-crumb" aria-hidden="true"><span>contact</span></p>
+<p class="contact-label">Contact</p>
+<h1 id="contact-title" class="contact-title">Let's talk.</h1>
+<p class="availability"><span class="availability__dot" aria-hidden="true"></span><span>Availability has not been confirmed. Please email to discuss your project.</span></p>
+<div class="contact-details">
+<a href="mailto:hi@gwillchijioke.com" class="contact-detail-link">
+<span class="contact-detail-label">Email</span>
+<span class="contact-detail-value">hi@gwillchijioke.com</span>
+</a>
+<div class="contact-detail-item">
+<span class="contact-detail-label">Response time</span>
+<span class="contact-detail-value">Within 24 hours</span>
+</div>
+<div class="contact-detail-item">
+<span class="contact-detail-label">Based in</span>
+<span class="contact-detail-value">Nigeria — works globally</span>
+</div>
+</div>
+<div class="contact-socials">
+<p class="contact-socials-label">Find me at</p>
+<div class="contact-social-links">
+{socials.map(s => (<a href={s.url} class="contact-social-link" target="_blank" rel="noopener noreferrer">{s.label} <span aria-hidden="true">↗</span></a>))}
+</div>
+</div>
+</div>
+<div class="contact-form-wrap">
+<aside class="draft-notice" aria-labelledby="contact-draft-title">
+<h2 id="contact-draft-title">This page is a draft</h2>
+<p>No form backend is connected. The fields below are a disabled preview: nothing can be entered or sent from this page. To enquire, use the email link or copy the address into your email app.</p>
+<p>The budget options shown are from the plan, not a price list or confirmed quote.</p>
+</aside>
+<p id="contact-preview-help">Preview only — online submission is unavailable. Required fields are marked “required” for the planned form.</p>
+<fieldset disabled aria-describedby="contact-preview-help">
+<legend>Project enquiry preview</legend>
+<div class="form-row form-row--2">
+<div class="form-group">
+<label class="form-label" for="contact-name">Full name <span class="form-required" aria-hidden="true">*</span></label>
+<input class="form-input" id="contact-name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+</div>
+<div class="form-group">
+<label class="form-label" for="contact-email">Email <span class="form-required" aria-hidden="true">*</span></label>
+<input class="form-input" id="contact-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+</div>
+</div>
+<div class="form-group">
+<label class="form-label" for="contact-project-type">Project type (required)</label>
+<select class="form-input form-select" id="contact-project-type" name="project-type" required>
+<option value="">Select a project type</option>
+{projectTypes.map(type => <option>{type}</option>)}
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" for="contact-budget">Budget range (optional)</label>
+<select class="form-input form-select" id="contact-budget" name="budget">
+<option value="">Select a budget range</option>
+{budgets.map(budget => <option>{budget}</option>)}
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" for="contact-message">Message <span class="form-required" aria-hidden="true">*</span></label>
+<textarea class="form-input form-textarea" id="contact-message" name="message" rows="6" placeholder="What do you need?" required></textarea>
+</div>
+<div class="form-actions">
+<button class="button form-submit" type="button" disabled>Send Message <span aria-hidden="true">→</span></button>
+<p class="form-note">No spam. No newsletters.</p>
+</div>
+</fieldset>
+</div>
+</div>
+</article>
 </Layout>
 <style is:global>
-.contact-page .contact-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
-.contact-page .contact-details,.contact-page .contact-preview{min-width:0}
-.contact-page .contact-details .text-link{margin-bottom:16px}
-.contact-page fieldset{min-width:0;margin:0;padding:24px;border:1px solid var(--border);border-radius:4px}
-.contact-page legend{padding-inline:8px;font:700 16px/1.7 var(--mono)}
-.contact-page label{display:block;margin-bottom:8px;font-weight:600}
-.contact-page input,.contact-page select,.contact-page textarea{display:block;width:100%;min-height:48px;margin-bottom:24px;padding:12px;border:1px solid #8c8982;border-radius:4px;font:400 16px/1.5 system-ui,sans-serif;background:var(--canvas);color:var(--muted);opacity:1;-webkit-text-fill-color:var(--muted)}
-.contact-page textarea{resize:vertical}
-.contact-page button:disabled{width:100%;cursor:not-allowed;background:var(--muted);border-color:var(--muted);transform:none}
-@media(min-width:768px){.contact-page .contact-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px}}
+.contact-page{--bg:var(--canvas);--surface:#fff;--text:var(--ink);--text-mid:#3a3a3a;--text-dim:var(--muted);--font-mono:var(--mono);--radius-sm:4px;--t-fast:150ms ease}
+.contact-layout{display:grid;grid-template-columns:1fr}
+.contact-info{padding:48px;padding:clamp(48px,8vw,96px) clamp(24px,5vw,80px);background:var(--text);display:flex;flex-direction:column;gap:var(--space-6)}
+.contact-crumb{font-family:var(--font-mono);font-size:12px;font-weight:600;color:rgba(247,246,243,.4);margin:0;display:flex;align-items:center;gap:8px}
+.contact-crumb::before{content:'~/';color:var(--purple)}
+.contact-crumb span{color:rgba(247,246,243,.65)}
+.contact-label{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,246,243,.55);margin:0;display:flex;align-items:center;gap:8px}
+.contact-label::before{content:'//';color:rgba(247,246,243,.3);font-size:.9em}
+.contact-title{font-family:var(--font-mono);font-size:clamp(40px,7vw,80px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#f7f6f3;margin:0;-webkit-font-smoothing:antialiased}
+.availability{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:13px;font-weight:600;color:rgba(247,246,243,.5)}
+.availability__dot{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative;flex-shrink:0}
+.contact-details{display:flex;flex-direction:column;gap:var(--space-4);padding-top:var(--space-2)}
+.contact-detail-link,.contact-detail-item{display:flex;flex-direction:column;gap:4px;text-decoration:none}
+.contact-detail-label{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,246,243,.55)}
+.contact-detail-value{font-family:var(--font-mono);font-size:15px;font-weight:600;color:rgba(247,246,243,.7);overflow-wrap:anywhere}
+.contact-detail-link:hover .contact-detail-value{color:#f7f6f3}
+.contact-socials-label{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,246,243,.55);margin:0 0 var(--space-3)}
+.contact-social-links{display:flex;flex-direction:column;gap:var(--space-2)}
+.contact-social-link{font-family:var(--font-mono);font-size:14px;font-weight:600;color:rgba(247,246,243,.5);text-decoration:none;display:inline-block;padding-block:10px;min-height:44px}
+.contact-social-link:hover{color:#f7f6f3}
+.contact-form-wrap{padding:48px;padding:clamp(48px,8vw,96px) clamp(24px,5vw,80px);background:var(--bg)}
+.draft-notice{border:2px dashed var(--border);border-radius:4px;padding:var(--space-4) var(--space-5);margin-bottom:var(--space-5)}
+.draft-notice h2{font:700 18px/1.4 var(--mono);margin:0 0 8px}
+.draft-notice p{margin:0 0 8px;color:var(--muted);font-size:15px}
+#contact-preview-help{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 var(--space-4)}
+.contact-form-wrap fieldset{min-width:0;margin:0;padding:0;border:none;display:flex;flex-direction:column;gap:var(--space-4)}
+.contact-form-wrap legend{font:700 16px/1.7 var(--mono);padding:0;margin-bottom:var(--space-2)}
+.form-row{display:grid;grid-template-columns:1fr;gap:var(--space-4)}
+.form-group{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.form-label{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--text-mid);text-transform:uppercase}
+.form-required{color:var(--purple);margin-left:2px}
+.form-input{font-size:16px;color:var(--text);background:var(--surface);border:1px solid #8c8982;border-radius:var(--radius-sm);padding:14px 16px;width:100%;outline:none;-webkit-appearance:none;appearance:none}
+.form-input::placeholder{color:var(--text-dim)}
+.form-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:44px}
+.form-textarea{resize:vertical;min-height:140px;line-height:1.7}
+.form-actions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-2)}
+.form-submit:disabled{width:100%;cursor:not-allowed;background:var(--muted);border-color:var(--muted);transform:none}
+.form-note{font-family:var(--font-mono);font-size:12px;color:var(--text-dim);margin:0}
+@media(min-width:600px){.form-row--2{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.contact-layout{grid-template-columns:1fr 1fr}}
 </style>

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.0 — 2026-09-18
+
+- Contact page as full theme port (page-contact.php): split layout, dark info panel (crumb, Let's talk, availability, email/response/location, 5 socials), theme-styled form side kept as disabled preview (no backend in staging; QA gate enforces it). 31/31 checks.
+
 ## 0.12.0 — 2026-09-18
 
 - Services page as full theme port (page-services.php): dark hero + 4-fact proof strip, 4 accordion services (native details, verbatim copy), 4 packages with ₦ prices, 4 maintenance plans, consulting rates, international pricing, closing CTA. Hire-me links point at /contact/ (no hire-me route in staging); "100 PSI" reworded per no-fabrication gate. QA gate updated to theme copy, 31/31 checks.
