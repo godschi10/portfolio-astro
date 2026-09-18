@@ -21,7 +21,7 @@ const fontFaces = [400, 700, 800].map(weight =>
 <style is:inline set:html={fontFaces}></style>
 <style is:global>
 @font-face{font-family:"Mono fallback";src:local("DejaVu Sans Mono");size-adjust:99.6%}
-:root{color-scheme:light;--canvas:#f7f6f3;--ink:#0d0d0d;--purple:#7c3aed;--green:#00c96e;--border:#e4e2dc;--muted:#55534f;--mono:"JetBrains Mono","Mono fallback",monospace}
+:root{color-scheme:light;--canvas:#f7f6f3;--ink:#0d0d0d;--purple:#7c3aed;--green:#00c96e;--border:#e4e2dc;--muted:#55534f;--mono:"JetBrains Mono","Mono fallback",monospace;--gradient-brand:linear-gradient(135deg,#7c3aed 0%,#00964e 100%);--wide-width:1200px;--radius-sm:4px;--t-fast:150ms ease;--t-base:200ms ease;--space-2:8px;--space-3:16px;--space-4:24px;--space-5:32px;--space-6:48px;--space-7:64px;--noise:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E")}
 *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.8}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}button{cursor:pointer}a:focus-visible,button:focus-visible,[tabindex="-1"]:focus-visible{outline:3px solid var(--purple);outline-offset:4px}::selection{background:var(--purple);color:white}[hidden]{display:none!important}.wrap{width:calc(100% - 32px);max-width:1312px;margin-inline:auto}.skip{position:fixed;top:8px;left:16px;transform:translateY(-160%);background:white;z-index:1000;padding:12px 16px;min-height:48px}.skip:focus{transform:none}
 .site-header{position:sticky;top:0;z-index:20;background:var(--canvas);border-bottom:1px solid var(--border)}.header-inner{min-height:64px;display:flex;align-items:center;gap:8px}.brand{display:flex;align-items:center;min-height:48px;margin-right:auto;flex-shrink:0}.wordmark{position:relative;display:inline-flex;align-items:baseline;font:700 clamp(20px,2.8vw,24px)/1 var(--mono);letter-spacing:-.04em;white-space:nowrap;font-feature-settings:"kern" 1,"liga" 1,"calt" 1}.wordmark .dot{font-weight:800;color:var(--purple);margin-left:1px}.wordmark::after{content:"";position:absolute;bottom:-6px;left:0;right:0;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--purple),var(--green));opacity:.7}.desktop-nav{display:none}.button{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:56px;padding:12px 24px;border:1px solid var(--ink);border-radius:4px;font:700 16px/1.5 var(--mono);background:var(--ink);color:#fff;transition:background .18s,color .18s,transform .18s}.button .arrow{transition:transform .18s}.button:hover{background:var(--purple);border-color:var(--purple)}.button:hover .arrow{transform:translateX(3px)}.button:active{transform:translateY(1px)}.button.secondary{background:transparent;color:var(--ink)}.button.secondary:hover{background:var(--ink);color:white}.header-hire{min-height:48px;padding:8px 12px;gap:8px;white-space:nowrap}.header-hire .arrow{display:none}.menu-toggle,.menu-close{width:48px;height:48px;display:grid;place-items:center;background:transparent;border:1px solid var(--ink);border-radius:4px;flex-shrink:0}.menu-toggle svg{width:24px;height:24px}.menu-toggle:hover{color:var(--purple);border-color:var(--purple)}
 .menu-overlay{position:fixed;inset:0;z-index:100;background:#17141c;color:#f7f6f3;overflow:auto;padding:16px;min-height:100dvh}.overlay-head{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:720px;margin:auto;font:700 20px/1.4 var(--mono)}.menu-close{border-color:#8c8298;color:white;font-size:32px}.overlay-nav{max-width:720px;margin:32px auto;display:flex;flex-direction:column}.overlay-nav a{min-height:64px;border-bottom:1px solid #443e4b;display:flex;align-items:center;justify-content:space-between;padding:8px 0;font:700 clamp(24px,4vw,40px)/1.4 var(--mono)}.overlay-nav a:hover{color:#c1a0fa}.overlay-hire{max-width:720px;margin:24px auto 0;display:flex;background:#f7f6f3;color:#0d0d0d;border-color:#f7f6f3}.menu-overlay :focus-visible{outline-color:#c1a0fa}.overlay-caption{max-width:720px;margin:16px auto;font-size:16px;color:#c2bacb}.route-notice{position:fixed;inset:auto 16px 16px;z-index:200;margin:auto;max-width:640px;background:white;border:2px solid var(--purple);border-radius:6px;box-shadow:0 12px 40px #17141c26;padding:20px;color:var(--ink)}.route-notice h2{font:700 20px/1.4 var(--mono);margin:0 0 8px}.route-notice p{margin:0 0 16px}.route-notice button{min-height:48px;min-width:96px}.no-js-nav{padding:16px;display:flex;flex-wrap:wrap;gap:8px}.no-js-nav a{padding:12px;min-height:48px;text-decoration:underline}
@@ -30,24 +30,45 @@ const fontFaces = [400, 700, 800].map(weight =>
 @media(min-width:1024px){.wrap{width:calc(100% - 96px)}.desktop-nav{display:flex;align-items:center;gap:24px;margin-right:8px}.desktop-nav a{position:relative;display:flex;align-items:center;min-height:48px;font:600 14px/1.5 var(--mono);letter-spacing:.02em}.desktop-nav a::after{content:"";position:absolute;bottom:7px;left:0;width:0;height:2px;background:var(--purple);transition:width .18s}.desktop-nav a:hover::after,.desktop-nav a:focus-visible::after{width:50%}.menu-toggle{display:none}.header-hire{font-size:13px;padding-inline:20px}}
 @media(max-width:359px){.header-inner{display:grid;grid-template-columns:1fr 48px;padding-block:8px}.brand{grid-column:1;grid-row:1}.menu-toggle{grid-column:2;grid-row:1}.header-hire{grid-column:1/-1;grid-row:2}}
 @media(forced-colors:active){.rank-text{background:none;color:CanvasText}.cursor{background:CanvasText}.wordmark::after{background:LinkText}}
-footer{padding-block:0;border-top:0}
-.site-footer{padding-block:48px 40px;border-top:1px solid var(--border)}
-.footer-cta h2{margin:0 0 24px;font-family:var(--mono);font-weight:800;font-size:clamp(28px,5vw,56px);line-height:1.15;letter-spacing:-.03em}
-.footer-cta .actions{margin-bottom:16px}
-.footer-cta .actions .button{width:100%}
-.footer-cta p{margin:0;color:var(--muted)}
-.footer-mail{display:inline-flex;align-items:center;min-height:48px;color:var(--purple);text-decoration:underline;text-underline-offset:4px}
-.footer-mail:hover{text-decoration-thickness:2px}
-.footer-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
-.footer-brand .wordmark{font-size:24px}
-.footer-brand p{margin:16px 0 0;color:var(--muted);font-size:16px}
-.footer-col h2{margin:0 0 8px;font:700 16px/1.7 var(--mono)}
-.footer-col ul{list-style:none;margin:0;padding:0}
-.footer-col li a{display:inline-flex;align-items:center;min-height:48px;color:var(--ink)}
-.footer-col li a:hover{color:var(--purple);text-decoration:underline;text-underline-offset:4px}
-.footer-legal{margin:32px 0 0;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:16px}
-.footer-legal span{white-space:nowrap}
-@media(min-width:768px){.footer-cta .actions .button{width:auto;min-width:240px}.footer-cols{grid-template-columns:1.3fr 1fr 1fr;gap:48px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.btn{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.04em;white-space:nowrap;padding:14px 28px;border-radius:var(--radius-sm);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background var(--t-base),transform var(--t-fast),box-shadow var(--t-base)}.btn:active{transform:translateY(1px)}.btn--cta{background:#0d0d0d;color:#fff;border-color:#0d0d0d;font-size:16px;padding:16px 36px}.btn--cta:hover{background:var(--purple);border-color:var(--purple)}
+.footer-logo{display:inline-flex;align-items:baseline;font-family:var(--mono);font-weight:700;font-size:18px;letter-spacing:-.04em;color:#0d0d0d;text-decoration:none;position:relative;white-space:nowrap}.footer-logo::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--gradient-brand);border-radius:2px;opacity:0;transition:opacity var(--t-base)}.logo-name{color:#0d0d0d}.footer-links-section .logo-name{color:#fff}.logo-dot{color:var(--purple);font-weight:800;margin-left:1px}
+.site-footer{background:#0d0d0d;color:#f7f6f3}
+.footer-cta{padding-block:64px;padding-block:clamp(64px,10vw,128px);padding-bottom:96px;padding-bottom:clamp(96px,14vw,176px);border-bottom:1px solid rgba(247,246,243,.08);position:relative;overflow:hidden;background-image:var(--noise)}
+.footer-cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse at center,rgba(124,58,237,.15) 0%,transparent 70%);pointer-events:none}
+.footer-cta::after{content:attr(data-watermark);position:absolute;bottom:-.05em;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:72px;font-size:clamp(72px,14vw,190px);font-weight:800;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(247,246,243,.07);white-space:nowrap;pointer-events:none;user-select:none}
+.footer-cta-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-6);position:relative;z-index:1;max-width:var(--wide-width);margin-inline:auto;padding-inline:16px;padding-inline:clamp(16px,5vw,80px)}
+.footer-cta-headline{font-family:var(--mono);font-size:28px;font-size:clamp(28px,5vw,64px);font-weight:800;color:#f7f6f3;letter-spacing:-.04em;line-height:1.1;margin:0}
+.footer-cta-headline em{font-style:normal;background:var(--gradient-brand);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer 7s linear infinite}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.footer-cta-email{font-size:15px;color:rgba(247,246,243,.55);font-family:var(--mono);margin:0}
+.footer-cta-email a{color:rgba(247,246,243,.7);text-decoration:none}
+.footer-cta-email a:hover{color:#f7f6f3}
+.footer-socials{display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-6)}
+.footer-social{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:var(--radius-sm);border:1px solid rgba(247,246,243,.12);color:rgba(247,246,243,.6);transition:all var(--t-fast);background:rgba(247,246,243,.02)}
+.footer-social:active{transform:translateY(0)}
+.footer-social[data-brand="x"]:hover{color:#000;border-color:#fff;background:#fff}
+.footer-social[data-brand="github"]:hover{color:#fff;border-color:#fff;background:#333}
+.footer-social[data-brand="linkedin"]:hover{color:#fff;border-color:#0a66c2;background:#0a66c2}
+.footer-social[data-brand="mail"]:hover{color:#fff;border-color:var(--purple);background:var(--purple)}
+.footer-social[data-brand="tech"]:hover{color:#fff;border-color:#00964e;background:#00964e}
+.footer-links-section{padding-block:48px;padding-block:clamp(48px,6vw,80px);border-bottom:1px solid rgba(247,246,243,.08)}
+.footer-inner{max-width:var(--wide-width);margin-inline:auto;padding-inline:16px;padding-inline:clamp(16px,5vw,80px)}
+.footer-links-section .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--space-7);align-items:start}
+.footer-brand .footer-logo{font-size:20px}
+.footer-tagline{margin-top:var(--space-3);font-size:13px;color:rgba(247,246,243,.55);font-family:var(--mono);line-height:1.7}
+.footer-nav-label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,246,243,.55);margin:0 0 var(--space-3)}
+.footer-nav-list{display:flex;flex-direction:column;gap:var(--space-2);list-style:none;margin:0;padding:0}
+.footer-nav-list a{font-family:var(--mono);font-size:14px;color:rgba(247,246,243,.5);text-decoration:none;transition:transform var(--t-fast);display:inline-block;padding-block:10px}
+.footer-bottom{padding-top:var(--space-2);padding-bottom:calc(var(--space-4) + env(safe-area-inset-bottom,0px))}
+.footer-bottom .footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3);margin-top:20px;padding-block:var(--space-4)}
+.footer-copy{font-family:var(--mono);font-size:13px;color:rgba(247,246,243,.55);margin:0}
+.footer-legal{display:flex;gap:var(--space-4)}
+.footer-legal a{font-family:var(--mono);font-size:13px;color:rgba(247,246,243,.55);text-decoration:none}
+.footer-legal a:hover{color:rgba(247,246,243,.7)}
+@media(max-width:767px){.footer-links-section .footer-inner{grid-template-columns:1fr;gap:var(--space-6)}.footer-cta::after{font-size:56px;font-size:clamp(56px,20vw,120px);bottom:-.08em}}
+@media(hover:hover) and (pointer:fine){.footer-logo:hover::after{opacity:.7}.footer-nav-list a:hover{color:#f7f6f3;transform:translateX(4px)}.footer-social:hover{transform:translateY(-2px)}}
+@media(hover:none),(pointer:coarse){.footer-nav-list a:active{color:var(--purple);transform:translateX(var(--space-2))}.btn:active{opacity:.7}}
 </style>
 </head>
 <body>
@@ -60,20 +81,30 @@ footer{padding-block:0;border-top:0}
 </div></header>
 <noscript><nav class="no-js-nav" aria-label="Navigation without JavaScript"><a href={`${base}about/`}>About</a><a href={`${base}work/`}>Work</a><a href={`${base}services/`}>Services</a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer">Tech Blog ↗</a><a href={`${base}contact/`}>Contact Gwill</a></nav><style is:inline>.menu-toggle{display:none}</style></noscript>
 <main id="main" tabindex="-1"><slot /></main>
-<footer class="wrap site-footer">
-<section class="footer-cta" aria-labelledby="footer-cta-title">
-<h2 id="footer-cta-title">Let's build something that performs.</h2>
-<div class="actions"><a class="button" href={`${base}contact/`}>Start A Project <span class="arrow" aria-hidden="true">→</span></a></div>
-<p>or email: <a class="footer-mail" href="mailto:hi@gwillchijioke.com">hi@gwillchijioke.com</a></p>
-</section>
-<nav class="footer-cols" aria-label="Footer">
-<div class="footer-brand">
-<a class="wordmark" href={base} aria-label="gwillchijioke. — home"><span>gwillchijioke</span><span class="dot">.</span></a>
-<p>Staging draft — case studies still pending.</p>
+<footer class="site-footer">
+<div class="footer-cta" data-watermark="gwillchijioke">
+<div class="footer-cta-inner">
+<h2 class="footer-cta-headline">Let's build something that <em>performs</em>.</h2>
+<a href={`${base}contact/`} class="btn btn--cta">Start A Project <span aria-hidden="true">&#x2192;</span></a>
+<p class="footer-cta-email">or email: <a href="mailto:hi@gwillchijioke.com">hi@gwillchijioke.com</a></p>
+<div class="footer-socials">
+<a href="https://twitter.com/gwillchijioke" class="footer-social" data-brand="x" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+<a href="https://github.com/gwillchijioke" class="footer-social" data-brand="github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+<a href="https://linkedin.com/in/gwillchijioke" class="footer-social" data-brand="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+<a href="mailto:hi@gwillchijioke.com" class="footer-social" data-brand="mail" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+<a href="https://tech.gwillchijioke.com" class="footer-social" data-brand="tech" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></a>
 </div>
-<div class="footer-col">
-<h2>Navigation</h2>
-<ul>
+</div>
+</div>
+<div class="footer-links-section">
+<div class="footer-inner">
+<div class="footer-brand">
+<a href={base} class="footer-logo" aria-label="gwillchijioke — home"><span class="logo-name">gwillchijioke</span><span class="logo-dot">.</span></a>
+<p class="footer-tagline">Built with WordPress</p>
+</div>
+<div class="footer-nav-group">
+<p class="footer-nav-label">Navigation</p>
+<ul class="footer-nav-list">
 <li><a href={`${base}about/`}>About</a></li>
 <li><a href={`${base}work/`}>Work</a></li>
 <li><a href={`${base}services/`}>Services</a></li>
@@ -81,17 +112,27 @@ footer{padding-block:0;border-top:0}
 <li><a href={`${base}contact/`}>Hire Me</a></li>
 </ul>
 </div>
-<div class="footer-col">
-<h2>Elsewhere</h2>
-<ul>
-<li><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog ↗</a></li>
-<li><a href="https://github.com/godschi10" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a></li>
+<div class="footer-nav-group">
+<p class="footer-nav-label">Elsewhere</p>
+<ul class="footer-nav-list">
+<li><a href="https://tech.gwillchijioke.com" target="_blank" rel="noopener noreferrer">Tech Blog <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a href="https://finance.gwillchijioke.com" target="_blank" rel="noopener noreferrer">Finance Blog <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a href="https://github.com/gwillchijioke" target="_blank" rel="noopener noreferrer">GitHub <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a href="https://twitter.com/gwillchijioke" target="_blank" rel="noopener noreferrer">X / Twitter <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a href="https://linkedin.com/in/gwillchijioke" target="_blank" rel="noopener noreferrer">LinkedIn <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
 </ul>
-<!-- Twitter/LinkedIn omitted: profile addresses unconfirmed, holding for King. -->
 </div>
-</nav>
-<p class="footer-legal">© 2026 Gwillchijioke · <span>Privacy</span> · <span>Terms</span></p>
-<!-- Privacy/Terms land as real routes with production; unlinked text until then. -->
+</div>
+</div>
+<div class="footer-bottom">
+<div class="footer-inner">
+<p class="footer-copy">&copy; <span>2026</span> Gwill Chijioke</p>
+<div class="footer-legal">
+<a href={`${base}privacy/`}>Privacy</a>
+<a href={`${base}terms/`}>Terms</a>
+</div>
+</div>
+</div>
 </footer>
 <div class="menu-overlay" id="compact-menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" hidden><div class="overlay-head"><span id="menu-title">Explore / Gwill</span><button class="menu-close" aria-label="Close navigation" type="button">×</button></div><nav class="overlay-nav" aria-label="Compact primary"><a href={`${base}about/`}>About <span aria-hidden="true">→</span></a><a href={`${base}work/`}>Work <span aria-hidden="true">→</span></a><a href={`${base}services/`}>Services <span aria-hidden="true">→</span></a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog <span aria-hidden="true">↗</span></a><a href={`${base}contact/`}>Contact <span aria-hidden="true">→</span></a></nav><a class="button overlay-hire" href={`${base}contact/`}>Hire Me <span aria-hidden="true">→</span></a><p class="overlay-caption">Personal portfolio / navigation</p></div>
 <div class="route-notice" role="dialog" aria-modal="true" aria-labelledby="route-title" aria-describedby="route-copy" hidden><h2 id="route-title">Section not available yet</h2><p id="route-copy"></p><button class="button" type="button">Close</button></div>

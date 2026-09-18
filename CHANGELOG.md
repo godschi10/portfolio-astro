@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 — 2026-09-18
+
+- Theme footer port: `src/layouts/Layout.astro` footer replaced with the WordPress theme's `template-parts/footer.php` structure and `style.css` rules, ported 1:1 — dark band, `gwillchijioke` outline watermark, `performs` shimmer headline, Start A Project CTA, five social buttons (X / GitHub / LinkedIn / mail / tech) with theme brand hovers, Navigation + Elsewhere columns, `© 2026 Gwill Chijioke` bottom bar with live Privacy/Terms links.
+- New `privacy.astro` + `terms.astro` draft pages so footer legal links resolve.
+- Checker: skips SVG data-URI fragments (`url(%23noise)` in theme `--noise` var). 31/31 across 8 pages.
+
 ## 0.5.0 — 2026-09-17
 
 - Real footer per master-plan §9 (gwillchijioke.com): `Let's build something that performs.` CTA with Start A Project → `/contact/` + `or email:` mailto fallback; brand + Navigation + Elsewhere columns; `© 2026 Gwillchijioke · Privacy · Terms` legal line.

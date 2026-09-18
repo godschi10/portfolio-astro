@@ -13,6 +13,8 @@ const routes = [
   ['work/index.html', 'work', 'Selected Work — Gwill Chijioke', 'Selected Work'],
   ['contact/index.html', 'contact', 'Contact — Gwill Chijioke', "Let's talk."],
   ['404.html', '404', '404 — Page not found — Gwill Chijioke', "404 — This page doesn't exist."],
+  ['privacy/index.html', 'privacy', 'Privacy — Gwill Chijioke', 'Privacy'],
+  ['terms/index.html', 'terms', 'Terms — Gwill Chijioke', 'Terms'],
 ];
 const part = (html, tag) => {
   const match = html.match(new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`));
@@ -26,7 +28,7 @@ const files = dir => readdirSync(dir).flatMap(name => {
   const path = resolve(dir, name);
   return statSync(path).isDirectory() ? files(path) : [path];
 });
-check('exactly six generated HTML pages', () => {
+check('exactly eight generated HTML pages', () => {
   assert.deepEqual(files(dist).filter(p => p.endsWith('.html')).map(p => relative(dist, p)).sort(), routes.map(r => r[0]).sort());
 });
 const pages = new Map(routes.map(([file, name]) => [name, read(`dist/${file}`)]));
@@ -36,6 +38,7 @@ const home = pages.get('index');
 function assetPath(url, parent) {
   const clean = url.replace(/&amp;/g, '&').split(/[?#]/)[0];
   if (!clean || /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(clean)) return null;
+  if (/^(?:#|%23)/.test(clean)) return null; // SVG data-URI fragment (e.g. theme --noise url(%23noise))
   if (clean.startsWith('/')) {
     assert.ok(clean.startsWith(base), `asset respects staging base: ${url}`);
     return resolve(dist, decodeURIComponent(clean.slice(base.length)));
@@ -92,7 +95,7 @@ for (const [file, name, title, heading] of routes) {
 }
 check('honest draft content and service scope', () => {
   assert.match(part(pages.get('about'), 'main'), /This page is a draft/);
-  for (const name of ['services', 'work', 'contact']) assert.match(part(pages.get(name), 'main'), /This page is a draft/);
+  for (const name of ['services', 'work', 'contact', 'privacy', 'terms']) assert.match(part(pages.get(name), 'main'), /This page is a draft/);
   const services = part(pages.get('services'), 'main');
   for (const name of ['Web Development', 'Web Design', 'SEO', 'Tech Consulting']) assert.ok(services.includes(name));
   assert.equal((services.match(/<details\b/g) || []).length, 4);
