@@ -18,8 +18,38 @@ const description = "I'm Gwill. Design, development and search. One person think
 </div>
 <div class="hero-bottom"><span>gwillchijioke / personal portfolio</span><span>Design ↔ Code ↔ Search</span></div>
 </div></section>
-<section id="work" class="wrap" tabindex="-1">
-<p>Selected work lives on the <a class="text-link" href={`${base}work/`}>Work page</a> — three draft placeholders while real case studies are pending.</p>
+<div class="marquee" role="presentation"><div class="marquee-track"><span>WordPress · SEO · Web Design · Cloudflare · Performance · Branding ·&nbsp;</span><span aria-hidden="true">WordPress · SEO · Web Design · Cloudflare · Performance · Branding ·&nbsp;</span></div></div>
+<section id="selected-work" class="wrap home-section" aria-labelledby="selected-work-title">
+<p class="eyebrow">Selected Work</p>
+<h2 id="selected-work-title">Work that performs.</h2>
+<div class="work-grid">
+<article class="work-card work-card--hero"><h3>Project 1 — unnamed placeholder</h3><p class="work-tags">WordPress · SEO · Design</p><p class="work-hold">Case study lands with real project content.</p><a class="text-link" href={`${base}work/`}>View on Work page <span aria-hidden="true">→</span></a></article>
+<article class="work-card"><h3>Project 2 — unnamed placeholder</h3><p class="work-tags">Design · Build</p><p class="work-hold">Case study lands with real project content.</p><a class="text-link" href={`${base}work/`}>View on Work page <span aria-hidden="true">→</span></a></article>
+<article class="work-card"><h3>Project 3 — unnamed placeholder</h3><p class="work-tags">SEO · Performance</p><p class="work-hold">Case study lands with real project content.</p><a class="text-link" href={`${base}work/`}>View on Work page <span aria-hidden="true">→</span></a></article>
+</div>
+</section>
+<section id="home-services" class="wrap home-section" aria-labelledby="home-services-title">
+<p class="eyebrow">Services</p>
+<h2 id="home-services-title">What I Do</h2>
+<div class="home-service-list">
+<details><summary><span class="svc-num">01</span> Web Development <span class="svc-plus" aria-hidden="true">+</span></summary><p>Custom WordPress sites, with a focus on speed, SEO and conversion.</p></details>
+<details><summary><span class="svc-num">02</span> Web Design <span class="svc-plus" aria-hidden="true">+</span></summary><p>Clean, intentional, mobile-first web design.</p></details>
+<details><summary><span class="svc-num">03</span> SEO <span class="svc-plus" aria-hidden="true">+</span></summary><p>Technical and content SEO.</p></details>
+<details><summary><span class="svc-num">04</span> Tech Consulting <span class="svc-plus" aria-hidden="true">+</span></summary><p>Cloudflare, performance audits and stack decisions.</p></details>
+</div>
+<a class="button secondary" href={`${base}services/`}>All Services <span aria-hidden="true">→</span></a>
+</section>
+<section id="home-about" class="wrap home-section" aria-labelledby="home-about-title">
+<p class="eyebrow">About</p>
+<h2 id="home-about-title">I'm Gwill — a web developer who obsesses over performance, design and search rankings.</h2>
+<p>This staging preview is the design coming together. The full story lands with production.</p>
+<a class="button secondary" href={`${base}about/`}>More About Me <span aria-hidden="true">→</span></a>
+</section>
+<section id="home-blog" class="wrap home-section" aria-labelledby="home-blog-title">
+<p class="eyebrow">Tech Blog</p>
+<h2 id="home-blog-title">Latest From The Tech Blog</h2>
+<p>Posts publish with production. Meanwhile the live blog is one tap away.</p>
+<a class="button secondary" href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer">Visit Tech Blog <span aria-hidden="true">↗</span></a>
 </section>
 </Layout>
 <style is:global>
@@ -29,7 +59,12 @@ const description = "I'm Gwill. Design, development and search. One person think
 @media(min-width:1024px){.hero{padding-top:72px;padding-bottom:40px}.hero-grid{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);column-gap:48px;row-gap:24px}.intro{grid-column:1/-1}h1{grid-column:1;grid-row:2}.folio{grid-column:2;grid-row:2/5;align-self:center;margin-top:16px;margin-left:32px;padding-bottom:16px}.hero-actions{grid-column:1;grid-row:3;margin-top:8px}.hero-note{grid-column:1;grid-row:4}.intent{grid-template-columns:1fr;gap:20px}.intent div{display:grid}.intent dt{margin:0}.code-body{padding:28px 24px}.code-bar,.code-caption{padding-inline:24px}.code-caption{flex-wrap:wrap}.hero-bottom{margin-top:64px}}
 @media(max-width:767px){.code-body{padding:16px 20px}.comment-content{display:inline;padding:0;margin:0}.code-rule{margin:16px 0}.intent{gap:8px}.intent .note{display:inline;margin-left:8px}.code-caption{padding:10px 20px}.code-bar{padding:10px 20px}.hero-actions{align-self:start}.hero-grid{row-gap:24px}}
 @media(max-width:359px){.hero{padding-top:32px}.hero .rank{max-width:100%}.cursor{display:none}}
-#work{padding-block:64px;border-top:1px solid var(--border);scroll-margin-top:144px}
-#work p{font-size:16px;color:var(--muted)}
-#work a{display:inline-flex;align-items:center;min-height:48px;text-decoration:underline;text-underline-offset:4px;color:var(--purple)}
+.marquee{background:#0d0d0d;color:#e2e8f0;overflow:hidden;padding-block:14px;border-block:1px solid #0d0d0d}.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite;font:700 14px/1.5 var(--mono);letter-spacing:.06em;white-space:nowrap}.marquee:hover .marquee-track{animation-play-state:paused}@keyframes marquee{to{transform:translateX(-50%)}}
+.home-section{padding-block:56px;scroll-margin-top:96px}.home-section + .home-section{border-top:1px solid var(--border)}.eyebrow{margin:0 0 8px;font:700 13px/1.5 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--purple)}.home-section h2{margin:0 0 24px;font-family:var(--mono);font-weight:800;font-size:clamp(24px,4vw,44px);line-height:1.15;letter-spacing:-.03em;max-width:22ch}.home-section > p{color:var(--muted);font-size:16px;max-width:60ch}.home-section .button{margin-top:24px}
+.work-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}.work-card{border:1px solid var(--border);border-radius:6px;padding:24px 20px;background:#fff}.work-card h3{margin:0 0 8px;font:700 18px/1.4 var(--mono)}.work-tags{margin:0 0 8px;font:400 14px/1.5 var(--mono);color:var(--purple)}.work-hold{margin:0 0 12px;color:var(--muted);font-size:15px}
+.home-service-list{display:grid;gap:0;border-top:1px solid var(--border)}.home-service-list details{border-bottom:1px solid var(--border)}.home-service-list summary{display:flex;align-items:center;gap:12px;min-height:56px;list-style:none;cursor:pointer;font:700 17px/1.4 var(--mono)}.home-service-list summary::-webkit-details-marker{display:none}.home-service-list summary .svc-num{color:var(--purple);font-size:14px}.home-service-list summary .svc-plus{margin-left:auto;color:var(--muted)}.home-service-list details[open] summary .svc-plus{transform:rotate(45deg)}.home-service-list details p{margin:0 0 16px;color:var(--muted);font-size:16px;max-width:60ch}
+.text-link{display:inline-flex;align-items:center;min-height:48px;text-decoration:underline;text-underline-offset:4px;color:var(--purple)}
+@media(min-width:768px){.marquee-track{animation-duration:22s;font-size:15px}.home-section{padding-block:72px}.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.work-card--hero{grid-column:1/-1}}
+@media(min-width:1024px){.home-section{padding-block:88px}.work-grid{gap:24px}.work-card{padding:32px}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}.cursor{animation:none}}
 </style>

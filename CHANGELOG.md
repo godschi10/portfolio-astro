@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0 — 2026-09-18
+
+- Homepage body per master-plan §10 (hero untouched): dark marquee strip (pauses on hover, still under reduced-motion), Selected Work asymmetric grid with three honest unnamed placeholders, What I Do accordion mirroring Services page copy, About snippet, Tech Blog preview with honest hold lines. Stats bar HELD — no verified numbers, and the 100-PSI claim stays banned. Final CTA not duplicated (theme footer is the CTA). 31/31 checks.
+
 ## 0.6.0 — 2026-09-18
 
 - Theme footer port: `src/layouts/Layout.astro` footer replaced with the WordPress theme's `template-parts/footer.php` structure and `style.css` rules, ported 1:1 — dark band, `gwillchijioke` outline watermark, `performs` shimmer headline, Start A Project CTA, five social buttons (X / GitHub / LinkedIn / mail / tech) with theme brand hovers, Navigation + Elsewhere columns, `© 2026 Gwill Chijioke` bottom bar with live Privacy/Terms links.
