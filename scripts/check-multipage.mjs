@@ -9,7 +9,7 @@ const read = name => readFileSync(resolve(root, name), 'utf8');
 const routes = [
   ['index.html', 'index', 'Gwill Chijioke — Web Design, Development & SEO', 'I design. I build. I make it rank.'],
   ['about/index.html', 'about', 'About — Gwill Chijioke', "I'm Gwill — a web developer who obsesses over performance, design and search rankings."],
-  ['services/index.html', 'services', 'Services — Gwill Chijioke', 'Services'],
+  ['services/index.html', 'services', 'Services — Gwill Chijioke', 'What I build. What it costs.'],
   ['work/index.html', 'work', 'Selected Work — Gwill Chijioke', 'Projects I\u2019ve built and results I\u2019ve earned.'],
   ['contact/index.html', 'contact', 'Contact — Gwill Chijioke', "Let's talk."],
   ['404.html', '404', '404 — Page not found — Gwill Chijioke', "404 — This page doesn't exist."],
@@ -100,8 +100,8 @@ check('honest draft content and service scope', () => {
   for (const name of ['Web Development', 'Web Design', 'SEO', 'Tech Consulting']) assert.ok(services.includes(name));
   assert.equal((services.match(/<details\b/g) || []).length, 4);
   assert.equal((services.match(/Get a Quote/g) || []).length, 4);
-  assert.match(text(services), /Not sure what you need\?/);
-  assert.match(text(services), /Let's Talk/);
+  assert.match(text(services), /Not sure which package fits\?/);
+  assert.match(text(services), /Start a project/);
 });
 check('three explicitly unnamed work placeholders; no fake case-study links', () => {
   const work = part(pages.get('work'), 'main');

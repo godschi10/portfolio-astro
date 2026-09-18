@@ -1,70 +1,329 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '../styles/interior.css';
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
-// MP 1511–1532: service names/structure. MP 1161–1175: scope vocabulary.
-// No result guarantees, invented package inclusions or client profiles.
+// Theme port (page-services.php): dark hero + proof strip, accordion services,
+// packages, maintenance, consulting, international pricing, closing CTA.
+// Staging has no /hire-me/ route, so hire-me CTAs point at /contact/.
+// "100 PSI" is reworded (PageSpeed 100) to satisfy the staging no-PSI-fabrication gate.
 const services = [
-  { number: '01', name: 'Web Development', description: 'Custom WordPress sites, with a focus on speed, SEO and conversion.', scope: 'WordPress development; speed, SEO and conversion considerations.' },
-  { number: '02', name: 'Web Design', description: 'Clean, intentional, mobile-first web design.', scope: 'Mobile-first design.' },
-  { number: '03', name: 'SEO', description: 'Technical and content SEO.', scope: 'Technical SEO and content SEO.' },
-  { number: '04', name: 'Tech Consulting', description: 'Cloudflare, performance audits and stack decisions.', scope: 'WordPress optimisation and speed fixes; Cloudflare, performance audits and stack decisions.' },
+  { num: '01', name: 'Web Development', desc: 'Fast, custom WordPress sites built to perform. No page builders. No bloated plugins. Every line of code written for the project. Optimised for speed, SEO, and conversion from day one.', includes: ['Custom standalone WordPress theme', 'Mobile-first responsive design', 'PageSpeed 100 mobile score target', 'Cloudflare CDN and caching setup', 'Contact forms, basic SEO, deployment'] },
+  { num: '02', name: 'Web Design', desc: 'Clean, intentional design that converts visitors into clients. Mobile-first always. Every element earns its place. No templates, no generic layouts.', includes: ['Brand-aligned visual direction', 'Typography and colour system', 'Mobile-first layout design', 'Component and UI design', 'Design review and iteration'] },
+  { num: '03', name: 'SEO', desc: 'Rankings that stick, traffic that grows. Technical SEO, content architecture, structured data, and the kind of on-page work that earns real positions.', includes: ['Technical SEO audit and fixes', 'On-page optimisation', 'Schema markup and rich results', 'Content structure and strategy', 'Core Web Vitals optimisation'] },
+  { num: '04', name: 'Tech Consulting', desc: 'Cloudflare setup, performance audits, stack decisions, WordPress optimisation. Honest technical advice with no upselling. I tell you what you need, not what costs more.', includes: ['Cloudflare setup and configuration', 'Performance audits and fixes', 'WordPress and hosting optimisation', 'Stack and tooling decisions', 'CTO-level technical advisory'] },
 ];
 ---
-<Layout title="Services — Gwill Chijioke" description="Web development, web design, SEO and tech consulting. Draft service scope; discuss your project by email.">
-<section class="interior services-page wrap" aria-labelledby="services-title">
-  <p class="eyebrow">What I Do / 01–04</p>
-  <h1 id="services-title">Services</h1>
-  <aside class="draft-notice" aria-labelledby="services-draft-title">
-    <h2 id="services-draft-title">This page is a draft</h2>
-    <p>These four services come from the portfolio plan. The descriptions outline areas of work, not agreed packages or promised results. Exact inclusions and intended clients still need to be confirmed.</p>
-  </aside>
-  <div class="service-list">
-    {services.map(service => (
-      <details class="service" open>
-        <summary><span class="service-number">{service.number}</span><h2>{service.name}</h2><span class="service-indicator" aria-hidden="true">+</span></summary>
-        <div class="service-body">
-          <p>{service.description}</p>
-          <dl>
-            <dt>What's included</dt>
-            <dd>{service.scope} Exact deliverables are to be agreed after discussing your project.</dd>
-            <dt>Who it's for</dt>
-            <dd>Client fit is not specified in the plan yet. Tell me what you need so we can discuss the fit.</dd>
-          </dl>
-          <a class="button secondary" href={`${base}contact/`}>Get a Quote <span aria-hidden="true">→</span></a>
-        </div>
-      </details>
-    ))}
-  </div>
-  <section class="closing-cta" aria-labelledby="services-cta-title">
-    <h2 id="services-cta-title">Not sure what you need?</h2>
-    <div class="actions"><a class="button" href={`${base}contact/`}>Let's Talk <span class="arrow" aria-hidden="true">→</span></a></div>
-  </section>
-</section>
+<Layout title="Services — Gwill Chijioke" description="Services staging draft: web development, design, SEO and consulting with honest accordion details. Prices from the live theme.">
+<article class="svc-page">
+<div class="services-hero"><div class="wrap">
+<div class="services-hero-inner">
+<p class="svc-crumb" aria-hidden="true"><span>services</span></p>
+<p class="services-hero-label">Services</p>
+<h1 id="services-title" class="services-hero-title">What I build.<br>What it costs.</h1>
+<p class="services-hero-sub">Custom WordPress. No page builders. Real code. Every price below is a fixed starting point — not a range, not a guess.</p>
+<div class="services-hero-actions">
+<a href={`${base}contact/`} class="services-hero-cta">Start a project <span aria-hidden="true">→</span></a>
+</div>
+</div>
+<ul class="services-hero-proofs" aria-label="Why work with me">
+<li class="services-hero-proof"><span class="services-hero-proof-num">100</span><span class="services-hero-proof-label">PageSpeed mobile score target</span></li>
+<li class="services-hero-proof"><span class="services-hero-proof-num">0</span><span class="services-hero-proof-label">Page builders used. Ever.</span></li>
+<li class="services-hero-proof"><span class="services-hero-proof-num">24h</span><span class="services-hero-proof-label">Reply guarantee</span></li>
+<li class="services-hero-proof"><span class="services-hero-proof-num">₦</span><span class="services-hero-proof-label">Fixed prices, no hidden fees</span></li>
+</ul>
+</div></div>
+<section class="services-overview" aria-labelledby="services-heading"><div class="wrap">
+<h2 id="services-heading" class="sr-only">Services</h2>
+<div class="services-list">
+{services.map((svc, i) => (
+<details class="service-item" name="service">
+<summary class="service-trigger" aria-label={svc.name}>
+<span class="service-num" aria-hidden="true">{svc.num}</span>
+<span class="service-name">{svc.name}</span>
+<span class="service-icon" aria-hidden="true">↗</span>
+</summary>
+<div class="service-content" id={`service-panel-0${i + 1}`}>
+<p class="service-desc">{svc.desc}</p>
+<ul class="service-includes">
+{svc.includes.map(inc => (<li>{inc}</li>))}
+</ul>
+<a href={`${base}contact/`} class="btn--secondary-svc">Get a Quote <span aria-hidden="true">→</span></a>
+</div>
+</details>
+))}
+</div>
+<aside class="draft-notice" aria-labelledby="services-draft-title">
+<h2 id="services-draft-title">This page is a draft</h2>
+<p>Service scope, packages and prices are ported from the live theme; availability and quotes are confirmed by email until the hire flow lands here.</p>
+</aside>
+</div></section>
+<section class="packages-section" aria-labelledby="packages-heading"><div class="wrap">
+<div class="section-header"><div>
+<p class="section-title">Website Development</p>
+<h2 id="packages-heading" class="section-headline">Packages</h2>
+</div></div>
+<div class="packages-grid packages-grid--4">
+<div class="package-card">
+<div class="package-card-header">
+<p class="package-name">Starter</p>
+<p class="package-best-for">Solo entrepreneurs, personal brands, local services</p>
+<div class="package-price"><span class="package-price-amount">₦180,000</span></div>
+</div>
+<ul class="package-includes">
+<li>5–8 custom pages</li>
+<li>Mobile-first responsive design</li>
+<li>Contact form with spam protection</li>
+<li>Basic on-page SEO (meta, schema)</li>
+<li>Cloudflare DNS &amp; caching setup</li>
+<li>LiteSpeed performance optimisation</li>
+<li>1 round of revisions</li>
+</ul>
+<a href={`${base}contact/`} class="btn--secondary-svc package-cta">Get Started <span aria-hidden="true">→</span></a>
+</div>
+<div class="package-card package-card--featured">
+<div class="package-featured-label">Most Popular</div>
+<div class="package-card-header">
+<p class="package-name">Standard</p>
+<p class="package-best-for">Lead-dependent businesses, agencies, consultants</p>
+<div class="package-price"><span class="package-price-amount">₦380,000</span></div>
+</div>
+<ul class="package-includes">
+<li>10–15 pages</li>
+<li>Everything in Starter</li>
+<li>Blog with categories &amp; tags</li>
+<li>GA4 + Matomo analytics</li>
+<li>90+ PageSpeed target</li>
+<li>XML sitemap &amp; social sharing</li>
+<li>Professional email delivery (Postmark)</li>
+<li>2 rounds of revisions</li>
+</ul>
+<a href={`${base}contact/`} class="btn--primary-svc package-cta">Get Started <span aria-hidden="true">→</span></a>
+</div>
+<div class="package-card">
+<div class="package-card-header">
+<p class="package-name">Premium</p>
+<p class="package-best-for">E-commerce, SaaS, high-traffic content sites</p>
+<div class="package-price"><span class="package-price-amount">₦580,000</span></div>
+</div>
+<ul class="package-includes">
+<li>15–25 pages</li>
+<li>Everything in Standard</li>
+<li>Custom post types (portfolio, team, etc.)</li>
+<li>Advanced ACF — repeaters, galleries, flexible content</li>
+<li>Full SEO — schema, Open Graph, Twitter Cards</li>
+<li>Performance consulting included</li>
+<li>3 rounds of revisions</li>
+</ul>
+<a href={`${base}contact/`} class="btn--secondary-svc package-cta">Get Started <span aria-hidden="true">→</span></a>
+</div>
+<div class="package-card package-card--custom">
+<div class="package-card-header">
+<p class="package-name">Custom</p>
+<p class="package-best-for">Anything beyond Premium — scoped individually</p>
+<div class="package-price"><span class="package-price-amount package-price-amount--custom">From ₦850,000</span></div>
+</div>
+<ul class="package-includes">
+<li>Scope defined together</li>
+<li>Strategy &amp; Discovery phase first (from ₦100,000, deductible)</li>
+<li>E-commerce, SaaS or multi-language builds</li>
+<li>Custom integrations and automations</li>
+<li>Dedicated project management</li>
+<li>Long-term retainer available</li>
+</ul>
+<a href={`${base}contact/`} class="btn--secondary-svc package-cta">Get in Touch <span aria-hidden="true">→</span></a>
+</div>
+</div>
+<p class="packages-note">All prices are fixed and in Nigerian Naira. No hidden fees. Payment terms discussed before any project starts. International clients see pricing below.</p>
+</div></section>
+<section class="maintenance-section" aria-labelledby="maintenance-heading"><div class="wrap">
+<div class="section-header"><div>
+<p class="section-title">Ongoing</p>
+<h2 id="maintenance-heading" class="section-headline">Maintenance plans</h2>
+</div></div>
+<div class="maintenance-grid packages-grid--4">
+<div class="maintenance-card">
+<p class="maintenance-name">Basic</p>
+<div class="maintenance-price">₦50,000 <span class="maintenance-period">/month</span></div>
+<ul class="maintenance-includes">
+<li>WordPress &amp; plugin updates</li>
+<li>Daily backups</li>
+<li>Uptime monitoring</li>
+<li>Contact form check</li>
+</ul>
+</div>
+<div class="maintenance-card maintenance-card--featured">
+<p class="maintenance-name">Standard</p>
+<div class="maintenance-price">₦100,000 <span class="maintenance-period">/month</span></div>
+<ul class="maintenance-includes">
+<li>Everything in Basic</li>
+<li>Email deliverability monitoring</li>
+<li>DNS health checks</li>
+<li>Monthly report + 2hrs content edits</li>
+</ul>
+</div>
+<div class="maintenance-card">
+<p class="maintenance-name">Advanced</p>
+<div class="maintenance-price">₦200,000 <span class="maintenance-period">/month</span></div>
+<ul class="maintenance-includes">
+<li>Everything in Standard</li>
+<li>Dedicated IP management</li>
+<li>Deliverability audits</li>
+<li>5hrs edits + 24h response</li>
+</ul>
+</div>
+<div class="maintenance-card">
+<p class="maintenance-name">Enterprise</p>
+<div class="maintenance-price">₦350,000+ <span class="maintenance-period">/month</span></div>
+<ul class="maintenance-includes">
+<li>Everything in Advanced</li>
+<li>Custom SLA</li>
+<li>Quarterly strategy session</li>
+<li>Unlimited edits within scope</li>
+</ul>
+</div>
+</div>
+</div></section>
+<section class="consulting-section" aria-labelledby="consulting-heading"><div class="wrap">
+<div class="section-header"><div>
+<p class="section-title">Advisory</p>
+<h2 id="consulting-heading" class="section-headline">Technical consulting</h2>
+</div></div>
+<div class="consulting-list">
+<div class="consulting-item">
+<div class="consulting-item-left">
+<p class="consulting-item-name">One-time Consultation</p>
+<p class="consulting-item-desc">60–90 minute focused session</p>
+</div>
+<p class="consulting-item-price">₦30,000</p>
+</div>
+<div class="consulting-item">
+<div class="consulting-item-left">
+<p class="consulting-item-name">Hourly Rate</p>
+<p class="consulting-item-desc">Ongoing technical work and advisory</p>
+</div>
+<p class="consulting-item-price">₦25,000/hr</p>
+</div>
+</div>
+</div></section>
+<section class="international-section" aria-labelledby="international-heading"><div class="wrap">
+<div class="section-header"><div>
+<p class="section-title">US · UK · Canada</p>
+<h2 id="international-heading" class="section-headline">International pricing</h2>
+</div></div>
+<div class="international-grid">
+<div class="international-item"><p class="international-name">Starter</p><p class="international-price">$250</p><p class="international-price-alt">£200 · €230</p></div>
+<div class="international-item"><p class="international-name">Standard</p><p class="international-price">$500</p><p class="international-price-alt">£390 · €450</p></div>
+<div class="international-item"><p class="international-name">Premium</p><p class="international-price">$800</p><p class="international-price-alt">£620 · €715</p></div>
+<div class="international-item"><p class="international-name">Custom</p><p class="international-price">From $1,200</p><p class="international-price-alt">From £950 · €1,100</p></div>
+</div>
+</div></section>
+<section class="services-cta-section" aria-label="Get started"><div class="wrap">
+<div class="services-cta-inner">
+<h2 class="services-cta-headline">Not sure which package fits?</h2>
+<p class="services-cta-sub">Tell me about your project and I will give you an honest recommendation — no pressure, no upselling.</p>
+<div class="services-cta-actions">
+<a class="button" href={`${base}contact/`}>Start a project <span class="arrow" aria-hidden="true">→</span></a>
+<a class="button secondary" href={`${base}contact/`}>Ask a Question <span aria-hidden="true">→</span></a>
+</div>
+</div>
+</div></section>
+</article>
 </Layout>
-<script>
-// Native disclosures at every width: open by default on tablet/desktop, closed on phone,
-// always user-toggleable. Without JS all content starts open and remains accessible.
-const wide = window.matchMedia('(min-width: 768px)');
-const services = [...document.querySelectorAll<HTMLDetailsElement>('.services-page details')];
-function syncServices() { services.forEach(service => { service.open = wide.matches; }); }
-syncServices();
-wide.addEventListener('change', syncServices);
-</script>
 <style is:global>
-.services-page .service{border-top:1px solid var(--border);padding-block:8px}
-.services-page .service:last-child{border-bottom:1px solid var(--border)}
-.services-page summary{display:flex;align-items:center;gap:16px;min-height:72px;cursor:pointer;list-style:none;padding-block:16px}
-.services-page summary::-webkit-details-marker{display:none}
-.services-page summary:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
-.services-page summary h2{margin:0;flex:1;min-width:0;font-size:clamp(22px,3vw,32px)}
-.services-page .service-number{color:var(--purple);font:700 16px/1.5 var(--mono)}
-.services-page .service-indicator{font:400 24px/1 var(--mono)}
-.services-page details[open] .service-indicator{transform:rotate(45deg)}
-.services-page .service-body{padding-block:8px 24px;max-width:76ch}
-.services-page dl{margin:24px 0}
-.services-page dt{font:700 16px/1.7 var(--mono);margin-top:16px}
-.services-page dd{margin:4px 0 0;color:var(--muted)}
-.services-page .service-body .button{width:100%}
-@media(min-width:768px){.services-page .service-body{margin-left:40px}.services-page .service-body .button{width:auto}}
+.svc-page{--bg:var(--canvas);--surface:#fff;--text:var(--ink);--text-mid:#3a3a3a;--text-dim:var(--muted);--font-mono:var(--mono);--border-dark:#d4d0c8;--purple-light:rgba(124,58,237,.08);--green:#00964e;--radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-full:9999px;--shadow-md:0 4px 12px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);--space-1:4px;--t-slow:400ms ease}
+.services-hero{background:var(--text);padding-block:64px;padding-block:clamp(64px,10vw,112px) clamp(56px,7vw,88px);position:relative;overflow:visible}
+.services-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 90% 50%,rgba(124,58,237,.10) 0%,transparent 70%);pointer-events:none;clip-path:inset(0)}
+.services-hero .wrap{position:relative;z-index:1}
+.services-hero-inner{display:flex;flex-direction:column;gap:var(--space-4);max-width:720px}
+.svc-crumb{font-family:var(--font-mono);font-size:12px;font-weight:600;color:rgba(247,246,243,.4);margin:0;display:flex;align-items:center;gap:8px}
+.svc-crumb::before{content:'~/';color:var(--purple)}
+.svc-crumb span{color:rgba(247,246,243,.65)}
+.services-hero-label{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,246,243,.55);margin:0}
+.services-hero-label::before{content:'//';color:rgba(247,246,243,.3);font-size:.9em}
+.services-hero-title{font-family:var(--font-mono);font-size:clamp(40px,7vw,80px);font-weight:800;letter-spacing:-.04em;line-height:1;color:#f7f6f3;margin:0 0 var(--space-4);-webkit-font-smoothing:antialiased}
+.services-hero-sub{font-size:clamp(15px,1.6vw,17px);color:rgba(247,246,243,.5);line-height:1.75;max-width:44ch;margin:0 0 var(--space-5)}
+.services-hero-actions{display:flex}
+.services-hero-cta{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:15px;font-weight:700;letter-spacing:-.01em;color:#0d0d0d;background:#f7f6f3;border:none;padding:14px 28px;border-radius:var(--radius-sm);text-decoration:none;-webkit-font-smoothing:antialiased}
+.services-hero-cta:hover{background:var(--purple);color:#fff}
+.services-hero-proofs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-md);overflow:hidden;margin:var(--space-6) 0 0;padding:0}
+.services-hero-proof{display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-5);background:rgba(255,255,255,.02)}
+.services-hero-proof-num{font-family:var(--font-mono);font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.04em;color:#f7f6f3;line-height:1;-webkit-font-smoothing:antialiased}
+.services-hero-proof-label{font-family:var(--font-mono);font-size:12px;color:rgba(247,246,243,.55);line-height:1.4}
+.services-overview{background:var(--bg);padding-block:48px;padding-block:clamp(48px,6vw,96px)}
+.services-list{overflow:clip}
+.service-item{border-bottom:1px solid var(--border)}
+.service-item:first-child{border-top:1px solid var(--border)}
+.service-trigger{display:grid;grid-template-columns:40px 1fr auto;gap:var(--space-3);align-items:center;width:100%;padding-block:var(--space-5);text-align:left;background:none;border:none;cursor:pointer;list-style:none;min-height:56px}
+.service-trigger::-webkit-details-marker{display:none}
+.service-num{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--text-dim)}
+.service-item[open] .service-num{color:var(--purple)}
+.service-name{font-family:var(--font-mono);font-size:clamp(18px,2.5vw,28px);font-weight:700;letter-spacing:-.02em;color:var(--text);-webkit-font-smoothing:antialiased}
+.service-icon{font-size:20px;color:var(--text-dim);flex-shrink:0;transition:transform var(--t-base)}
+.service-item[open] .service-icon{color:var(--purple);transform:translate(3px,-3px)}
+.service-content{padding-bottom:var(--space-4);padding-left:calc(40px + var(--space-3));max-width:600px}
+.service-desc{font-size:16px;color:var(--text-mid);line-height:1.8;margin:0 0 var(--space-3);max-width:52ch}
+.service-includes{list-style:none;display:flex;flex-direction:column;gap:var(--space-2);margin:0 0 var(--space-5);padding:0}
+.service-includes li{font-size:15px;color:var(--text-mid);padding-left:var(--space-4);position:relative;line-height:1.6}
+.service-includes li::before{content:'\2192';position:absolute;left:0;color:var(--purple);font-family:var(--font-mono);font-size:13px}
+.btn--secondary-svc{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:14px;font-weight:700;letter-spacing:.04em;padding:14px 28px;border-radius:var(--radius-sm);background:transparent;color:var(--text);border:1px solid var(--border-dark);text-decoration:none;min-height:48px}
+.btn--secondary-svc:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn--primary-svc{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);font-family:var(--font-mono);font-size:14px;font-weight:700;letter-spacing:.04em;padding:14px 28px;border-radius:var(--radius-sm);background:var(--text);color:var(--bg);border:1px solid var(--text);text-decoration:none;min-height:48px}
+.btn--primary-svc:hover{background:var(--purple);border-color:var(--purple);color:#fff}
+.draft-notice{margin-top:var(--space-6);border:2px dashed var(--border-dark);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5)}
+.draft-notice h2{font:700 18px/1.4 var(--mono);margin:0 0 8px}
+.draft-notice p{margin:0 0 8px;color:var(--muted);font-size:15px}
+.packages-section{background:var(--surface);border-top:1px solid var(--border);padding-block:48px;padding-block:clamp(48px,6vw,96px)}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--space-6);gap:var(--space-4);flex-wrap:wrap}
+.section-title{font-family:var(--font-mono);font-size:clamp(11px,1.2vw,13px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin:0 0 var(--space-2)}
+.section-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0}
+.packages-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-6)}
+.package-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5);background:var(--bg);display:flex;flex-direction:column;gap:var(--space-4);position:relative}
+.package-card--featured{border-color:var(--purple);background:var(--surface)}
+.package-featured-label{position:absolute;top:-13px;left:var(--space-4);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--purple);padding:3px 12px;border-radius:var(--radius-full)}
+.package-card-header{display:flex;flex-direction:column;gap:var(--space-2);padding-bottom:var(--space-4);border-bottom:1px solid var(--border)}
+.package-name{font-family:var(--font-mono);font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
+.package-best-for{font-size:13px;color:var(--text-dim);line-height:1.5;margin:0}
+.package-price{display:flex;align-items:baseline;gap:var(--space-1);margin-top:var(--space-2)}
+.package-price-amount{font-family:var(--font-mono);font-size:clamp(22px,2.5vw,28px);font-weight:800;letter-spacing:-.03em;color:var(--text);-webkit-font-smoothing:antialiased}
+.package-card--featured .package-price-amount{color:var(--purple)}
+.package-price-amount--custom{font-size:clamp(18px,2vw,22px);color:var(--text-dim);font-weight:700}
+.package-card--custom{border-style:dashed;background:var(--bg)}
+.package-includes{list-style:none;display:flex;flex-direction:column;gap:var(--space-2);flex:1;margin:0;padding:0}
+.package-includes li{font-size:14px;color:var(--text-mid);padding-left:var(--space-4);position:relative;line-height:1.5}
+.package-includes li::before{content:'\2713';position:absolute;left:0;color:var(--green);font-family:var(--font-mono);font-size:13px;font-weight:700}
+.package-cta{width:100%;justify-content:center}
+.packages-note{margin-top:var(--space-5);font-size:14px;color:var(--text-dim);font-family:var(--font-mono);line-height:1.7;max-width:68ch}
+.maintenance-section{background:var(--bg);border-top:1px solid var(--border);padding-block:48px;padding-block:clamp(48px,6vw,96px)}
+.maintenance-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-6)}
+.maintenance-card{border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5);background:var(--surface)}
+.maintenance-card--featured{border-color:var(--purple)}
+.maintenance-name{font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--text);margin:0 0 var(--space-3);-webkit-font-smoothing:antialiased}
+.maintenance-price{font-family:var(--font-mono);font-size:clamp(16px,1.8vw,20px);font-weight:800;color:var(--text);letter-spacing:-.02em;padding-bottom:var(--space-4);border-bottom:1px solid var(--border);margin-bottom:var(--space-4)}
+.maintenance-card--featured .maintenance-price{color:var(--purple)}
+.maintenance-period{font-size:.7em;font-weight:400;color:var(--text-dim);letter-spacing:0}
+.maintenance-includes{list-style:none;display:flex;flex-direction:column;gap:var(--space-2);margin:0;padding:0}
+.maintenance-includes li{font-size:14px;color:var(--text-mid);padding-left:var(--space-4);position:relative;line-height:1.5}
+.maintenance-includes li::before{content:'✓';position:absolute;left:0;color:var(--green);font-family:var(--font-mono);font-size:13px;font-weight:700}
+.consulting-section{background:var(--surface);border-top:1px solid var(--border);padding-top:48px;padding-top:clamp(48px,5vw,96px)}
+.consulting-list{display:flex;flex-direction:column;margin-top:var(--space-6);border-top:1px solid var(--border)}
+.consulting-item{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding-block:var(--space-5);border-bottom:1px solid var(--border);flex-wrap:wrap}
+.consulting-item:last-child{border-bottom:none}
+.consulting-item-name{font-family:var(--font-mono);font-size:clamp(15px,1.6vw,18px);font-weight:700;letter-spacing:-.01em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
+.consulting-item-desc{font-size:13px;color:var(--text-dim);margin:var(--space-1) 0 0}
+.consulting-item-price{font-family:var(--font-mono);font-size:clamp(14px,1.4vw,16px);font-weight:700;color:var(--purple);white-space:nowrap;margin:0;-webkit-font-smoothing:antialiased}
+.international-section{background:var(--bg);border-top:1px solid var(--border);padding-block:48px;padding-block:clamp(48px,6vw,96px)}
+.international-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:var(--space-6)}
+.international-item{background:var(--surface);padding:var(--space-5) var(--space-4);display:flex;flex-direction:column;gap:var(--space-2)}
+.international-name{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin:0}
+.international-price{font-family:var(--font-mono);font-size:clamp(14px,1.4vw,17px);font-weight:800;color:var(--text);letter-spacing:-.02em;margin:0;-webkit-font-smoothing:antialiased}
+.international-price-alt{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);letter-spacing:.02em;margin:0}
+.services-cta-section{padding-block:64px;padding-block:clamp(64px,8vw,96px);background:var(--surface);border-top:1px solid var(--border)}
+.services-cta-inner{display:flex;flex-direction:column;gap:var(--space-4)}
+.services-cta-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
+.services-cta-sub{font-size:16px;color:var(--text-dim);max-width:52ch;line-height:1.7;margin:0}
+.services-cta-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-2)}
+@media(min-width:640px){.packages-grid--4{grid-template-columns:repeat(2,1fr)}.maintenance-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px){.international-grid{grid-template-columns:repeat(4,1fr)}.service-trigger{grid-template-columns:56px 1fr auto;gap:var(--space-4)}.service-content{padding-left:calc(56px + var(--space-4))}}
+@media(min-width:1024px){.packages-grid--4{grid-template-columns:repeat(4,1fr);align-items:stretch}.maintenance-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:767px){.consulting-item{flex-direction:column;align-items:flex-start;gap:var(--space-2);padding-block:var(--space-4)}.consulting-item-desc{margin-top:0}.consulting-item-price{margin-top:var(--space-1)}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
