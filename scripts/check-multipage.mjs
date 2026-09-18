@@ -65,7 +65,7 @@ for (const [file, name, title, heading] of routes) {
     for (const tag of ['header', 'footer']) assert.equal(part(html, tag), part(home, tag));
     assert.match(part(html, 'header'), /class="wordmark"/);
     for (const route of ['about', 'work', 'services']) assert.ok(part(html, 'header').includes(`href="${base}${route}/"`));
-    assert.match(html, /https:\/\/tech\.gwillchijioke\.com\/" target="_blank" rel="noopener noreferrer"/);
+    assert.match(html, /https:\/\/androidscroll\.com\/" target="_blank" rel="noopener noreferrer"/);
   });
   check(`${name}: exact title, one h1 and main landmark`, () => {
     assert.equal(text(part(html, 'title')), title);
@@ -136,8 +136,14 @@ check('404 motif and real recovery routes', () => {
 });
 check('shared navigation reaches all draft routes without scope interception', () => {
   assert.doesNotMatch(home, /data-scope="/);
+  assert.doesNotMatch(home, /tech\.gwillchijioke\.com/);
+  assert.doesNotMatch(home, /Tech Blog/);
   assert.doesNotMatch(part(home, 'footer'), /not available|leg one/);
   assert.ok(part(home, 'header').includes(`href="${base}contact/"`));
+  assert.ok(home.includes('>04</span>Finance Blog'), 'drawer 04 is Finance Blog');
+  assert.ok(home.includes('>05</span>Android Blog'), 'drawer 05 is Android Blog');
+  assert.ok(home.includes('https://finance.gwillchijioke.com'), 'finance blog linked');
+  assert.ok(home.includes('id="finance-heading"'), 'finance preview section present');
   for (const name of ['mobile-nav', 'no-js-nav']) {
     const nav = home.match(new RegExp(`<nav class="${name}"[^>]*>[\\s\\S]*?</nav>`))?.[0];
     assert.ok(nav, `${name} exists`);
