@@ -186,6 +186,21 @@ check('shared navigation reaches all draft routes without scope interception', (
     for (const route of ['about', 'work', 'services', 'contact']) assert.ok(nav.includes(`href="${base}${route}/"`));
   }
 });
+check('homepage android island: live fetch + fallback + 1hr cache, one-line feed URL', () => {
+  const src = read('src/pages/index.astro');
+  assert.ok(src.includes('id="android-grid"'), 'android grid has island mount id');
+  assert.equal((src.match(/ANDROID_FEED_URL/g) || []).length >= 2, true, 'single feed-URL constant defined and used');
+  assert.match(src, /REPOINT HERE IN ONE LINE/, 'feed URL marked as one-line repoint');
+  assert.match(src, /androidscroll\.com\/wp-json\/wp\/v2\/posts\?per_page=3/, 'island fetches latest 3 posts');
+  assert.match(src, /3600000/, '~1hr localStorage TTL');
+  assert.match(src, /localStorage\.getItem/, 'cache read present');
+  assert.match(src, /localStorage\.setItem/, 'cache write present');
+  assert.match(src, /built-in cards stay silently/, 'fetch failure keeps fallback silently');
+  assert.match(src, /textContent/, 'island renders via textContent (no innerHTML injection)');
+  assert.ok(home.includes('id="android-grid"'), 'built homepage carries the island mount');
+  assert.ok(home.includes('ANDROID_FEED_URL'), 'built homepage ships the island script');
+  assert.equal((home.match(/class="post-card"/g) || []).length, 4, 'build-time fallback cards intact (3 android + 1 finance)');
+});
 check('local link targets and fragments exist', () => {
   for (const [file, name] of routes) {
     for (const m of pages.get(name).matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
