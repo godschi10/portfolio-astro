@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.6 — 2026-09-18
+
+- Homepage about snippet shows King's real Gravatar (same local `images/gwill-portrait.png` asset as the about page); mobile photo treatment now matches the WordPress theme verbatim (float:right, min(130px,40vw), text wraps, tight gradient offset, clearfix) instead of the centered hold. Copy verbatim, desktop ≥768px untouched. 31/31 checks.
+
 ## 0.14.5 — 2026-09-18
 
 - All staging/draft warning boxes removed site-wide (about honest-notice + work/services/contact/privacy/terms draft-notices, dead CSS in pages + interior.css, draft wording in meta descriptions/eyebrows/footer tagline); contact hero stack tightened to theme v1.8.10 uniform 24px rhythm (contact-info gap space-6→space-4, children already margin:0); homepage portrait centered at mobile (photo frame float:right→centered block, desktop ≥768px untouched). Copy otherwise verbatim. 31/31 checks.
