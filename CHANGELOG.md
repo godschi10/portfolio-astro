@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.9 — 2026-09-18
+
+- Work-card screenshot placeholders go straight-bottomed site-wide (homepage `.work-card__image-wrap--hold` grey "Screenshot lands with the case study" panels + work page `.work-card__image-wrap` / `.work-card__placeholder` panels): ports the theme's verbatim `.work-card__image-wrap{border-radius:0}` (style.css work-cards v1.8, dropped in the Astro port) and adds King's explicit `border-bottom-left/right-radius:0` on both placeholder panels, so the panels no longer inherit the frame's rounded bottom corners. Copy verbatim, desktop untouched, no overflow. 31/31 checks.
+
 ## 0.14.8 — 2026-09-18
 
 - Homepage about-snippet portrait keeps theme-verbatim mobile framing at 390px: restores the theme's `height:auto` on `.about-photo` (style.css §24, dropped in the Astro port), so the 640px image height attribute can never dictate layout height — the photo renders as the theme's 130px square (float right, text wrap) with the full face visible instead of a tall cropped strip cut off at the viewport edge. Copy verbatim, desktop untouched, no overflow. 31/31 checks.
