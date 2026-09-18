@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.18 — 2026-09-18
+
+- PageSpeed mobile pass, visuals/copy otherwise identical: distinct case-study CTAs (`Read the case study: {project}` names each project on `/` + `/work/`, CTA wraps instead of nowrap so no 390px overflow); hold-thumbnail contrast fix (homepage `Screenshot lands with the case study` text `var(--text-dim)`→`var(--text)` ≈13:1 on the hold grey, work-page placeholder already ≥7:1); render-blocking CSS killed Astro-safe (`build.inlineStylesheets:'always'` — page styles ship in head `<style>`, same cascade, no FOUC, zero external stylesheets); Android island fetch deferred off the LCP path (fires only when `#android-grid` nears the viewport via IntersectionObserver, idle-callback fallback + 8s safety kick; 1hr cache + silent fallback + one-line feed URL untouched, preconnect kept — same origin, still pays deferred). 10m cache TTL untouched (GitHub Pages-controlled). Check gate green, no 390px overflow.
+
 ## 0.14.17 — 2026-09-18
 
 - Speed pass, staging-safe, visuals identical: `compressHTML:true`; portrait ships WebP (`gwill-portrait-320.webp` 4916B / `-640.webp` 12792B via `<picture>`+srcset, PNG 151037B kept as fallback — ~138–146KB saved per portrait view on WebP browsers); about LCP portrait `fetchpriority="high"` (no lazy), homepage below-fold portrait keeps `loading="lazy"`; two heading font weights (800+700) preloaded, 400 not; preconnect+dns-prefetch to androidscroll.com on `/` only (island fetch origin); island stays non-blocking end-of-body inline with 1hr cache + silent fallback; no external CSS/JS chains. HTML +~256B/page (+557B index) from the new tags — see docs/SPEED-REPORT.md for measured before/after bytes. 42/42 checks, no 390px overflow.

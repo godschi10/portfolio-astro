@@ -6,4 +6,8 @@ export default defineConfig({
   base: "/portfolio-astro",
   // Speed: minify emitted HTML (~10-15% fewer bytes, zero visual change).
   compressHTML: true,
+  // PageSpeed: kill the render-blocking CSS chain Astro-safe — every page's
+  // styles ship in a head <style> (same cascade order, zero visual change,
+  // no FOUC), so no external stylesheet ever blocks first paint.
+  build: { inlineStylesheets: 'always' },
 });

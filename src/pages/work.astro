@@ -39,7 +39,7 @@ const frameUrl = (slug: string, liveUrl?: string) =>
 {study.status === 'soon'
 ? (<p class="case-study-status">Coming soon — full case study ships at launch.</p>)
 : (<p class="case-study-status case-study-status--live">Case study live.</p>)}
-<a class="work-card__cta section-link" href={`${base}work/${study.slug}/`}>Read the case study <span aria-hidden="true">&#x2192;</span></a>
+<a class="work-card__cta section-link" href={`${base}work/${study.slug}/`}>Read the case study: {study.name} <span aria-hidden="true">&#x2192;</span></a>
 </div>
 </article>
 ))}
@@ -87,7 +87,7 @@ const frameUrl = (slug: string, liveUrl?: string) =>
 .work-card__desc{font-size:16px;color:var(--text-dim);line-height:1.6;margin:0}
 .case-study-status{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:16px;margin:16px 0 0}
 .case-study-status--live{color:var(--purple);font-weight:700}
-.work-card__cta{display:inline-flex;margin-top:12px}
+.work-card__cta{display:inline-flex;margin-top:12px;white-space:normal}
 .work-cta-section{padding-block:24px;padding-block:clamp(24px,3vw,48px);background:var(--surface);border-top:1px solid var(--border)}
 .work-cta-inner{display:flex;flex-direction:column;gap:var(--space-4)}
 .work-cta-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
