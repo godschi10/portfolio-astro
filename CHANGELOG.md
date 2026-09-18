@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0 — 2026-09-18
+
+- Homepage sections rebuilt as 1:1 theme port (front-page.php + style.css): theme marquee (10 items, · separators, gradient every 4th), section-header rows (eyebrow + headline + right link), browser-frame work cards with index pills + tag chips, services rows with numbered badges + ↗ toggles + Get a Quote, theme About heading + copy, Writing/blog header. Holding honest: stats band (needs King's real numbers), screenshots (pending case studies), blog cards (no feed yet). 31/31 checks.
+
 ## 0.7.0 — 2026-09-18
 
 - Homepage body per master-plan §10 (hero untouched): dark marquee strip (pauses on hover, still under reduced-motion), Selected Work asymmetric grid with three honest unnamed placeholders, What I Do accordion mirroring Services page copy, About snippet, Tech Blog preview with honest hold lines. Stats bar HELD — no verified numbers, and the 100-PSI claim stays banned. Final CTA not duplicated (theme footer is the CTA). 31/31 checks.
