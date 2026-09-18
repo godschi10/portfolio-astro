@@ -22,7 +22,7 @@ try {
   const feedRes = await fetch(ANDROID_FEED);
   if (feedRes.ok) {
     const mapped = (await feedRes.json())
-      .map(p => ({ title: decodeEntities(p.title?.rendered ?? ''), link: p.link, date: formatPostDate(p.date), category: postCategory(p) }))
+      .map(p => ({ title: decodeEntities(p.title?.rendered ?? ''), link: p.link, date: formatPostDate(p.date), category: decodeEntities(postCategory(p)) }))
       .filter(p => p.title && p.link);
     if (mapped.length) androidPosts = mapped;
   }
@@ -86,7 +86,7 @@ var ANDROID_FEED_URL='https://androidscroll.com/wp-json/wp/v2/posts?per_page=3&o
 var CACHE_KEY='android-posts-v1',CACHE_TS='android-posts-v1-time',CACHE_TTL=3600000;
 function decode(s){try{var t=document.createElement('textarea');t.innerHTML=String(s||'');return t.value}catch(e){return String(s||'')}}function fmt(d){try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'})}catch(e){return''}}function cat(p){try{var ts=(p._embedded&&p._embedded['wp:term']&&p._embedded['wp:term'][0])||[];for(var i=0;i<ts.length;i++){if(ts[i].taxonomy==='category')return ts[i].name}return ts.length?ts[0].name:''}catch(e){return''}}
 function render(posts){var g=document.getElementById('android-grid');if(!g||!posts||!posts.length)return;while(g.firstChild)g.removeChild(g.firstChild);posts.slice(0,3).forEach(function(p){var a=document.createElement('a');a.href=p.link;a.className='post-card';a.target='_blank';a.rel='noopener noreferrer';var b=document.createElement('div');b.className='post-card__body';var c=document.createElement('p');c.className='post-card__category';c.textContent=p.category||'';var h=document.createElement('h3');h.className='post-card__title';h.textContent=p.title;var s=document.createElement('span');s.className='sr-only';s.textContent='(opens in new tab)';var m=document.createElement('div');m.className='post-card__meta';var d=document.createElement('span');d.textContent=p.date||'';m.appendChild(d);var ar=document.createElement('span');ar.className='post-card__arrow';ar.setAttribute('aria-hidden','true');ar.textContent='\u2192';b.appendChild(c);b.appendChild(h);b.appendChild(s);b.appendChild(m);b.appendChild(ar);a.appendChild(b);g.appendChild(a)})}
-function map(j){return((Array.isArray(j)?j:[]).map(function(p){return{title:decode(p.title&&p.title.rendered),link:p.link,date:fmt(p.date),category:cat(p)}}).filter(function(p){return p.title&&p.link})).slice(0,3)}
+function map(j){return((Array.isArray(j)?j:[]).map(function(p){return{title:decode(p.title&&p.title.rendered),link:p.link,date:fmt(p.date),category:decode(cat(p))}}).filter(function(p){return p.title&&p.link})).slice(0,3)}
 function readCache(){try{var t=+localStorage.getItem(CACHE_TS);if(!t||Date.now()-t>CACHE_TTL)return null;var raw=localStorage.getItem(CACHE_KEY);if(!raw)return null;var p=JSON.parse(raw);return(p&&p.length)?p:null}catch(e){return null}}function writeCache(p){try{localStorage.setItem(CACHE_KEY,JSON.stringify(p));localStorage.setItem(CACHE_TS,String(Date.now()))}catch(e){}}
 try{var cached=readCache();if(cached)render(cached);fetch(ANDROID_FEED_URL).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){var m=map(j);if(m.length){writeCache(m);render(m)}}).catch(function(){/* built-in cards stay silently */})}catch(e){/* built-in cards stay silently */}})();</script>
 </Layout>

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.16 — 2026-09-18
+
+- Fix double-escaped ampersand in Android island categories: the WP feed ships category names HTML-escaped (`Basics &amp; Setup`), so the build-time mapper now runs `decodeEntities()` on the category (was title-only, Astro re-escaped `&` to `&amp;amp;`) and the live-island `map()` now runs its textarea `decode()` on `cat(p)` before `textContent` insert (was raw `&amp;` shown literally). Build-time fallback trio untouched (plain `&`), island still renders via textContent (no innerHTML), desktop CSS untouched, no 390px overflow. 42/42 checks.
+
 ## 0.14.15 — 2026-09-18
 
 - Homepage Android section goes live-island (King order): the 3 build-time cards stay as instant fallback, and a tiny inline client script (`ANDROID_FEED_URL`, one-line repoint marked for AndroidScroll's WordPress exit) re-fetches the latest 3 posts from androidscroll.com/wp-json/wp/v2/posts on every visit, caches them in localStorage for ~1hr (3600000ms TTL), and re-renders the `#android-grid` cards via textContent (no innerHTML injection); any fetch failure keeps the built-in cards silently. QA gate gains the island assertion (mount id, single feed-URL constant, TTL + cache read/write, silent fallback, shipped script, 4 fallback cards intact). 42/42 checks.
