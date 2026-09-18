@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.2 — 2026-09-18
+
+- Draft notices slimmed site-wide (about/work/services/contact + privacy/terms via interior.css): 258–344px dashed boxes become quiet 16px strips with small caps headings; QA text kept verbatim. About stale photo line removed (portrait is live). 31/31 checks.
+
 ## 0.14.1 — 2026-09-18
 
 - About section rhythm fixed to exact theme values: section tops were 48px, theme uses 24px (measured 96px gaps vs theme 72px at phone width). Now padding-top clamp(24px,3vw,48px), padding-bottom clamp(48px,8vw,128px) verbatim. 31/31 checks.

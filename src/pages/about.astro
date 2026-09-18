@@ -57,7 +57,7 @@ const description = "Who Gwill is: a web developer focused on performance, desig
 </div></section>
 <aside class="honest-notice" id="about-scope" tabindex="-1"><div class="wrap">
 <h2>This page is a draft</h2>
-<p>Full bio, project list and photo are not written yet. This About route proves the multi-page structure; copy comes from the master plan About spec.</p>
+<p>Staging draft — details confirmed by email until the hire flow lands here.</p>
 <p>See anything wrong? <a href="mailto:hi@gwillchijioke.com">Email me</a>.</p>
 </div></aside>
 </article>
@@ -92,9 +92,10 @@ const description = "Who Gwill is: a web developer focused on performance, desig
 .about-cta-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
 .about-cta-sub{font-size:16px;color:var(--text-dim);max-width:52ch;line-height:1.7;margin:0}
 .about-cta-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-2)}
-.honest-notice{padding-block:var(--space-5)}
-.honest-notice h2{font:700 18px/1.4 var(--mono);margin:0 0 8px}
-.honest-notice p{margin:0 0 8px;color:var(--muted)}
+.honest-notice{border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-top:var(--space-6)}
+.honest-notice h2{font:700 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.honest-notice p{margin:0 0 4px;color:var(--muted);font-size:14px}
+.honest-notice p:last-child{margin:0}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.6);opacity:0}}
 @media(min-width:768px){.about-hero-grid{grid-template-columns:1.4fr 1fr}.about-portrait{justify-self:end}}
 @media(prefers-reduced-motion:reduce){.availability__dot::after{animation:none}}
