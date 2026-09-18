@@ -1,28 +1,103 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const title = "About — Gwill Chijioke";
 const description = "Who Gwill is: a web developer focused on performance, design and search rankings. Staging draft.";
 ---
 <Layout title={title} description={description}>
-<article class="about">
-<div class="wrap">
-<p class="intro"><strong>I'm Gwill.</strong> <span class="roles">Web dev · Designer · SEO</span></p>
-<h1 id="about-title"><span class="line">I'm Gwill —</span> <span class="line">a web developer who</span> <span class="line">obsesses over performance,</span> <span class="line">design and search rankings.</span></h1>
-
-<div class="hero-actions">
-<a class="button" href="mailto:hi@gwillchijioke.com">More About Me <span class="arrow" aria-hidden="true">→</span></a>
+<article class="about-page">
+<div class="about-hero"><div class="wrap about-hero-grid">
+<div class="about-hero-text">
+<p class="about-crumb" aria-hidden="true"><span>about</span></p>
+<p class="about-label">About</p>
+<h1 id="about-title">I'm Gwill — a web developer who obsesses over performance, design and search rankings.</h1>
 </div>
-<aside class="honest-notice" id="about-scope" tabindex="-1">
+<figure class="about-portrait" aria-label="Portrait of Gwill — photo coming soon">
+<div class="about-portrait-hold" aria-hidden="true"><span>G</span></div>
+</figure>
+</div></div>
+<section class="about-hook" aria-label="Introduction"><div class="wrap">
+<p class="about-hook-text">I do not build websites. I build the version of your website that loads before your competitor&rsquo;s, ranks above it, and converts the visitors it earns.</p>
+</div></section>
+<section class="about-section" aria-labelledby="story-heading"><div class="wrap">
+<h2 id="story-heading" class="about-section-label">How I got here</h2>
+<div class="about-prose">
+<p>It started with AndroidScroll.com. I built an Android tech blog from scratch, wrote 200 posts, and grew it to real organic traffic entirely through SEO and performance. No ads budget. No shortcuts. Just a fast site and content that ranked.</p>
+<p>Building that site taught me something most developers learn too late: speed is not a feature you add at the end. It is the foundation everything else sits on. A slow site does not just frustrate users. It fails before they arrive, because Google has already decided not to send them.</p>
+<p>That obsession with performance led me into Cloudflare, into building custom themes from scratch, into writing custom PHP instead of installing another plugin. Every decision traced back to the same question: does this make the site faster, or does it not?</p>
+<p>Now I build sites for clients the same way I built AndroidScroll. Clean code. No page builders. 100 on PageSpeed Insights mobile. Rankings that last.</p>
+</div>
+</div></section>
+<section class="about-section about-section--alt" aria-labelledby="skills-heading"><div class="wrap">
+<h2 id="skills-heading" class="about-section-label">What I do</h2>
+<div class="about-prose">
+<p>I build fully custom WordPress sites — no parent theme, no page builders, no shortcuts. Everything is PHP, CSS, and vanilla JavaScript written specifically for the project. No Elementor. No Divi. No drag-and-drop.</p>
+<p>On the infrastructure side I use Cloudflare for CDN, security, and full-page caching, with static assets served from Cloudflare R2. On the SEO side I handle technical audits, on-page optimisation, content architecture, and the kind of structured data that earns rich results in search.</p>
+<p>The full stack I work with every day: WordPress, Cloudflare, Cloudflare R2, Cloudflare Workers, PHP, vanilla JavaScript, CSS custom properties, RankMath, and Matomo for privacy-first analytics.</p>
+</div>
+</div></section>
+<section class="about-section" aria-labelledby="beyond-heading"><div class="wrap">
+<h2 id="beyond-heading" class="about-section-label">Beyond the work</h2>
+<div class="about-prose">
+<p>AndroidScroll is now <a class="inline-link" href="https://tech.gwillchijioke.com" target="_blank" rel="noopener noreferrer">tech.gwillchijioke.com</a> — a tech blog I still write, covering Android, web development, SEO, and software. Writing forces me to understand things properly, not just well enough. If I cannot explain something clearly, I probably do not understand it yet.</p>
+<p>I am based in Nigeria. Most of my testing happens on Tecno devices on real mobile connections, which means the performance standards I hold my work to are not theoretical. They are practical. If it is fast here, it is fast everywhere.</p>
+<p>I also write about personal finance at <a class="inline-link" href="https://finance.gwillchijioke.com" target="_blank" rel="noopener noreferrer">finance.gwillchijioke.com</a> — covering Nigerian personal finance, savings, and investment in plain language.</p>
+</div>
+</div></section>
+<section class="about-cta" aria-label="Work with me"><div class="wrap">
+<div class="about-cta-inner">
+<p class="availability"><span class="availability__dot" aria-hidden="true"></span><span>Available for projects</span></p>
+<h2 class="about-cta-headline">Want to work together?</h2>
+<p class="about-cta-sub">I take on a small number of projects at a time so I can give each one proper attention.</p>
+<div class="about-cta-actions">
+<a class="button" href={`${base}contact/`}>Hire Me <span class="arrow" aria-hidden="true">→</span></a>
+<a class="button secondary" href={`${base}work/`}>View Work <span aria-hidden="true">→</span></a>
+</div>
+</div>
+</div></section>
+<aside class="honest-notice" id="about-scope" tabindex="-1"><div class="wrap">
 <h2>This page is a draft</h2>
 <p>Full bio, project list and photo are not written yet. This About route proves the multi-page structure; copy comes from the master plan About spec.</p>
 <p>See anything wrong? <a href="mailto:hi@gwillchijioke.com">Email me</a>.</p>
-</aside>
-</div>
+</div></aside>
 </article>
 </Layout>
 <style is:global>
-.about{position:relative;isolation:isolate;padding-top:40px;padding-bottom:64px}
-.intro{margin:0;font:400 16px/1.7 var(--mono);color:var(--muted)}.intro strong{color:var(--ink);font-weight:700}.intro .roles{display:block}.intro::before{content:"";display:block;width:40px;height:3px;background:var(--purple);margin-bottom:16px}
-h1{margin:0;font-family:var(--mono);font-weight:800;font-size:clamp(36px,8vw,96px);line-height:1.08;letter-spacing:-.04em;font-feature-settings:"kern" 1,"liga" 1,"calt" 1}h1 .line{display:block}
-@media(min-width:768px){.about{padding-top:64px}}
+.about-page{--bg:var(--canvas);--surface:#fff;--text:var(--ink);--text-mid:#3a3835;--text-dim:var(--muted);--font-mono:var(--mono)}
+.about-hero{padding-block:48px;padding-block:clamp(48px,8vw,96px) clamp(32px,4vw,48px);border-bottom:1px solid var(--border);background:var(--bg)}
+.about-hero-grid{display:grid;grid-template-columns:1fr;gap:var(--space-6);align-items:center}
+.about-crumb{font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text-dim);margin:0 0 var(--space-4);display:flex;align-items:center;gap:8px}
+.about-crumb::before{content:'~/';color:var(--purple)}
+.about-crumb span{color:var(--purple)}
+.about-label{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);margin:0 0 var(--space-3)}
+.about-label::before{content:'//';color:var(--text-dim);opacity:.5;font-size:.9em}
+.about-hero h1{font-family:var(--font-mono);font-size:clamp(32px,6vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
+.about-portrait{margin:0;justify-self:start;width:min(320px,100%)}
+.about-portrait-hold{aspect-ratio:4/5;border-radius:8px;display:grid;place-items:center;background:linear-gradient(150deg,#0f766e 0%,#134e4a 100%);position:relative;overflow:hidden}
+.about-portrait-hold::after{content:'';position:absolute;inset:0;background-image:var(--noise)}
+.about-portrait-hold span{font-family:var(--font-mono);font-weight:800;font-size:clamp(96px,20vw,160px);color:rgba(247,246,243,.9);position:relative;z-index:1}
+.about-hook{padding-block:48px;padding-block:clamp(48px,6vw,80px);background:var(--text);overflow:hidden;position:relative}
+.about-hook::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,.15) 0%,transparent 70%);pointer-events:none}
+.about-hook-text{font-family:var(--font-mono);font-size:clamp(18px,2.8vw,28px);font-weight:700;line-height:1.5;letter-spacing:-.02em;color:#f7f6f3;position:relative;margin:0;-webkit-font-smoothing:antialiased}
+.about-section{padding-block:48px;padding-block:clamp(48px,6vw,96px);background:var(--bg)}
+.about-section--alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-section-label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin:0 0 var(--space-5);padding-bottom:var(--space-3);border-bottom:1px solid var(--border)}
+.about-prose{display:flex;flex-direction:column;gap:var(--space-4)}
+.about-prose p{font-size:clamp(16px,1.8vw,18px);line-height:1.85;color:var(--text-mid);max-width:68ch;margin:0}
+.inline-link{color:var(--purple);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.inline-link:hover{color:var(--text)}
+.about-cta{padding-block:64px;padding-block:clamp(64px,8vw,96px);background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-cta-inner{display:flex;flex-direction:column;gap:var(--space-4)}
+.availability{display:inline-flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--text-dim)}
+.availability__dot{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative;flex-shrink:0}
+.availability__dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:var(--green);opacity:.35;animation:pulse 2s ease-in-out infinite}
+.about-cta-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}
+.about-cta-sub{font-size:16px;color:var(--text-dim);max-width:52ch;line-height:1.7;margin:0}
+.about-cta-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-2)}
+.honest-notice{padding-block:var(--space-5)}
+.honest-notice h2{font:700 18px/1.4 var(--mono);margin:0 0 8px}
+.honest-notice p{margin:0 0 8px;color:var(--muted)}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.6);opacity:0}}
+@media(min-width:768px){.about-hero-grid{grid-template-columns:1.4fr 1fr}.about-portrait{justify-self:end}}
+@media(prefers-reduced-motion:reduce){.availability__dot::after{animation:none}}
 </style>

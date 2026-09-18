@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0 — 2026-09-18
+
+- About page as full theme port (page-about.php + style.css): crumb/label hero with portrait slot (monogram hold till King's photo), dark hook band, story / skills / beyond sections with verbatim theme copy, availability CTA with Hire Me + View Work. 31/31 checks.
+
 ## 0.9.1 — 2026-09-18
 
 - Hero meta + scroll cue as exact theme port: dotted mono items, green pulsing live clock, build-computed experience years (from Aug 2019, same start date as theme helper), meta above CTAs, absolute bottom-center Scroll cue with animated drop line, hidden on short viewports. 31/31 checks.
