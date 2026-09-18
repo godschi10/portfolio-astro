@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { studies } from '../data/work';
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 // Theme port (page-work.php + card-work.php): asymmetric grid, browser-frame
-// cards, theme CTA. Slots stay explicitly unnamed placeholders — no project
-// identity, screenshots or case-study links until King supplies them.
-const projects = [1, 2, 3];
+// cards, theme CTA. Cards link to the three real case studies; screenshot
+// panels stay honest placeholders until King supplies exports.
+const frameUrl = (slug: string, liveUrl?: string) =>
+  liveUrl ? liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : `gwillchijioke.com/work/${slug}`;
 ---
-<Layout title="Selected Work — Gwill Chijioke" description="Selected Work: three explicitly unnamed project placeholders; case studies and evidence are not available yet.">
+<Layout title="Selected Work — Gwill Chijioke" description="Selected Work: this portfolio site, AndroidScroll, and a finance blog on the way — each with a case study.">
 <article class="work-page">
 <div class="work-hero"><div class="wrap">
 <p class="work-crumb" aria-hidden="true"><span>work</span></p>
@@ -16,24 +18,28 @@ const projects = [1, 2, 3];
 <section class="work-archive-section" aria-labelledby="work-archive-heading"><div class="wrap">
 <h2 id="work-archive-heading" class="sr-only">Portfolio</h2>
 <div class="work-archive-grid">
-{projects.map(number => (
-<article class="work-card" aria-labelledby={`project-${number}-title`}>
+{studies.map((study, i) => (
+<article class="work-card" aria-labelledby={`project-${study.slug}-title`}>
 <div class="work-card__frame">
 <div class="work-card__frame-bar" aria-hidden="true">
 <span class="work-card__frame-dot work-card__frame-dot--purple"></span>
 <span class="work-card__frame-dot work-card__frame-dot--green"></span>
 <span class="work-card__frame-dot work-card__frame-dot--dim"></span>
-<span class="work-card__frame-url">gwillchijioke.com/work</span>
-<span class="work-card__index" aria-hidden="true">0{number}</span>
+<span class="work-card__frame-url">{frameUrl(study.slug, study.liveUrl)}</span>
+<span class="work-card__index" aria-hidden="true">0{i + 1}</span>
 </div>
 <div class="work-card__image-wrap">
 <div class="work-card__placeholder" aria-hidden="true"></div>
 </div>
 </div>
 <div class="work-card__body">
-<h3 class="work-card__name" id={`project-${number}-title`}>Project {number} — unnamed placeholder</h3>
-<p class="work-card__desc">Project description has not been supplied.</p>
-<p class="case-study-status">Case study not available yet.</p>
+<div class="work-card__tags">{study.tags.map(tag => (<span class="tag">{tag}</span>))}</div>
+<h3 class="work-card__name" id={`project-${study.slug}-title`}>{study.name}</h3>
+<p class="work-card__desc">{study.desc}</p>
+{study.status === 'soon'
+? (<p class="case-study-status">Coming soon — full case study ships at launch.</p>)
+: (<p class="case-study-status case-study-status--live">Case study live.</p>)}
+<a class="work-card__cta section-link" href={`${base}work/${study.slug}/`}>Read the case study <span aria-hidden="true">&#x2192;</span></a>
 </div>
 </article>
 ))}
@@ -75,9 +81,13 @@ const projects = [1, 2, 3];
 .work-card__placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--border) 0%,var(--bg) 100%);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:12px;color:var(--text-dim);letter-spacing:.1em;border-bottom-left-radius:0;border-bottom-right-radius:0}
 .work-card__placeholder::after{content:'Screenshot coming soon'}
 .work-card__body{padding:var(--space-4) var(--space-5) var(--space-5)}
+.work-card__tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tag{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;background:var(--purple-light);color:var(--purple);border:1px solid rgba(124,58,237,.15)}
 .work-card__name{font-family:var(--font-mono);font-size:clamp(16px,1.8vw,20px);font-weight:700;letter-spacing:-.02em;color:var(--text);margin:0 0 6px}
 .work-card__desc{font-size:16px;color:var(--text-dim);line-height:1.6;margin:0}
 .case-study-status{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:16px;margin:16px 0 0}
+.case-study-status--live{color:var(--purple);font-weight:700}
+.work-card__cta{display:inline-flex;margin-top:12px}
 .work-cta-section{padding-block:24px;padding-block:clamp(24px,3vw,48px);background:var(--surface);border-top:1px solid var(--border)}
 .work-cta-inner{display:flex;flex-direction:column;gap:var(--space-4)}
 .work-cta-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}

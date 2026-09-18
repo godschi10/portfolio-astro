@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CaseStudy from '../../components/CaseStudy.astro';
+import { studies, neighbors } from '../../data/work';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const study = studies[0];
+const { prev, next } = neighbors(study.slug);
+---
+<Layout title="Portfolio Case Study — Gwill Chijioke" description="Case study: the custom standalone WordPress theme behind this portfolio and its static Astro port — design system, measured performance work, and SEO.">
+<div class="case-page">
+<CaseStudy study={study} prev={prev} next={next} base={base} />
+</div>
+</Layout>
+<style is:global>
+.case-page{--bg:var(--canvas);--surface:#fff;--text:var(--ink);--text-mid:#3a3a3a;--text-dim:var(--muted);--font-mono:var(--mono);--border-dark:#d4d0c8;--purple-light:rgba(124,58,237,.08);--radius-md:8px;--radius-lg:12px;--radius-full:9999px;--space-1:4px;--space-8:96px}
+</style>

@@ -11,11 +11,15 @@ const routes = [
   ['about/index.html', 'about', 'About — Gwill Chijioke', "I'm Gwill — a web developer who obsesses over performance, design and search rankings."],
   ['services/index.html', 'services', 'Services — Gwill Chijioke', 'What I build. What it costs.'],
   ['work/index.html', 'work', 'Selected Work — Gwill Chijioke', 'Projects I\u2019ve built and results I\u2019ve earned.'],
+  ['work/portfolio/index.html', 'work/portfolio', 'Portfolio Case Study — Gwill Chijioke', 'This portfolio site', 'src/pages/work/portfolio.astro'],
+  ['work/androidscroll/index.html', 'work/androidscroll', 'AndroidScroll Case Study — Gwill Chijioke', 'AndroidScroll', 'src/pages/work/androidscroll.astro'],
+  ['work/finance/index.html', 'work/finance', 'Finance Case Study — Gwill Chijioke', 'Finance blog', 'src/pages/work/finance.astro'],
   ['contact/index.html', 'contact', 'Contact — Gwill Chijioke', "Let's talk."],
   ['404.html', '404', '404 — Page not found — Gwill Chijioke', "404 — This page doesn't exist."],
   ['privacy/index.html', 'privacy', 'Privacy — Gwill Chijioke', 'Privacy Policy'],
   ['terms/index.html', 'terms', 'Terms — Gwill Chijioke', 'Terms & Conditions'],
 ];
+const srcOf = ([file, name, , , src]) => src ?? `src/pages/${name}.astro`;
 const part = (html, tag) => {
   const match = html.match(new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`));
   assert.ok(match, `${tag} exists`);
@@ -28,7 +32,7 @@ const files = dir => readdirSync(dir).flatMap(name => {
   const path = resolve(dir, name);
   return statSync(path).isDirectory() ? files(path) : [path];
 });
-check('exactly eight generated HTML pages', () => {
+check('exactly eleven generated HTML pages', () => {
   assert.deepEqual(files(dist).filter(p => p.endsWith('.html')).map(p => relative(dist, p)).sort(), routes.map(r => r[0]).sort());
 });
 const pages = new Map(routes.map(([file, name]) => [name, read(`dist/${file}`)]));
@@ -58,10 +62,11 @@ function verifyCSS(css, parent, seen) {
   for (const m of css.matchAll(/url\(\s*["']?([^"')\s]+)["']?\s*\)/g)) verifyAsset(m[1], parent, seen);
   for (const m of css.matchAll(/@import\s+["']([^"']+)["']/g)) verifyAsset(m[1], parent, seen);
 }
-for (const [file, name, title, heading] of routes) {
+for (const route of routes) {
+  const [file, name, title, heading] = route;
   const html = pages.get(name);
   check(`${name}: Layout, shared header/footer byte equality`, () => {
-    assert.match(read(`src/pages/${name}.astro`), /import Layout from ['"]\.\.\/layouts\/Layout\.astro['"]/);
+    assert.match(read(srcOf(route)), /import Layout from ['"](?:\.\.\/)+layouts\/Layout\.astro['"]/);
     for (const tag of ['header', 'footer']) assert.equal(part(html, tag), part(home, tag));
     assert.match(part(html, 'header'), /class="wordmark"/);
     for (const route of ['about', 'work', 'services']) assert.ok(part(html, 'header').includes(`href="${base}${route}/"`));
@@ -102,7 +107,7 @@ for (const [file, name, title, heading] of routes) {
   });
 }
 check('no draft warning boxes site-wide; service scope intact', () => {
-  for (const name of ['index', 'about', 'services', 'work', 'contact', 'privacy', 'terms', '404']) assert.doesNotMatch(pages.get(name), /draft/i);
+  for (const name of ['index', 'about', 'services', 'work', 'work/portfolio', 'work/androidscroll', 'work/finance', 'contact', 'privacy', 'terms', '404']) assert.doesNotMatch(pages.get(name), /draft/i);
   for (const name of ['about', 'services', 'work', 'contact', 'privacy', 'terms']) assert.doesNotMatch(part(pages.get(name), 'main'), /draft-notice|honest-notice/);
   const services = part(pages.get('services'), 'main');
   for (const name of ['Web Development', 'Web Design', 'SEO', 'Tech Consulting']) assert.ok(services.includes(name));
@@ -111,11 +116,39 @@ check('no draft warning boxes site-wide; service scope intact', () => {
   assert.match(text(services), /Not sure which package fits\?/);
   assert.match(text(services), /Start a project/);
 });
-check('three explicitly unnamed work placeholders; no fake case-study links', () => {
+check('three real work cards link to case studies; no placeholders anywhere', () => {
+  for (const [page, scope] of [['work', part(pages.get('work'), 'main')], ['index', part(pages.get('index'), 'main')]]) {
+    assert.equal((scope.match(/class="work-card"/g) || []).length, 3, `${page}: three cards`);
+    assert.doesNotMatch(text(scope), /unnamed placeholder/);
+    for (const slug of ['portfolio', 'androidscroll', 'finance']) {
+      assert.ok(scope.includes(`href="${base}work/${slug}/"`), `${page}: links to ${slug}`);
+    }
+    assert.equal((scope.match(/Read the case study/g) || []).length, 3, `${page}: three case-study CTAs`);
+  }
   const work = part(pages.get('work'), 'main');
-  assert.equal((work.match(/class="work-card"/g) || []).length, 3);
-  for (const n of [1, 2, 3]) assert.match(text(work), new RegExp(`Project ${n} — unnamed placeholder`));
-  assert.doesNotMatch(work, /<img\b|href="[^"]*\/work\/[^"#]+/);
+  for (const name of ['This portfolio site', 'AndroidScroll', 'Finance blog']) assert.ok(text(work).includes(name), `work card: ${name}`);
+  assert.match(text(work), /Coming soon/);
+});
+check('case-study nav cycles 1-2-3-1 with All Projects center', () => {
+  const cycle = { 'work/portfolio': ['work/finance', 'work/androidscroll'], 'work/androidscroll': ['work/portfolio', 'work/finance'], 'work/finance': ['work/androidscroll', 'work/portfolio'] };
+  for (const [name, [prev, next]] of Object.entries(cycle)) {
+    const main = part(pages.get(name), 'main');
+    const nav = main.match(/<nav class="case-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0];
+    assert.ok(nav, `${name}: case-nav exists`);
+    assert.match(nav, /aria-label="Project navigation"/);
+    assert.match(nav, /Continue exploring/);
+    assert.ok(nav.includes(`href="${base}${prev}/"`), `${name}: prev ${prev}`);
+    assert.ok(nav.includes(`href="${base}${next}/"`), `${name}: next ${next}`);
+    assert.ok(nav.includes(`href="${base}work/"`), `${name}: All Projects`);
+    assert.match(nav, /Previous project/);
+    assert.match(nav, /Next project/);
+    assert.match(nav, /All Projects/);
+    for (const section of ['problem-heading', 'solution-heading', 'result-heading']) assert.ok(main.includes(`id="${section}"`), `${name}: #${section}`);
+    assert.ok(main.includes(`href="${base}contact/"`), `${name}: CTA to contact`);
+  }
+  const finance = part(pages.get('work/finance'), 'main');
+  assert.match(text(finance), /Early days/);
+  assert.doesNotMatch(finance, /Built with/);
 });
 check('contact preview cannot submit; real email fallback', () => {
   const contact = part(pages.get('contact'), 'main');
@@ -144,6 +177,9 @@ check('shared navigation reaches all draft routes without scope interception', (
   assert.ok(home.includes('>05</span>Android Blog'), 'drawer 05 is Android Blog');
   assert.ok(home.includes('https://finance.gwillchijioke.com'), 'finance blog linked');
   assert.ok(home.includes('id="finance-heading"'), 'finance preview section present');
+  assert.ok(home.includes('id="blog-heading"'), 'android preview section present');
+  assert.equal((home.match(/class="post-card"/g) || []).length, 4, 'three live android cards + one finance hold card');
+  assert.ok(home.includes('https://androidscroll.com/'), 'android cards link out');
   for (const name of ['mobile-nav', 'no-js-nav']) {
     const nav = home.match(new RegExp(`<nav class="${name}"[^>]*>[\\s\\S]*?</nav>`))?.[0];
     assert.ok(nav, `${name} exists`);

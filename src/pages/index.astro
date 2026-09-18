@@ -1,9 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { studies } from '../data/work';
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const title = "Gwill Chijioke — Web Design, Development & SEO";
 const description = "I'm Gwill. Design, development and search. One person thinking about the whole website.";
 const yrs = Math.max(1, new Date().getFullYear() - 2019 - (new Date().getMonth() < 7 ? 1 : 0));
+// Homepage Android section pulls the latest posts AUTOMATICALLY at build time
+// (King order). Graceful fallback: last-verified real trio (2026-09-18) —
+// genuine titles/permalinks/dates, used only if the feed is unreachable.
+const ANDROID_FEED = 'https://androidscroll.com/wp-json/wp/v2/posts?per_page=3&_embed=wp:term&orderby=date&order=desc';
+const decodeEntities = (s) => s.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16))).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+const formatPostDate = (d) => { try { return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }); } catch { return ''; } };
+const postCategory = (p) => { try { const terms = p._embedded?.['wp:term']?.[0] ?? []; return (terms.find(t => t.taxonomy === 'category') ?? terms[0])?.name ?? ''; } catch { return ''; } };
+const androidFallback = [
+  { title: 'Check Battery Health Android: 5 Tests That Work (2026)', link: 'https://androidscroll.com/test-phone-battery-health/', date: 'Sep 17, 2026', category: 'Guides & How-tos' },
+  { title: 'Samsung Secret Codes: 9 Safe Tests for Galaxy (2026)', link: 'https://androidscroll.com/samsung-secret-codes-test-phone/', date: 'Sep 16, 2026', category: 'Guides & How-tos' },
+  { title: 'How to Test Used Phone: 9 Checks in 5 Minutes (2026)', link: 'https://androidscroll.com/how-to-test-used-phone/', date: 'Sep 16, 2026', category: 'Guides & How-tos' },
+];
+let androidPosts = androidFallback;
+try {
+  const feedRes = await fetch(ANDROID_FEED);
+  if (feedRes.ok) {
+    const mapped = (await feedRes.json())
+      .map(p => ({ title: decodeEntities(p.title?.rendered ?? ''), link: p.link, date: formatPostDate(p.date), category: postCategory(p) }))
+      .filter(p => p.title && p.link);
+    if (mapped.length) androidPosts = mapped;
+  }
+} catch { /* feed unreachable at build — honest cached fallback above */ }
 ---
 <Layout title={title} description={description}>
 <section class="hero" aria-labelledby="hero-title"><div class="wrap">
@@ -23,9 +46,9 @@ const yrs = Math.max(1, new Date().getFullYear() - 2019 - (new Date().getMonth()
 <section class="work-section section" id="work" aria-labelledby="work-heading"><div class="container">
 <div class="section-header"><div><p class="section-title">Selected Work</p><h2 id="work-heading" class="section-headline">What I&rsquo;ve <em>built</em></h2></div><a href={`${base}work/`} class="section-link">All projects <span aria-hidden="true">&#x2192;</span></a></div>
 <div class="work-grid">
-<article class="work-card"><div class="work-card__frame"><div class="work-card__frame-bar" aria-hidden="true"><span class="work-card__frame-dot work-card__frame-dot--purple"></span><span class="work-card__frame-dot work-card__frame-dot--green"></span><span class="work-card__frame-dot work-card__frame-dot--dim"></span><span class="work-card__frame-url">gwillchijioke.com/work</span><span class="work-card__index">01</span></div><div class="work-card__image-wrap work-card__image-wrap--hold"><span>Screenshot lands with the case study</span></div></div><div class="work-card__body"><div class="work-card__tags"><span class="tag">WordPress</span><span class="tag">SEO</span><span class="tag">Design</span></div><h3 class="work-card__name">Project 1 — unnamed placeholder</h3><p class="work-card__desc">Case study lands with real project content.</p><a class="work-card__cta section-link" href={`${base}work/`}>View on Work page <span aria-hidden="true">&#x2192;</span></a></div></article>
-<article class="work-card"><div class="work-card__frame"><div class="work-card__frame-bar" aria-hidden="true"><span class="work-card__frame-dot work-card__frame-dot--purple"></span><span class="work-card__frame-dot work-card__frame-dot--green"></span><span class="work-card__frame-dot work-card__frame-dot--dim"></span><span class="work-card__frame-url">gwillchijioke.com/work</span><span class="work-card__index">02</span></div><div class="work-card__image-wrap work-card__image-wrap--hold"><span>Screenshot lands with the case study</span></div></div><div class="work-card__body"><div class="work-card__tags"><span class="tag">Design</span><span class="tag">Build</span></div><h3 class="work-card__name">Project 2 — unnamed placeholder</h3><p class="work-card__desc">Case study lands with real project content.</p><a class="work-card__cta section-link" href={`${base}work/`}>View on Work page <span aria-hidden="true">&#x2192;</span></a></div></article>
-<article class="work-card"><div class="work-card__frame"><div class="work-card__frame-bar" aria-hidden="true"><span class="work-card__frame-dot work-card__frame-dot--purple"></span><span class="work-card__frame-dot work-card__frame-dot--green"></span><span class="work-card__frame-dot work-card__frame-dot--dim"></span><span class="work-card__frame-url">gwillchijioke.com/work</span><span class="work-card__index">03</span></div><div class="work-card__image-wrap work-card__image-wrap--hold"><span>Screenshot lands with the case study</span></div></div><div class="work-card__body"><div class="work-card__tags"><span class="tag">SEO</span><span class="tag">Performance</span></div><h3 class="work-card__name">Project 3 — unnamed placeholder</h3><p class="work-card__desc">Case study lands with real project content.</p><a class="work-card__cta section-link" href={`${base}work/`}>View on Work page <span aria-hidden="true">&#x2192;</span></a></div></article>
+{studies.map((study, i) => (
+<article class="work-card"><div class="work-card__frame"><div class="work-card__frame-bar" aria-hidden="true"><span class="work-card__frame-dot work-card__frame-dot--purple"></span><span class="work-card__frame-dot work-card__frame-dot--green"></span><span class="work-card__frame-dot work-card__frame-dot--dim"></span><span class="work-card__frame-url">gwillchijioke.com/work/{study.slug}</span><span class="work-card__index">0{i + 1}</span></div><div class="work-card__image-wrap work-card__image-wrap--hold"><span>Screenshot lands with the case study</span></div></div><div class="work-card__body"><div class="work-card__tags">{study.tags.map(tag => (<span class="tag">{tag}</span>))}</div><h3 class="work-card__name">{study.name}</h3><p class="work-card__desc">{study.desc}</p><a class="work-card__cta section-link" href={`${base}work/${study.slug}/`}>Read the case study <span aria-hidden="true">&#x2192;</span></a></div></article>
+))}
 </div>
 </div></section>
 <section class="services-section" aria-labelledby="services-heading"><div class="container">
@@ -45,9 +68,9 @@ const yrs = Math.max(1, new Date().getFullYear() - 2019 - (new Date().getMonth()
 <section class="blog-preview-section section" aria-labelledby="blog-heading"><div class="container">
 <div class="section-header"><div><p class="section-title">Writing</p><h2 id="blog-heading" class="section-headline">Latest from the <em>android blog</em></h2></div><a href="https://androidscroll.com" class="section-link" target="_blank" rel="noopener noreferrer">Visit android blog <span aria-hidden="true">&#x2197;</span></a></div>
 <div class="blog-grid">
-<a href="https://androidscroll.com/test-phone-battery-health/" class="post-card" target="_blank" rel="noopener noreferrer"><div class="post-card__body"><p class="post-card__category">Guides &amp; How-tos</p><h3 class="post-card__title">Check Battery Health Android: 5 Tests That Work (2026)</h3><span class="sr-only">(opens in new tab)</span><div class="post-card__meta"><span>Sep 17, 2026</span></div><span class="post-card__arrow" aria-hidden="true">&#x2192;</span></div></a>
-<a href="https://androidscroll.com/samsung-secret-codes-test-phone/" class="post-card" target="_blank" rel="noopener noreferrer"><div class="post-card__body"><p class="post-card__category">Guides &amp; How-tos</p><h3 class="post-card__title">Samsung Secret Codes: 9 Safe Tests for Galaxy (2026)</h3><span class="sr-only">(opens in new tab)</span><div class="post-card__meta"><span>Sep 16, 2026</span></div><span class="post-card__arrow" aria-hidden="true">&#x2192;</span></div></a>
-<a href="https://androidscroll.com/how-to-test-used-phone/" class="post-card" target="_blank" rel="noopener noreferrer"><div class="post-card__body"><p class="post-card__category">Guides &amp; How-tos</p><h3 class="post-card__title">How to Test Used Phone: 9 Checks in 5 Minutes (2026)</h3><span class="sr-only">(opens in new tab)</span><div class="post-card__meta"><span>Sep 16, 2026</span></div><span class="post-card__arrow" aria-hidden="true">&#x2192;</span></div></a>
+{androidPosts.map(post => (
+<a href={post.link} class="post-card" target="_blank" rel="noopener noreferrer"><div class="post-card__body"><p class="post-card__category">{post.category}</p><h3 class="post-card__title">{post.title}</h3><span class="sr-only">(opens in new tab)</span><div class="post-card__meta"><span>{post.date}</span></div><span class="post-card__arrow" aria-hidden="true">&#x2192;</span></div></a>
+))}
 </div>
 </div></section>
 <section class="blog-preview-section blog-preview-section--finance section" aria-labelledby="finance-heading"><div class="container">
