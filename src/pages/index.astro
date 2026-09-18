@@ -28,7 +28,7 @@ try {
   }
 } catch { /* feed unreachable at build — honest cached fallback above */ }
 ---
-<Layout title={title} description={description} preconnect="https://androidscroll.com">
+<Layout title={title} description={description}>
 <section class="hero" aria-labelledby="hero-title"><div class="wrap">
 <div class="hero-grid">
 <p class="intro"><strong>I'm Gwill.</strong> <span class="roles">Web dev · Designer · SEO</span></p>
@@ -89,8 +89,8 @@ function render(posts){var g=document.getElementById('android-grid');if(!g||!pos
 function map(j){return((Array.isArray(j)?j:[]).map(function(p){return{title:decode(p.title&&p.title.rendered),link:p.link,date:fmt(p.date),category:decode(cat(p))}}).filter(function(p){return p.title&&p.link})).slice(0,3)}
 function readCache(){try{var t=+localStorage.getItem(CACHE_TS);if(!t||Date.now()-t>CACHE_TTL)return null;var raw=localStorage.getItem(CACHE_KEY);if(!raw)return null;var p=JSON.parse(raw);return(p&&p.length)?p:null}catch(e){return null}}function writeCache(p){try{localStorage.setItem(CACHE_KEY,JSON.stringify(p));localStorage.setItem(CACHE_TS,String(Date.now()))}catch(e){}}
 function fetchLive(){try{var cached=readCache();if(cached)render(cached);fetch(ANDROID_FEED_URL).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){var m=map(j);if(m.length){writeCache(m);render(m)}}).catch(function(){/* built-in cards stay silently */})}catch(e){/* built-in cards stay silently */}}
-/* PageSpeed: the island fetch never blocks LCP — the network fires only when the grid nears the viewport (lazy) with an idle-callback fallback and an 8s safety kick, whichever comes first. Preconnect in <head> still pays (same origin, just deferred). */
-var islandStarted=false;function kickIsland(){if(islandStarted)return;islandStarted=true;fetchLive()}
+/* PageSpeed: the island fetch never blocks LCP — the network fires only when the grid nears the viewport (lazy) with an idle-callback fallback and an 8s safety kick, whichever comes first. No parse-time preconnect (it fired at parse but the fetch is deferred past LCP, so the audit flagged it unused) — a dns-prefetch is injected lazily instead, only when the island fetch starts. */
+var islandStarted=false;function kickIsland(){if(islandStarted)return;islandStarted=true;try{if(!document.querySelector('link[data-android-dns]')){var dns=document.createElement('link');dns.rel='dns-prefetch';dns.href='https://androidscroll.com';dns.setAttribute('data-android-dns','');document.head.appendChild(dns)}}catch(e){}fetchLive()}
 try{var islandGrid=document.getElementById('android-grid'),islandSeen=false;function idleKick(){try{if('requestIdleCallback' in window){requestIdleCallback(kickIsland,{timeout:5000})}else{setTimeout(kickIsland,2000)}}catch(e){setTimeout(kickIsland,2000)}}
 if(islandGrid&&'IntersectionObserver' in window){var islandIO=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){islandSeen=true;try{islandIO.disconnect()}catch(x){}kickIsland()}}},{rootMargin:'800px'});islandIO.observe(islandGrid);setTimeout(function(){if(!islandSeen){try{islandIO.disconnect()}catch(x){}idleKick()}},8000)}else{idleKick()}}catch(e){setTimeout(kickIsland,2000)}})();</script>
 </Layout>

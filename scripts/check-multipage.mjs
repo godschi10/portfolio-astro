@@ -201,6 +201,26 @@ check('homepage android island: live fetch + fallback + 1hr cache, one-line feed
   assert.ok(home.includes('ANDROID_FEED_URL'), 'built homepage ships the island script');
   assert.equal((home.match(/class="post-card"/g) || []).length, 4, 'build-time fallback cards intact (3 android + 1 finance)');
 });
+check('pagespeed: no unused parse-time preconnect, lazy island dns-prefetch', () => {
+  for (const [file, name] of routes) {
+    assert.ok(!pages.get(name).includes('<link rel="preconnect"'), `${name}: no parse-time preconnect`);
+    assert.ok(!pages.get(name).includes('<link rel="dns-prefetch"'), `${name}: no parse-time dns-prefetch`);
+  }
+  const src = read('src/pages/index.astro');
+  assert.ok(!src.includes('preconnect='), 'no preconnect prop passed to Layout');
+  assert.match(src, /data-android-dns/, 'island injects lazy dns-prefetch when the fetch starts');
+  assert.match(src, /querySelector\('link\[data-android-dns\]'\)/, 'lazy dns-prefetch injected once');
+  assert.ok(home.includes('data-android-dns'), 'built homepage ships the lazy dns-prefetch injector');
+});
+check('pagespeed: footer shimmer runs on transform (composited)', () => {
+  const layout = read('src/layouts/Layout.astro');
+  assert.ok(!layout.includes('@keyframes shimmer{'), 'old background-position shimmer keyframes gone');
+  assert.ok(!layout.includes('animation:shimmer '), 'nothing still references the old shimmer animation');
+  assert.match(layout, /shimmer-sweep/, 'transform-based shimmer sweep present');
+  assert.match(layout, /will-change:transform/, 'sweep hints the compositor');
+  assert.match(layout, /@keyframes shimmer-sweep\{0%\{transform:translateX/, 'sweep animates transform only');
+  assert.ok(home.includes('shimmer-sweep'), 'built homepage ships the composited sweep');
+});
 check('local link targets and fragments exist', () => {
   for (const [file, name] of routes) {
     for (const m of pages.get(name).matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {

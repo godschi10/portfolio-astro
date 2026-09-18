@@ -1,6 +1,6 @@
 {
   "name": "portfolio-astro",
-  "version": "0.14.18",
+  "version": "0.14.19",
   "type": "module",
   "scripts": {
     "build": "astro build"
