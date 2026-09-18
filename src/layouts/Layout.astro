@@ -1,9 +1,36 @@
 ---
 // Shared chrome: head, fonts, fixed-light palette, skip-link, header,
 // compact menu + JS, route-notice, footer. Pages pass title/description.
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
+interface Props { title: string; description: string; noCanonical?: boolean; }
+const { title, description, noCanonical = false } = Astro.props;
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+// Staging-safe SEO (theme spec: gwillchijioke-theme inc/head.php + inc/seo.php).
+// Staging keeps the Pages origin + /portfolio-astro base everywhere — the
+// production cutover repoints origin/base, drops the site-wide noindex and the
+// deployment marker, and flips robots.txt to allow. Noindex stays ON here.
+const origin = (Astro.site?.toString() ?? 'https://godschi10.github.io').replace(/\/$/, '');
+const homeUrl = `${origin}${base}`;
+const routePath = Astro.url.pathname.replace(/index\.html$/, '');
+const pagePath = routePath.endsWith('/') ? routePath : `${routePath}/`;
+const isHome = pagePath === base;
+const canonical = `${origin}${pagePath}`;
+const ogUrl = noCanonical ? homeUrl : canonical;
+const ogImage = `${homeUrl}images/og-default.png`;
+const siteName = 'Gwill Chijioke';
+const sameAs = ['https://twitter.com/gwillchijioke', 'https://github.com/gwillchijioke', 'https://linkedin.com/in/gwillchijioke'];
+const crumbNames: Record<string, string> = { about: 'About', work: 'Selected Work', services: 'Services', contact: 'Contact', privacy: 'Privacy', terms: 'Terms' };
+const seg = pagePath.slice(base.length).split('/').filter(Boolean)[0] ?? '';
+const crumbName = crumbNames[seg] ?? '';
+const showBreadcrumbs = !noCanonical && !isHome && crumbName !== '';
+const ld = (obj: unknown) => JSON.stringify(obj).replace(/</g, '\\u003c');
+// WebSite+SearchAction — every page (theme inc/head.php §5).
+const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: siteName, url: homeUrl, potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: `${homeUrl}?s={search_term_string}` }, 'query-input': 'required name=search_term_string' } };
+// Person — sitewide identity; headshot image beats the site icon (theme §5).
+const person = { '@context': 'https://schema.org', '@type': 'Person', name: 'Gwill Chijioke', url: `${homeUrl}about/`, image: `${homeUrl}images/gwill-portrait.png`, jobTitle: 'Web Developer & SEO Specialist', knowsAbout: ['WordPress', 'SEO', 'Web Performance', 'Web Design'], sameAs };
+// Organization — front page only (theme inc/seo.php §4).
+const organization = { '@context': 'https://schema.org', '@type': 'Organization', name: siteName, url: homeUrl, logo: `${homeUrl}icons/icon-512.png`, sameAs };
+// BreadcrumbList — interior pages only: Home + page, item omitted on the final crumb (theme §4/§7).
+const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl }, { '@type': 'ListItem', position: 2, name: crumbName }] };
 const fontFaces = [400, 700, 800].map(weight =>
   `@font-face{font-family:JetBrains Mono;font-style:normal;font-weight:${weight};font-display:swap;src:url("${base}fonts/jetbrains-mono-latin-${weight}-normal.woff2") format("woff2")}`
 ).join('\n');
@@ -12,12 +39,40 @@ const fontFaces = [400, 700, 800].map(weight =>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#7c3aed">
 <title>{title}</title>
 <meta name="description" content={description}>
 <meta name="deployment" content="GitHub Pages staging — not production">
+{!noCanonical && <link rel="canonical" href={canonical}>}
+<link rel="icon" type="image/svg+xml" href={`${base}icons/icon.svg`}>
+<link rel="icon" type="image/png" sizes="16x16" href={`${base}icons/icon-16.png`}>
+<link rel="icon" type="image/png" sizes="32x32" href={`${base}icons/icon-32.png`}>
+<link rel="icon" type="image/png" sizes="96x96" href={`${base}icons/icon-96.png`}>
+<link rel="shortcut icon" href={`${base}icons/favicon.ico`}>
+<link rel="apple-touch-icon" sizes="180x180" href={`${base}icons/icon-180.png`}>
+<link rel="manifest" href={`${base}manifest.json`}>
+<meta property="og:type" content="website">
+<meta property="og:url" content={ogUrl}>
+<meta property="og:site_name" content={siteName}>
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content={ogImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@gwillchijioke">
+<meta name="twitter:creator" content="@gwillchijioke">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImage}>
+<script type="application/ld+json" set:html={ld(website)}></script>
+<script type="application/ld+json" set:html={ld(person)}></script>
+{isHome && <script type="application/ld+json" set:html={ld(organization)}></script>}
+{showBreadcrumbs && <script type="application/ld+json" set:html={ld(breadcrumb)}></script>}
 <style is:inline set:html={fontFaces}></style>
 <style is:global>
 @font-face{font-family:"Mono fallback";src:local("DejaVu Sans Mono");size-adjust:99.6%}
@@ -51,7 +106,7 @@ const fontFaces = [400, 700, 800].map(weight =>
 .footer-social[data-brand="github"]:hover{color:#fff;border-color:#fff;background:#333}
 .footer-social[data-brand="linkedin"]:hover{color:#fff;border-color:#0a66c2;background:#0a66c2}
 .footer-social[data-brand="mail"]:hover{color:#fff;border-color:var(--purple);background:var(--purple)}
-.footer-social[data-brand="tech"]:hover{color:#fff;border-color:#00964e;background:#00964e}
+.footer-social[data-brand="android"]:hover{color:#fff;border-color:#00964e;background:#00964e}
 .footer-links-section{padding-block:48px;padding-block:clamp(48px,6vw,80px);border-bottom:1px solid rgba(247,246,243,.08)}
 .footer-inner{max-width:var(--wide-width);margin-inline:auto;padding-inline:16px;padding-inline:clamp(16px,5vw,80px)}
 .footer-links-section .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--space-7);align-items:start}
@@ -75,11 +130,11 @@ const fontFaces = [400, 700, 800].map(weight =>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header" id="top"><div class="wrap header-inner">
 <a class="brand" href={base} aria-label="gwillchijioke. — home"><span class="wordmark"><span>gwillchijioke</span><span class="dot">.</span></span></a>
-<nav class="desktop-nav" aria-label="Primary"><a href={`${base}about/`}>About</a><a href={`${base}work/`}>Work</a><a href={`${base}services/`}>Services</a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog (opens in a new tab)">Tech Blog ↗</a></nav>
+<nav class="desktop-nav" aria-label="Primary"><a href={`${base}about/`}>About</a><a href={`${base}work/`}>Work</a><a href={`${base}services/`}>Services</a><a href="https://androidscroll.com/" target="_blank" rel="noopener noreferrer" aria-label="Android Blog (opens in a new tab)">Android Blog ↗</a></nav>
 <a class="button header-hire" href={`${base}contact/`}>Hire Me <span class="arrow" aria-hidden="true">→</span></a>
 <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-mobile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
 </div></header>
-<noscript><nav class="no-js-nav" aria-label="Navigation without JavaScript"><a href={`${base}about/`}>About</a><a href={`${base}work/`}>Work</a><a href={`${base}services/`}>Services</a><a href="https://tech.gwillchijioke.com/" target="_blank" rel="noopener noreferrer">Tech Blog ↗</a><a href={`${base}contact/`}>Contact Gwill</a></nav><style is:inline>.menu-toggle{display:none}</style></noscript>
+<noscript><nav class="no-js-nav" aria-label="Navigation without JavaScript"><a href={`${base}about/`}>About</a><a href={`${base}work/`}>Work</a><a href={`${base}services/`}>Services</a><a href="https://androidscroll.com/" target="_blank" rel="noopener noreferrer">Android Blog ↗</a><a href={`${base}contact/`}>Contact Gwill</a></nav><style is:inline>.menu-toggle{display:none}</style></noscript>
 <main id="main" tabindex="-1"><slot /></main>
 <footer class="site-footer">
 <div class="footer-cta" data-watermark="gwillchijioke">
@@ -92,7 +147,7 @@ const fontFaces = [400, 700, 800].map(weight =>
 <a href="https://github.com/gwillchijioke" class="footer-social" data-brand="github" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
 <a href="https://linkedin.com/in/gwillchijioke" class="footer-social" data-brand="linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
 <a href="mailto:hi@gwillchijioke.com" class="footer-social" data-brand="mail" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
-<a href="https://tech.gwillchijioke.com" class="footer-social" data-brand="tech" target="_blank" rel="noopener noreferrer" aria-label="Tech Blog"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></a>
+<a href="https://androidscroll.com" class="footer-social" data-brand="android" target="_blank" rel="noopener noreferrer" aria-label="Android Blog"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></a>
 </div>
 </div>
 </div>
@@ -115,8 +170,8 @@ const fontFaces = [400, 700, 800].map(weight =>
 <div class="footer-nav-group">
 <p class="footer-nav-label">Elsewhere</p>
 <ul class="footer-nav-list">
-<li><a href="https://tech.gwillchijioke.com" target="_blank" rel="noopener noreferrer">Tech Blog <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
 <li><a href="https://finance.gwillchijioke.com" target="_blank" rel="noopener noreferrer">Finance Blog <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a href="https://androidscroll.com" target="_blank" rel="noopener noreferrer">Android Blog <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
 <li><a href="https://github.com/gwillchijioke" target="_blank" rel="noopener noreferrer">GitHub <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
 <li><a href="https://twitter.com/gwillchijioke" target="_blank" rel="noopener noreferrer">X / Twitter <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
 <li><a href="https://linkedin.com/in/gwillchijioke" target="_blank" rel="noopener noreferrer">LinkedIn <span class="sr-only">(opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
@@ -142,8 +197,8 @@ const fontFaces = [400, 700, 800].map(weight =>
 <li><a class="nav-mobile-link" href={`${base}about/`}><span class="nav-mobile-index" aria-hidden="true">01</span>About</a></li>
 <li><a class="nav-mobile-link" href={`${base}work/`}><span class="nav-mobile-index" aria-hidden="true">02</span>Work</a></li>
 <li><a class="nav-mobile-link" href={`${base}services/`}><span class="nav-mobile-index" aria-hidden="true">03</span>Services</a></li>
-<li><a class="nav-mobile-link nav-mobile-link--external" href="https://tech.gwillchijioke.com" target="_blank" rel="noopener noreferrer"><span class="nav-mobile-index" aria-hidden="true">04</span>Tech Blog<span class="sr-only"> (opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
-<li><a class="nav-mobile-link nav-mobile-link--external" href="https://finance.gwillchijioke.com" target="_blank" rel="noopener noreferrer"><span class="nav-mobile-index" aria-hidden="true">05</span>Finance Blog<span class="sr-only"> (opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a class="nav-mobile-link nav-mobile-link--external" href="https://finance.gwillchijioke.com" target="_blank" rel="noopener noreferrer"><span class="nav-mobile-index" aria-hidden="true">04</span>Finance Blog<span class="sr-only"> (opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
+<li><a class="nav-mobile-link nav-mobile-link--external" href="https://androidscroll.com" target="_blank" rel="noopener noreferrer"><span class="nav-mobile-index" aria-hidden="true">05</span>Android Blog<span class="sr-only"> (opens in new tab)</span><span aria-hidden="true">&#x2197;</span></a></li>
 <li><a class="nav-mobile-link" href={`${base}contact/`}><span class="nav-mobile-index" aria-hidden="true">06</span>Contact</a></li>
 </ul>
 <div class="nav-mobile-socials">

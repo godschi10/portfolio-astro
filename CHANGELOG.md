@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.14.11 — 2026-09-18
+## 0.14.12 — 2026-09-18
+
+- Staging-safe SEO gaps from docs/SEO-AUDIT.md (theme spec inc/seo.php + inc/head.php): per-route absolute canonicals in Layout.astro (one per content page, none on the 404 per theme canonical law); OG set (type/url/site_name/locale/title/description/image 1200×630) + Twitter summary_large_image (@gwillchijioke site/creator) with absolute staging URLs; JSON-LD every page (WebSite+SearchAction, Person with portrait headshot) + Organization on / + BreadcrumbList Home>page on interior pages (no Article/ProfilePage — no posts/authors in staging); static sitemap.xml (7 routes) + robots.txt (staging disallow-all + Sitemap line, mirrors theme Sitemap rule); favicon/manifest chain (icon.svg, 16/32/96, favicon.ico, apple-touch-icon 180, manifest.json; art byte-identical to theme assets/icons/) + theme-color #7c3aed + viewport-fit=cover. Staging posture kept: site-wide noindex on all 8 pages, deployment marker, Pages origin + /portfolio-astro base untouched. Copy verbatim, desktop untouched, no overflow. 31/31 checks.
 
 - About hero portrait centered at mobile (King phone-verdict): the figure sat left-aligned at 390px (`justify-self:start` in the single-column hero grid) — now `justify-self:center` below 768px so the portrait sits centered in the viewport. Desktop ≥768px rule (`justify-self:end` beside the headline) untouched, copy verbatim, width cap `min(320px,100%)` unchanged so no 390px overflow. 31/31 checks.
 
