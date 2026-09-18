@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1 — 2026-09-18
+
+- Hero meta + scroll cue as exact theme port: dotted mono items, green pulsing live clock, build-computed experience years (from Aug 2019, same start date as theme helper), meta above CTAs, absolute bottom-center Scroll cue with animated drop line, hidden on short viewports. 31/31 checks.
+
 ## 0.9.0 — 2026-09-18
 
 - Theme mobile drawer port (header.php + style.css): dark slide-in panel, 01–06 numbered links incl. Tech + Finance Blog externals, socials, purple Hire Me CTA, dimmer + focus trap + Escape. About photo slot with monogram hold (needs King's portrait). 31/31 checks.
