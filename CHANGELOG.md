@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.4 — 2026-09-18
+
+- CTA + draft-notice top/bottom symmetry to theme rhythm (about/work/services/contact + privacy/terms): availability lines had no margin reset (staging lacks the theme's global reset, so ~16px UA paragraph air sat above the CTA) — now margin:0 as the theme computes; draft notices were one-sided (about/work/services margin-top only, contact margin-bottom only, legal 24px/40px) — now symmetric margin-block with theme spacing (space-6 on about/work/services, space-5 on contact/legal). Copy verbatim, no overflow. 31/31 checks.
+
 ## 0.14.3 — 2026-09-18
 
 - Availability CTA bands tightened to theme section rhythm (about/work/services): 64px top/bottom pads become clamp(24px,3vw,48px), the verbatim theme section-top value from v0.14.1 — about CTA drops from 440px to ~360px at 390px width. Copy verbatim, no overflow. Contact panels and privacy/terms scanned: already on slim rhythm, untouched. 31/31 checks.
