@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.0 — 2026-09-18
+
+- About portrait: King's real Gravatar (godschi10@gmail.com) replaces the monogram hold — B&W on teal, 640px local asset. 31/31 checks.
+
 ## 0.13.0 — 2026-09-18
 
 - Contact page as full theme port (page-contact.php): split layout, dark info panel (crumb, Let's talk, availability, email/response/location, 5 socials), theme-styled form side kept as disabled preview (no backend in staging; QA gate enforces it). 31/31 checks.
