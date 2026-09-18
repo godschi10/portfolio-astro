@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.5 — 2026-09-18
+
+- All staging/draft warning boxes removed site-wide (about honest-notice + work/services/contact/privacy/terms draft-notices, dead CSS in pages + interior.css, draft wording in meta descriptions/eyebrows/footer tagline); contact hero stack tightened to theme v1.8.10 uniform 24px rhythm (contact-info gap space-6→space-4, children already margin:0); homepage portrait centered at mobile (photo frame float:right→centered block, desktop ≥768px untouched). Copy otherwise verbatim. 31/31 checks.
+
 ## 0.14.4 — 2026-09-18
 
 - CTA + draft-notice top/bottom symmetry to theme rhythm (about/work/services/contact + privacy/terms): availability lines had no margin reset (staging lacks the theme's global reset, so ~16px UA paragraph air sat above the CTA) — now margin:0 as the theme computes; draft notices were one-sided (about/work/services margin-top only, contact margin-bottom only, legal 24px/40px) — now symmetric margin-block with theme spacing (space-6 on about/work/services, space-5 on contact/legal). Copy verbatim, no overflow. 31/31 checks.

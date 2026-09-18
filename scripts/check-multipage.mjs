@@ -93,9 +93,9 @@ for (const [file, name, title, heading] of routes) {
     assert.doesNotMatch(css, /prefers-color-scheme|color-scheme:\s*(?:dark|light dark)/);
   });
 }
-check('honest draft content and service scope', () => {
-  assert.match(part(pages.get('about'), 'main'), /This page is a draft/);
-  for (const name of ['services', 'work', 'contact', 'privacy', 'terms']) assert.match(part(pages.get(name), 'main'), /This page is a draft/);
+check('no draft warning boxes site-wide; service scope intact', () => {
+  for (const name of ['index', 'about', 'services', 'work', 'contact', 'privacy', 'terms', '404']) assert.doesNotMatch(pages.get(name), /draft/i);
+  for (const name of ['about', 'services', 'work', 'contact', 'privacy', 'terms']) assert.doesNotMatch(part(pages.get(name), 'main'), /draft-notice|honest-notice/);
   const services = part(pages.get('services'), 'main');
   for (const name of ['Web Development', 'Web Design', 'SEO', 'Tech Consulting']) assert.ok(services.includes(name));
   assert.equal((services.match(/<details\b/g) || []).length, 4);

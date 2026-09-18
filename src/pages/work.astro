@@ -6,7 +6,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 // identity, screenshots or case-study links until King supplies them.
 const projects = [1, 2, 3];
 ---
-<Layout title="Selected Work — Gwill Chijioke" description="Selected Work staging draft. Three explicitly unnamed project placeholders; case studies and evidence are not available yet.">
+<Layout title="Selected Work — Gwill Chijioke" description="Selected Work: three explicitly unnamed project placeholders; case studies and evidence are not available yet.">
 <article class="work-page">
 <div class="work-hero"><div class="wrap">
 <p class="work-crumb" aria-hidden="true"><span>work</span></p>
@@ -38,11 +38,6 @@ const projects = [1, 2, 3];
 </article>
 ))}
 </div>
-<aside class="draft-notice" aria-labelledby="work-draft-title">
-<h2 id="work-draft-title">This page is a draft</h2>
-<p>Project 1, Project 2 and Project 3 are unnamed layout placeholders from the plan, not real case studies. No project identity has been assigned to these slots.</p>
-<p>Names, screenshots, services delivered, descriptions and evidence are still needed before any case study can be published.</p>
-</aside>
 </div></section>
 <section class="work-cta-section" aria-label="Start a project"><div class="wrap">
 <div class="work-cta-inner">
@@ -83,10 +78,6 @@ const projects = [1, 2, 3];
 .work-card__name{font-family:var(--font-mono);font-size:clamp(16px,1.8vw,20px);font-weight:700;letter-spacing:-.02em;color:var(--text);margin:0 0 6px}
 .work-card__desc{font-size:16px;color:var(--text-dim);line-height:1.6;margin:0}
 .case-study-status{font-family:var(--font-mono);font-size:13px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:16px;margin:16px 0 0}
-.draft-notice{margin-block:var(--space-6);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
-.draft-notice h2{font:700 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
-.draft-notice p{margin:0 0 4px;color:var(--muted);font-size:14px}
-.draft-notice p:last-child{margin:0}
 .work-cta-section{padding-block:24px;padding-block:clamp(24px,3vw,48px);background:var(--surface);border-top:1px solid var(--border)}
 .work-cta-inner{display:flex;flex-direction:column;gap:var(--space-4)}
 .work-cta-headline{font-family:var(--font-mono);font-size:clamp(24px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;color:var(--text);margin:0;-webkit-font-smoothing:antialiased}

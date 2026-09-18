@@ -12,7 +12,7 @@ const services = [
   { num: '04', name: 'Tech Consulting', desc: 'Cloudflare setup, performance audits, stack decisions, WordPress optimisation. Honest technical advice with no upselling. I tell you what you need, not what costs more.', includes: ['Cloudflare setup and configuration', 'Performance audits and fixes', 'WordPress and hosting optimisation', 'Stack and tooling decisions', 'CTO-level technical advisory'] },
 ];
 ---
-<Layout title="Services — Gwill Chijioke" description="Services staging draft: web development, design, SEO and consulting with honest accordion details. Prices from the live theme.">
+<Layout title="Services — Gwill Chijioke" description="Services: web development, design, SEO and consulting with honest accordion details. Prices from the live theme.">
 <article class="svc-page">
 <div class="services-hero"><div class="wrap">
 <div class="services-hero-inner">
@@ -51,10 +51,6 @@ const services = [
 </details>
 ))}
 </div>
-<aside class="draft-notice" aria-labelledby="services-draft-title">
-<h2 id="services-draft-title">This page is a draft</h2>
-<p>Service scope, packages and prices are ported from the live theme; availability and quotes are confirmed by email until the hire flow lands here.</p>
-</aside>
 </div></section>
 <section class="packages-section" aria-labelledby="packages-heading"><div class="wrap">
 <div class="section-header"><div>
@@ -268,10 +264,6 @@ const services = [
 .btn--secondary-svc:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
 .btn--primary-svc{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);font-family:var(--font-mono);font-size:14px;font-weight:700;letter-spacing:.04em;padding:14px 28px;border-radius:var(--radius-sm);background:var(--text);color:var(--bg);border:1px solid var(--text);text-decoration:none;min-height:48px}
 .btn--primary-svc:hover{background:var(--purple);border-color:var(--purple);color:#fff}
-.draft-notice{margin-block:var(--space-6);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
-.draft-notice h2{font:700 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
-.draft-notice p{margin:0 0 4px;color:var(--muted);font-size:14px}
-.draft-notice p:last-child{margin:0}
 .packages-section{background:var(--surface);border-top:1px solid var(--border);padding-block:48px;padding-block:clamp(48px,6vw,96px)}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--space-6);gap:var(--space-4);flex-wrap:wrap}
 .section-title{font-family:var(--font-mono);font-size:clamp(11px,1.2vw,13px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin:0 0 var(--space-2)}
