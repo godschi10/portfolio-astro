@@ -1,10 +1,118 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '../styles/interior.css';
+// Theme port (page-terms.php): legal hero + sticky TOC + clause body, copy verbatim.
+// Staging is static: "Last updated" is fixed to the theme template's last-modified
+// date (2026-09-05, theme v1.8.74); the contact email resolves to hi@gwillchijioke.com
+// per the theme's single-source-of-truth doctrine. data-animate omitted (no theme
+// animation JS in staging, same as every other port).
 ---
-<Layout title="Terms — Gwill Chijioke" description="Terms of use. Full terms text lands with production.">
-<section class="interior wrap" aria-labelledby="terms-title">
-  <p class="eyebrow">Legal</p>
-  <h1 id="terms-title">Terms</h1>
+<Layout title="Terms — Gwill Chijioke" description="Terms of use: site content, freelance services, payment, revisions, IP, liability, and governing law.">
+<article class="legal-page">
+<section class="page-hero legal-hero">
+<div class="container legal-hero-inner">
+<p class="page-hero-crumb" aria-hidden="true"><span>terms</span></p>
+<p class="page-hero-label">Legal</p>
+<h1 class="page-hero-title">Terms &amp; Conditions</h1>
+<p class="legal-updated">Last updated: September 5, 2026</p>
+</div>
 </section>
+<section class="section legal-section">
+<div class="container legal-layout">
+<nav class="legal-toc" aria-label="On this page">
+<p class="legal-toc-label">On this page</p>
+<ol class="legal-toc-list">
+<li><a href="#site-content">Site content</a></li>
+<li><a href="#services">Freelance services</a></li>
+<li><a href="#payment">Payment</a></li>
+<li><a href="#revisions">Revisions &amp; scope</a></li>
+<li><a href="#ip">Intellectual property</a></li>
+<li><a href="#liability">Liability</a></li>
+<li><a href="#law">Governing law</a></li>
+<li><a href="#changes">Changes</a></li>
+<li><a href="#contact">Contact</a></li>
+</ol>
+</nav>
+<div class="legal-body prose">
+<p class="legal-intro">By using gwillchijioke.com you agree to the following terms. If you do not agree, please do not use this site.</p>
+<div class="legal-block" id="site-content">
+<h2>Site content</h2>
+<p>All content on this site — including text, code, and design — is the intellectual property of Gwill Chijioke unless otherwise stated. You may not reproduce or republish any content without written permission.</p>
+</div>
+<div class="legal-block" id="services">
+<h2>Freelance services</h2>
+<p>Enquiries submitted through this site do not constitute a contract. A contract exists only when a written proposal has been accepted and a deposit has been received.</p>
+</div>
+<div class="legal-block" id="payment">
+<h2>Payment</h2>
+<p>Projects require a deposit before work begins. The exact amount and schedule are specified in the project proposal. Work does not commence until the deposit clears.</p>
+</div>
+<div class="legal-block" id="revisions">
+<h2>Revisions and scope</h2>
+<p>Each project proposal defines the scope of work and the number of revision rounds included. Work outside the agreed scope is quoted separately.</p>
+</div>
+<div class="legal-block" id="ip">
+<h2>Intellectual property</h2>
+<p>Upon receipt of full payment, the client owns the completed deliverables. Gwill Chijioke retains the right to display the work in a portfolio unless the client requests otherwise in writing.</p>
+</div>
+<div class="legal-block" id="liability">
+<h2>Liability</h2>
+<p>Gwill Chijioke is not liable for any loss of revenue, data, or business resulting from the use or inability to use any deliverable. The total liability in any circumstance is limited to the amount paid for the relevant project.</p>
+</div>
+<div class="legal-block" id="law">
+<h2>Governing law</h2>
+<p>These terms are governed by the laws of the Federal Republic of Nigeria.</p>
+</div>
+<div class="legal-block" id="changes">
+<h2>Changes</h2>
+<p>These terms may be updated at any time. The date at the top of this page reflects the most recent revision. Continued use of the site constitutes acceptance.</p>
+</div>
+<div class="legal-block legal-block--last" id="contact">
+<h2>Contact</h2>
+<p>Questions: <a href="mailto:hi@gwillchijioke.com" class="inline-link">hi@gwillchijioke.com</a></p>
+</div>
+</div>
+</div>
+</section>
+</article>
 </Layout>
+<style is:global>
+.legal-page{--bg:var(--canvas);--surface:#fff;--text:var(--ink);--text-mid:#3a3a3a;--text-dim:var(--muted);--font-mono:var(--mono);--border-dark:#d4d0c8;--purple:var(--purple);--purple-light:rgba(124,58,237,.08);--header-height:64px;--radius-sm:4px;--radius-md:8px;--radius-full:9999px;--space-7:64px;--t-fast:150ms ease;overflow-wrap:break-word}
+.legal-page :where(p,h1,h2,ol,ul){margin:0}
+.legal-page :where(ol,ul){padding:0}
+.legal-page .container{width:100%;max-width:var(--wide-width);margin-inline:auto;padding-inline:16px;padding-inline:clamp(16px,5vw,80px)}
+.legal-page .section{padding-block:48px;padding-block:clamp(48px,8vw,128px)}
+.legal-page .page-hero{padding-block:48px;padding-block:clamp(48px,8vw,96px) clamp(32px,4vw,48px);border-bottom:1px solid var(--border);background:var(--bg)}
+.legal-page .page-hero-crumb{font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:var(--space-4);display:flex;align-items:center;gap:8px}
+.legal-page .page-hero-crumb::before{content:'~/';color:var(--purple)}
+.legal-page .page-hero-crumb span{color:var(--purple)}
+.legal-page .page-hero-label{display:flex;align-items:center;gap:8px;margin-bottom:var(--space-4);font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--purple)}
+.legal-page .page-hero-label::before{content:'//';color:var(--text-dim);opacity:.5;font-size:.9em}
+.legal-page .page-hero-title{font-family:var(--font-mono);font-size:32px;font-size:clamp(32px,6vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);-webkit-font-smoothing:antialiased}
+.legal-page .legal-hero{padding-bottom:24px;padding-bottom:clamp(24px,3vw,40px);border-bottom:1px solid var(--border)}
+.legal-page .legal-hero-inner{max-width:860px}
+.legal-page .legal-updated{display:inline-flex;align-items:center;margin-top:var(--space-4);font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-full);padding:5px 14px}
+.legal-page .legal-section{padding-block:40px;padding-block:clamp(40px,6vw,72px);background:var(--bg)}
+.legal-page .legal-layout{display:grid;grid-template-columns:1fr;gap:var(--space-7);max-width:860px;margin-inline:auto}
+.legal-page .legal-toc{position:-webkit-sticky;position:sticky;top:calc(var(--header-height) + var(--space-5))}
+.legal-page .legal-toc-label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin-bottom:var(--space-3);padding-bottom:var(--space-2);border-bottom:1px solid var(--border)}
+.legal-page .legal-toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;counter-reset:toc-counter}
+.legal-page .legal-toc-list li{counter-increment:toc-counter}
+.legal-page .legal-toc-list li::marker{content:none}
+.legal-page .legal-toc-list a{display:flex;align-items:baseline;gap:8px;font-size:13px;line-height:1.5;color:var(--text-dim);text-decoration:none;padding:13px 8px;border-radius:var(--radius-sm);transition:background var(--t-fast)}
+.legal-page .legal-toc-list a::before{content:counter(toc-counter,decimal-leading-zero);font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--border-dark);flex-shrink:0}
+.legal-page .legal-toc-list a:hover{color:var(--purple);background:var(--purple-light)}
+.legal-page .legal-toc-list a:hover::before{color:var(--purple)}
+.legal-page .legal-body{min-width:0}
+.legal-page .legal-intro{font-size:16px;font-size:clamp(16px,1.8vw,18px);color:var(--text-mid);line-height:1.85;max-width:64ch;margin-bottom:var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid var(--border)}
+.legal-page .legal-block{padding-block:var(--space-6);border-bottom:1px solid var(--border);scroll-margin-top:calc(var(--header-height) + var(--space-5))}
+.legal-page .legal-block--last{border-bottom:none;padding-bottom:0}
+.legal-page .legal-body .legal-block h2{font-family:var(--font-mono);font-size:16px;font-size:clamp(16px,2vw,20px);font-weight:700;letter-spacing:-.02em;color:var(--text);margin-top:0;margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-3)}
+.legal-page .legal-body .legal-block h2::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--purple);flex-shrink:0}
+.legal-page .legal-body p{font-size:15px;font-size:clamp(15px,1.6vw,17px);color:var(--text-mid);line-height:1.85;max-width:64ch;margin-bottom:var(--space-3)}
+.legal-page .legal-body p:last-child{margin-bottom:0}
+.legal-page .legal-callout{margin-block:var(--space-4);padding:var(--space-3) var(--space-4);background:var(--purple-light);border-left:3px solid var(--purple);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:15px;color:var(--text);line-height:1.7}
+.legal-page .inline-link{color:var(--purple);font-weight:600;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.legal-page .inline-link:hover{color:var(--text)}
+@media(min-width:900px){.legal-page .legal-layout{grid-template-columns:196px 1fr;gap:var(--space-7);align-items:start}}
+@media(max-width:899px){.legal-page .legal-toc{position:static;border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);background:var(--surface)}.legal-page .legal-toc-list{flex-direction:row;flex-wrap:wrap;gap:var(--space-2)}.legal-page .legal-toc-list a{font-size:12px;padding:13px 10px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-full);gap:5px}.legal-page .legal-toc-list a::before{display:none}}
+</style>

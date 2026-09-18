@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.7 — 2026-09-18
+
+- Privacy + terms pages as full theme ports (page-privacy.php, page-terms.php): legal hero (crumb, Legal label, theme h1, Last-updated pill), sticky TOC sidebar, all clause blocks with copy verbatim, section-47 legal styles + shared page-hero styles ported (scoped under .legal-page; decorative noise/grid/glow omitted per work-port precedent, data-animate omitted — no animation JS in staging). Static "Last updated: September 5, 2026" matches the templates' last-modified date (theme v1.8.74); legal email hi@gwillchijioke.com per theme doctrine. QA gate headings updated to theme h1s (Privacy Policy / Terms & Conditions) with theme-copy + section-id assertions. 31/31 checks.
+
 ## 0.14.6 — 2026-09-18
 
 - Homepage about snippet shows King's real Gravatar (same local `images/gwill-portrait.png` asset as the about page); mobile photo treatment now matches the WordPress theme verbatim (float:right, min(130px,40vw), text wraps, tight gradient offset, clearfix) instead of the centered hold. Copy verbatim, desktop ≥768px untouched. 31/31 checks.

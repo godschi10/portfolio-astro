@@ -13,8 +13,8 @@ const routes = [
   ['work/index.html', 'work', 'Selected Work — Gwill Chijioke', 'Projects I\u2019ve built and results I\u2019ve earned.'],
   ['contact/index.html', 'contact', 'Contact — Gwill Chijioke', "Let's talk."],
   ['404.html', '404', '404 — Page not found — Gwill Chijioke', "404 — This page doesn't exist."],
-  ['privacy/index.html', 'privacy', 'Privacy — Gwill Chijioke', 'Privacy'],
-  ['terms/index.html', 'terms', 'Terms — Gwill Chijioke', 'Terms'],
+  ['privacy/index.html', 'privacy', 'Privacy — Gwill Chijioke', 'Privacy Policy'],
+  ['terms/index.html', 'terms', 'Terms — Gwill Chijioke', 'Terms & Conditions'],
 ];
 const part = (html, tag) => {
   const match = html.match(new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`));
@@ -71,6 +71,14 @@ for (const [file, name, title, heading] of routes) {
     assert.equal(text(part(html, 'title')), title);
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
     assert.equal(text(part(html, 'h1')), heading);
+    if (name === 'privacy') {
+      for (const s of ['Analytics \u2014 Matomo', 'Matomo runs without cookies on this site.', 'automatically purged after 12 months', 'Changes to this policy', 'mailto:hi@gwillchijioke.com']) assert.ok(html.includes(s), `privacy theme copy: ${s}`);
+      for (const id of ['analytics', 'retention', 'contact-form', 'hosting', 'cookies', 'rights', 'changes', 'contact']) assert.ok(html.includes(`id="${id}"`), `privacy section #${id}`);
+    }
+    if (name === 'terms') {
+      for (const s of ['By using gwillchijioke.com you agree', 'A contract exists only when a written proposal has been accepted', 'governed by the laws of the Federal Republic of Nigeria', 'These terms may be updated at any time', 'mailto:hi@gwillchijioke.com']) assert.ok(html.includes(s), `terms theme copy: ${s}`);
+      for (const id of ['site-content', 'services', 'payment', 'revisions', 'ip', 'liability', 'law', 'changes', 'contact']) assert.ok(html.includes(`id="${id}"`), `terms section #${id}`);
+    }
     assert.equal((html.match(/<main\b/g) || []).length, 1);
     assert.match(html, /<main id="main" tabindex="-1"/);
     if (name !== 'index') assert.doesNotMatch(part(html, 'main'), /id="hero-title"/);
