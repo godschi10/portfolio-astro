@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.8 — 2026-09-18
+
+- Homepage about-snippet portrait keeps theme-verbatim mobile framing at 390px: restores the theme's `height:auto` on `.about-photo` (style.css §24, dropped in the Astro port), so the 640px image height attribute can never dictate layout height — the photo renders as the theme's 130px square (float right, text wrap) with the full face visible instead of a tall cropped strip cut off at the viewport edge. Copy verbatim, desktop untouched, no overflow. 31/31 checks.
+
 ## 0.14.7 — 2026-09-18
 
 - Privacy + terms pages as full theme ports (page-privacy.php, page-terms.php): legal hero (crumb, Legal label, theme h1, Last-updated pill), sticky TOC sidebar, all clause blocks with copy verbatim, section-47 legal styles + shared page-hero styles ported (scoped under .legal-page; decorative noise/grid/glow omitted per work-port precedent, data-animate omitted — no animation JS in staging). Static "Last updated: September 5, 2026" matches the templates' last-modified date (theme v1.8.74); legal email hi@gwillchijioke.com per theme doctrine. QA gate headings updated to theme h1s (Privacy Policy / Terms & Conditions) with theme-copy + section-id assertions. 31/31 checks.
