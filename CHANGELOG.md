@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.11 — 2026-09-18
+
+- About hero portrait centered at mobile (King phone-verdict): the figure sat left-aligned at 390px (`justify-self:start` in the single-column hero grid) — now `justify-self:center` below 768px so the portrait sits centered in the viewport. Desktop ≥768px rule (`justify-self:end` beside the headline) untouched, copy verbatim, width cap `min(320px,100%)` unchanged so no 390px overflow. 31/31 checks.
+
 ## 0.14.10 — 2026-09-18
 
 - Legal section headers sit flush with body copy on privacy + terms (King phone-verdict): every clause h2 carried the theme section-47 purple dot (`h2::before` 6px dot + `gap:var(--space-3)` flex row = header text pushed 22px right of body text) — dot and flex row dropped identically on both pages so headers align flush left with paragraphs. Same-version ride-along (King catch): homepage teaser hold panels straight-bottomed — the v0.14.9 panel-level radius:0 couldn't defeat the theme-verbatim rounded `.work-card__frame` + `overflow:hidden` clip, so the grey placeholder still rendered round-bottomed; the homepage frame is now square at the bottom (`border-radius:var(--radius-lg) var(--radius-lg) 0 0`, top stays theme-rounded), work page frame was already square. src/ grep confirms these are the only two placeholder instances (contact matches are input placeholder attributes, untouched). Copy verbatim, desktop untouched except the flagged components, no overflow. 31/31 checks.
