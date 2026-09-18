@@ -106,8 +106,8 @@ import Layout from '../layouts/Layout.astro';
 .legal-page .legal-intro{font-size:16px;font-size:clamp(16px,1.8vw,18px);color:var(--text-mid);line-height:1.85;max-width:64ch;margin-bottom:var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid var(--border)}
 .legal-page .legal-block{padding-block:var(--space-6);border-bottom:1px solid var(--border);scroll-margin-top:calc(var(--header-height) + var(--space-5))}
 .legal-page .legal-block--last{border-bottom:none;padding-bottom:0}
-.legal-page .legal-body .legal-block h2{font-family:var(--font-mono);font-size:16px;font-size:clamp(16px,2vw,20px);font-weight:700;letter-spacing:-.02em;color:var(--text);margin-top:0;margin-bottom:var(--space-4);display:flex;align-items:center;gap:var(--space-3)}
-.legal-page .legal-body .legal-block h2::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--purple);flex-shrink:0}
+/* King phone-verdict: section headers sit flush with body copy — theme section-47 purple dot + flex gap dropped (dot+gap pushed header text 22px right of body text). */
+.legal-page .legal-body .legal-block h2{font-family:var(--font-mono);font-size:16px;font-size:clamp(16px,2vw,20px);font-weight:700;letter-spacing:-.02em;color:var(--text);margin-top:0;margin-bottom:var(--space-4);display:block}
 .legal-page .legal-body p{font-size:15px;font-size:clamp(15px,1.6vw,17px);color:var(--text-mid);line-height:1.85;max-width:64ch;margin-bottom:var(--space-3)}
 .legal-page .legal-body p:last-child{margin-bottom:0}
 .legal-page .legal-callout{margin-block:var(--space-4);padding:var(--space-3) var(--space-4);background:var(--purple-light);border-left:3px solid var(--purple);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:15px;color:var(--text);line-height:1.7}

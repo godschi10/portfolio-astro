@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.10 — 2026-09-18
+
+- Legal section headers sit flush with body copy on privacy + terms (King phone-verdict): every clause h2 carried the theme section-47 purple dot (`h2::before` 6px dot + `gap:var(--space-3)` flex row = header text pushed 22px right of body text) — dot and flex row dropped identically on both pages so headers align flush left with paragraphs. Same-version ride-along (King catch): homepage teaser hold panels straight-bottomed — the v0.14.9 panel-level radius:0 couldn't defeat the theme-verbatim rounded `.work-card__frame` + `overflow:hidden` clip, so the grey placeholder still rendered round-bottomed; the homepage frame is now square at the bottom (`border-radius:var(--radius-lg) var(--radius-lg) 0 0`, top stays theme-rounded), work page frame was already square. src/ grep confirms these are the only two placeholder instances (contact matches are input placeholder attributes, untouched). Copy verbatim, desktop untouched except the flagged components, no overflow. 31/31 checks.
+
 ## 0.14.9 — 2026-09-18
 
 - Work-card screenshot placeholders go straight-bottomed site-wide (homepage `.work-card__image-wrap--hold` grey "Screenshot lands with the case study" panels + work page `.work-card__image-wrap` / `.work-card__placeholder` panels): ports the theme's verbatim `.work-card__image-wrap{border-radius:0}` (style.css work-cards v1.8, dropped in the Astro port) and adds King's explicit `border-bottom-left/right-radius:0` on both placeholder panels, so the panels no longer inherit the frame's rounded bottom corners. Copy verbatim, desktop untouched, no overflow. 31/31 checks.
