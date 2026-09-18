@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.22 — 2026-09-18
+
+- Legal pages gain the site's smooth anchor glide (King verdict — Privacy 'ON THIS PAGE' pills snapped instead of gliding): shared `Layout.astro` gains `html{scroll-behavior:smooth}` so every anchor jump site-wide (legal TOC pills, skip link, case-study fragment nav) glides; `prefers-reduced-motion` guard already in the chrome (`scroll-behavior:auto!important`) is asserted by the gate; sticky-header offset already carried by both legal pages (`.legal-block` `scroll-margin-top:calc(var(--header-height) + var(--space-5))`, verified in privacy + terms). No new JS, no copy/visual change (scroll-behavior touches no box model), no 390px overflow. QA gate +1 locks the rule + built privacy/terms carry, 45/45.
+
 ## 0.14.21 — 2026-09-18
 
 - Contact MESSAGE textarea locked to vertical-only resize (King screenshot verdict — the box dragged freely in all directions and broke layout): `.form-textarea` gains `max-width:100%` alongside the existing `resize:vertical` + `min-height:140px`, so it can never stretch sideways. Site-wide grep confirms this is the only textarea on the site (remaining contact controls are text/email inputs + selects, no resize flaw); Send-button disabled styling untouched (greyed pre-fill state is deliberate). QA gate locks the rule, 44/44, no 390px overflow.

@@ -235,4 +235,15 @@ check('local link targets and fragments exist', () => {
     }
   }
 });
+check('legal smooth anchor glide: html smooth scroll + reduced-motion guard + sticky offset', () => {
+  const layout = read('src/layouts/Layout.astro');
+  assert.match(layout, /html\{scroll-behavior:smooth\}/, 'site-wide smooth anchor glide on html');
+  assert.match(layout, /prefers-reduced-motion:reduce/, 'reduced-motion guard present');
+  assert.match(layout, /scroll-behavior:auto!important/, 'reduced-motion kills smooth scroll');
+  for (const src of ['src/pages/privacy.astro', 'src/pages/terms.astro']) {
+    assert.match(read(src), /\.legal-block\{[^}]*scroll-margin-top:/, `${src}: sticky-header offset`);
+  }
+  assert.ok(pages.get('privacy').includes('scroll-behavior:smooth'), 'built privacy page carries the smooth-scroll rule');
+  assert.ok(pages.get('terms').includes('scroll-behavior:smooth'), 'built terms page carries the smooth-scroll rule');
+});
 console.log(`${checks}/${checks} static multipage checks passed across ${routes.length} pages. Not a browser or visual test.`);
