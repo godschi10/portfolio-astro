@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.1 — 2026-09-18
+
+- Removed staging descriptive texts King flagged: hero tagline + bottom caption, About staging para, blog hold line. Hero now ends in the theme's own meta row (Anambra NG / UTC+1 / live Lagos clock) + Scroll hint; buttons in theme order (View Work ↓, Hire Me →).
+
 ## 0.8.0 — 2026-09-18
 
 - Homepage sections rebuilt as 1:1 theme port (front-page.php + style.css): theme marquee (10 items, · separators, gradient every 4th), section-header rows (eyebrow + headline + right link), browser-frame work cards with index pills + tag chips, services rows with numbered badges + ↗ toggles + Get a Quote, theme About heading + copy, Writing/blog header. Holding honest: stats band (needs King's real numbers), screenshots (pending case studies), blog cards (no feed yet). 31/31 checks.
