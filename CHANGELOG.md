@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.20 — 2026-09-18
+
+- Footer `performs` shimmer reverted to the original gradient-text animation (King verdict — the composited `translateX` pseudo-element sweep read as a white film sliding on top): the `em::after` sweep + `shimmer-sweep` keyframes are gone, restored verbatim `animation:shimmer 7s linear infinite` on the gradient-clipped text with `@keyframes shimmer` animating `background-position` 200%→−200%. The PageSpeed non-composited-animation flag is informational (zero score impact) and stays waived. QA gate reverted to match, 44/44, no 390px overflow.
+
 ## 0.14.19 — 2026-09-18
 
 - PageSpeed follow-ups, visuals/copy identical: unused parse-time preconnect to androidscroll.com dropped from `/` head (the hint fired at parse but the island fetch is deferred past LCP, so the audit flagged it unused — a `dns-prefetch` is now injected lazily by the island script only when the fetch starts, guarded to inject once); footer `performs` shimmer rebuilt on a composited property (same static gradient-text look, same 7s linear cadence — the `background-position` keyframes are gone, replaced by a `translateX` gradient sweep on a pseudo-element with `will-change:transform`, still covered by the global `prefers-reduced-motion` kill); aditude trace: `event-ingestor.judy.pnap.aditude.cloud` is external to this site — repo-wide grep finds zero references to `aditude`/`judy`/`ingestor`/`event-ingestor` in `src/`, `public/`, `scripts/`, config and built `dist/` (the lone repo-wide `pnap` hit is a coincidental base64 substring inside an unshipped font blob in `docs/mockups/`; androidscroll.com's own homepage HTML also carries no aditude reference — the calls come from their runtime ad stack, not our pages). QA gate +2 (no parse-time preconnect/dns-prefetch link, lazy dns-prefetch injection; composited sweep keyframes), 44/44, no 390px overflow.

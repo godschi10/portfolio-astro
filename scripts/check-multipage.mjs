@@ -212,14 +212,13 @@ check('pagespeed: no unused parse-time preconnect, lazy island dns-prefetch', ()
   assert.match(src, /querySelector\('link\[data-android-dns\]'\)/, 'lazy dns-prefetch injected once');
   assert.ok(home.includes('data-android-dns'), 'built homepage ships the lazy dns-prefetch injector');
 });
-check('pagespeed: footer shimmer runs on transform (composited)', () => {
+check('footer performs shimmer: original gradient-text animation', () => {
   const layout = read('src/layouts/Layout.astro');
-  assert.ok(!layout.includes('@keyframes shimmer{'), 'old background-position shimmer keyframes gone');
-  assert.ok(!layout.includes('animation:shimmer '), 'nothing still references the old shimmer animation');
-  assert.match(layout, /shimmer-sweep/, 'transform-based shimmer sweep present');
-  assert.match(layout, /will-change:transform/, 'sweep hints the compositor');
-  assert.match(layout, /@keyframes shimmer-sweep\{0%\{transform:translateX/, 'sweep animates transform only');
-  assert.ok(home.includes('shimmer-sweep'), 'built homepage ships the composited sweep');
+  assert.ok(!layout.includes('shimmer-sweep'), 'composited sweep rewrite gone');
+  assert.ok(!layout.includes('em::after'), 'no pseudo-element sweep on the shimmer');
+  assert.match(layout, /animation:shimmer 7s linear infinite/, 'original shimmer animation restored');
+  assert.match(layout, /@keyframes shimmer\{0%\{background-position:200% center\}100%/, 'original background-position keyframes restored');
+  assert.ok(home.includes('@keyframes shimmer'), 'built homepage ships the original shimmer keyframes');
 });
 check('local link targets and fragments exist', () => {
   for (const [file, name] of routes) {
