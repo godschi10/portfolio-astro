@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.17 — 2026-09-18
+
+- Speed pass, staging-safe, visuals identical: `compressHTML:true`; portrait ships WebP (`gwill-portrait-320.webp` 4916B / `-640.webp` 12792B via `<picture>`+srcset, PNG 151037B kept as fallback — ~138–146KB saved per portrait view on WebP browsers); about LCP portrait `fetchpriority="high"` (no lazy), homepage below-fold portrait keeps `loading="lazy"`; two heading font weights (800+700) preloaded, 400 not; preconnect+dns-prefetch to androidscroll.com on `/` only (island fetch origin); island stays non-blocking end-of-body inline with 1hr cache + silent fallback; no external CSS/JS chains. HTML +~256B/page (+557B index) from the new tags — see docs/SPEED-REPORT.md for measured before/after bytes. 42/42 checks, no 390px overflow.
+
 ## 0.14.16 — 2026-09-18
 
 - Fix double-escaped ampersand in Android island categories: the WP feed ships category names HTML-escaped (`Basics &amp; Setup`), so the build-time mapper now runs `decodeEntities()` on the category (was title-only, Astro re-escaped `&` to `&amp;amp;`) and the live-island `map()` now runs its textarea `decode()` on `cat(p)` before `textContent` insert (was raw `&amp;` shown literally). Build-time fallback trio untouched (plain `&`), island still renders via textContent (no innerHTML), desktop CSS untouched, no 390px overflow. 42/42 checks.
