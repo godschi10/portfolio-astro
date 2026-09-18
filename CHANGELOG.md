@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0 — 2026-09-18
+
+- Work page as full theme port (page-work.php + card-work.php): crumb/label hero, asymmetric grid, browser-frame cards with dots + URL bar + index chips, theme CTA (Hire Me + View Services). Slots stay explicitly unnamed placeholders, no fake links/images. QA gate updated to new markup, 31/31 checks.
+
 ## 0.10.0 — 2026-09-18
 
 - About page as full theme port (page-about.php + style.css): crumb/label hero with portrait slot (monogram hold till King's photo), dark hook band, story / skills / beyond sections with verbatim theme copy, availability CTA with Hire Me + View Work. 31/31 checks.

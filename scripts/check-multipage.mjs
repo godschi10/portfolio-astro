@@ -10,7 +10,7 @@ const routes = [
   ['index.html', 'index', 'Gwill Chijioke — Web Design, Development & SEO', 'I design. I build. I make it rank.'],
   ['about/index.html', 'about', 'About — Gwill Chijioke', "I'm Gwill — a web developer who obsesses over performance, design and search rankings."],
   ['services/index.html', 'services', 'Services — Gwill Chijioke', 'Services'],
-  ['work/index.html', 'work', 'Selected Work — Gwill Chijioke', 'Selected Work'],
+  ['work/index.html', 'work', 'Selected Work — Gwill Chijioke', 'Projects I\u2019ve built and results I\u2019ve earned.'],
   ['contact/index.html', 'contact', 'Contact — Gwill Chijioke', "Let's talk."],
   ['404.html', '404', '404 — Page not found — Gwill Chijioke', "404 — This page doesn't exist."],
   ['privacy/index.html', 'privacy', 'Privacy — Gwill Chijioke', 'Privacy'],
@@ -105,7 +105,7 @@ check('honest draft content and service scope', () => {
 });
 check('three explicitly unnamed work placeholders; no fake case-study links', () => {
   const work = part(pages.get('work'), 'main');
-  assert.equal((work.match(/class="project-card"/g) || []).length, 3);
+  assert.equal((work.match(/class="work-card"/g) || []).length, 3);
   for (const n of [1, 2, 3]) assert.match(text(work), new RegExp(`Project ${n} — unnamed placeholder`));
   assert.doesNotMatch(work, /<img\b|href="[^"]*\/work\/[^"#]+/);
 });
