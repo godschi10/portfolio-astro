@@ -130,7 +130,7 @@ check('shared navigation reaches all draft routes without scope interception', (
   assert.doesNotMatch(home, /data-scope="/);
   assert.doesNotMatch(part(home, 'footer'), /not available|leg one/);
   assert.ok(part(home, 'header').includes(`href="${base}contact/"`));
-  for (const name of ['overlay-nav', 'no-js-nav']) {
+  for (const name of ['mobile-nav', 'no-js-nav']) {
     const nav = home.match(new RegExp(`<nav class="${name}"[^>]*>[\\s\\S]*?</nav>`))?.[0];
     assert.ok(nav, `${name} exists`);
     for (const route of ['about', 'work', 'services', 'contact']) assert.ok(nav.includes(`href="${base}${route}/"`));

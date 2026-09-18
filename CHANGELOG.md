@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0 — 2026-09-18
+
+- Theme mobile drawer port (header.php + style.css): dark slide-in panel, 01–06 numbered links incl. Tech + Finance Blog externals, socials, purple Hire Me CTA, dimmer + focus trap + Escape. About photo slot with monogram hold (needs King's portrait). 31/31 checks.
+
 ## 0.8.1 — 2026-09-18
 
 - Removed staging descriptive texts King flagged: hero tagline + bottom caption, About staging para, blog hold line. Hero now ends in the theme's own meta row (Anambra NG / UTC+1 / live Lagos clock) + Scroll hint; buttons in theme order (View Work ↓, Hire Me →).
