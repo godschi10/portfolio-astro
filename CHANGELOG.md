@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.21 — 2026-09-18
+
+- Contact MESSAGE textarea locked to vertical-only resize (King screenshot verdict — the box dragged freely in all directions and broke layout): `.form-textarea` gains `max-width:100%` alongside the existing `resize:vertical` + `min-height:140px`, so it can never stretch sideways. Site-wide grep confirms this is the only textarea on the site (remaining contact controls are text/email inputs + selects, no resize flaw); Send-button disabled styling untouched (greyed pre-fill state is deliberate). QA gate locks the rule, 44/44, no 390px overflow.
+
 ## 0.14.20 — 2026-09-18
 
 - Footer `performs` shimmer reverted to the original gradient-text animation (King verdict — the composited `translateX` pseudo-element sweep read as a white film sliding on top): the `em::after` sweep + `shimmer-sweep` keyframes are gone, restored verbatim `animation:shimmer 7s linear infinite` on the gradient-clipped text with `@keyframes shimmer` animating `background-position` 200%→−200%. The PageSpeed non-composited-animation flag is informational (zero score impact) and stays waived. QA gate reverted to match, 44/44, no 390px overflow.

@@ -158,6 +158,7 @@ check('contact preview cannot submit; real email fallback', () => {
   assert.match(text(contact), /Availability has not been confirmed/);
   for (const field of ['name', 'email', 'project-type', 'budget', 'message']) assert.ok(contact.includes(`id="contact-${field}"`));
   assert.match(contact, /<button[^>]*type="button"[^>]*disabled/);
+  assert.match(read('src/pages/contact.astro'), /\.form-textarea\{resize:vertical;max-width:100%;min-height:140px/);
 });
 check('404 motif and real recovery routes', () => {
   const error = part(pages.get('404'), 'main');
