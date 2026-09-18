@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1 — 2026-09-18
+
+- About section rhythm fixed to exact theme values: section tops were 48px, theme uses 24px (measured 96px gaps vs theme 72px at phone width). Now padding-top clamp(24px,3vw,48px), padding-bottom clamp(48px,8vw,128px) verbatim. 31/31 checks.
+
 ## 0.14.0 — 2026-09-18
 
 - About portrait: King's real Gravatar (godschi10@gmail.com) replaces the monogram hold — B&W on teal, 640px local asset. 31/31 checks.
